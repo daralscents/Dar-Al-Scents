@@ -76,7 +76,7 @@ Communiceer met de eigenaar in het **Nederlands**.
 - **Fragra-producten zijn volledig verwijderd** (niet gearchiveerd): totaal 72 producten, 38 actief, 34 gearchiveerd. Back-up in `backups/`.
 - 3 nieuwe producten afgemaakt (Banoffi, Rayhaan Elixir, 9PM Night Out): titel, type, SEO, alt, DE/FR/EN, collecties, Geurwijzer.
 - TikTok Favorieten (9) en Bestsellers (11) gevuld met voorraad vooraan; Dames/Heren/Unisex/Winter opnieuw gesorteerd.
-- 97 URL-redirects voor verdwenen/gearchiveerde producten + 3 lege pagina's (heren/dames/unisex-parfum, nu verborgen). Lijst: `backups/2026-10-03-redirects.json`.
+- 94 URL-redirects (91 producten + 3 pagina's) voor verdwenen/gearchiveerde producten + 3 lege pagina's (heren/dames/unisex-parfum, nu verborgen). Lijst: `backups/2026-10-03-redirects.json`.
 - Extra in thema v6 (210579685725): page.b2b.json (main-page-b2b) hersteld, page.reviews.json nieuw (Reviews-pagina toonde "Over ons"), uitgelicht product op collectiepagina's vervangen, promoblokken met oude producten en nep-badge "1,000+ sold" uitgezet, merkteksten (geen Faris/Nusuk/Maison Alhambra) + vertalingen, 3 nieuwe producten in Geurwijzer-data.
 - Claude heeft geen `write_legal_policies`: placeholders in wettelijke kennisgeving moet eigenaar invullen.
 - Thema-vertalingen zijn per thema: na tekstwijziging in een kopie `translationsRegister` op `gid://shopify/OnlineStoreTheme/<id>` met de nieuwe digest.

@@ -27,7 +27,7 @@ Volledige controle via de Admin API (de winkel zelf was vanuit Claude niet te op
 - Titel collectie-overzicht "Collections" → "Collecties".
 
 ### Links / SEO
-- **97 doorverwijzingen** (301) aangemaakt: oude links naar verdwenen/gearchiveerde producten gaan naar het vervangende product of de juiste collectie (lijst: `backups/2026-10-03-redirects.json`).
+- **94 doorverwijzingen** (301) aangemaakt: oude links naar verdwenen/gearchiveerde producten gaan naar het vervangende product of de juiste collectie (lijst: `backups/2026-10-03-redirects.json`).
 - Lege pagina's Heren/Dames/Unisex Parfum (toonden "Over ons"-inhoud) verborgen en doorgestuurd naar de collecties.
 
 ## Belangrijk om te weten
