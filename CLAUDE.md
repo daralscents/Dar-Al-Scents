@@ -54,6 +54,15 @@ Communiceer met de eigenaar in het **Nederlands**.
   `{"h":"armaf-odyssey-spectra-edp-100ml","g":"h","f":["fruitig","gourmand","oriental"],"n":["fruit","citrus","amber","muskus"],"s":"j","m":"a"}`
   Tegelijk handles van gearchiveerde Fragra-producten uit de data halen.
 
+## Homepage-fix (3 okt 2026)
+- Probleem: hero op homepage verwees naar gearchiveerd `lattafakhamrah-edp-100ml` → lege placeholder bovenaan. Geurwijzer toonde vaak geen resultaat (top-9 vooral gearchiveerde producten).
+- Kopie gemaakt: **"Dar Al Scents – premium v5 (homepage fix 3 okt)"** (ID 210577785181), identiek aan v4 behalve:
+  - `templates/index.json`: hero-product → `armaf-club-de-nuit-overdose`.
+  - `snippets/maison-geurwijzer-data.liquid`: alleen de 35 actieve producten (incl. Khadlaj Island, Odyssey Spectra).
+- Eigenaar moet v5 publiceren (Claude kan niet publiceren). Preview: https://daralscents.nl/?preview_theme_id=210577785181
+- Na publicatie is v5 het live thema; toekomstige themawijzigingen op een kopie van v5 doen.
+- Nog zwak: sectie "TikTok favorieten" op de homepage toont 2 uitverkochte producten.
+
 ## Open punten
 1. **Overstap Fragra → Luxus Aroma** (zie `OVERDRACHT.md` voor de productlijst):
    - (Fragra gestopt: alle 14 zijn gearchiveerd; zo snel mogelijk via Luxus importeren.) Producten 1–8 nu overzetten, met Sample-variant (€14,95, SKU `<EAN>-SAMPLE`). Prijs 100ml niet aanpassen.
