@@ -22,6 +22,12 @@ Communiceer met de eigenaar in het **Nederlands**.
 - Badges van 1505 Watch staan in eigen Shopify-bestanden.
 - Producten komen binnen via **Syncee**. Tags: `FRAG` = leverancier Fragra, `LUAR` = leverancier Luxus Aroma.
 
+## Opschoning 3 okt 2026
+- 57 producttitels gestandaardiseerd naar `Merk Naam EDP 100ml` (producten met Sample-variant zonder inhoud in de titel). Handles ongewijzigd, Geurwijzer werkt op handles.
+- Producttypes genormaliseerd naar Eau de Parfum / Extrait de Parfum / Eau de Toilette / Body mist / Giftset (88 producten). Smart collectie "Sprays" filtert op titel "spray" of type "Body mist".
+- Back-up van de situatie vóór de opschoning: `backups/2026-10-03-producten-voor-opschoning.json`.
+- Nog te doen: DE/FR/EN titelvertalingen gelijkzetten, collectietitel "Bundel: Day &amp; Night", 3 producten zonder collectie (Liquid Brun EDP, 1505 Watch, Embrace), SEO-omschrijvingen (54 producten, 13 collecties), collectieafbeeldingen, ontbrekende EAN's op 7 producten.
+
 ## Open punten
 1. **Overstap Fragra → Luxus Aroma** (zie `OVERDRACHT.md` voor de productlijst):
    - Producten 1–8 nu overzetten, met Sample-variant (€14,95, SKU `<EAN>-SAMPLE`). Prijs 100ml niet aanpassen.
