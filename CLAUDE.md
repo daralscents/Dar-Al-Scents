@@ -47,6 +47,13 @@ Communiceer met de eigenaar in het **Nederlands**.
 - Collecties Dames (25), Heren (30), Unisex (21), Winter Heren (22), Winter Dames (17), Zomer Heren (14), Zomer Dames (13) aangevuld. Alle collecties op handmatige sortering: voorraad eerst (meeste voorraad bovenaan), uitverkocht onderaan. Deze volgorde is statisch: bij nieuwe voorraad/producten opnieuw sorteren.
 - Sample-varianten heten nu "3ml" (€15,95) — gewijzigd door Syncee-sync, niet door Claude.
 
+## Nieuwe producten afgemaakt (3 okt 2026)
+- Khadlaj Island Extrait de Parfum (unisex, winter) en Armaf Odyssey Spectra EDP (heren, jaarrond): NL-beschrijving in huisstijl, SEO, producttype, DE/FR/EN-vertalingen, alt-teksten. Leveranciersverwijzingen (Luxus Aroma GmbH) uit de klanttekst gehaald.
+- Nog toe te voegen aan Geurwijzer-data (bij volgende themakopie, `snippets/maison-geurwijzer-data.liquid`):
+  `{"h":"khadlaj-frische-ext-de-parfum","g":"u","f":["fris","oriental"],"n":["citrus","amber","vanille","muskus"],"s":"w","m":"a"}`
+  `{"h":"armaf-odyssey-spectra-edp-100ml","g":"h","f":["fruitig","gourmand","oriental"],"n":["fruit","citrus","amber","muskus"],"s":"j","m":"a"}`
+  Tegelijk handles van gearchiveerde Fragra-producten uit de data halen.
+
 ## Open punten
 1. **Overstap Fragra → Luxus Aroma** (zie `OVERDRACHT.md` voor de productlijst):
    - (Fragra gestopt: alle 14 zijn gearchiveerd; zo snel mogelijk via Luxus importeren.) Producten 1–8 nu overzetten, met Sample-variant (€14,95, SKU `<EAN>-SAMPLE`). Prijs 100ml niet aanpassen.
