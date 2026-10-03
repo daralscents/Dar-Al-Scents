@@ -15,7 +15,7 @@ Communiceer met de eigenaar in het **Nederlands**.
 - Grote API-resultaten verwerken met jq/python op het weggeschreven bestand.
 
 ## Huidige stand
-- Live thema: **"Dar Al Scents – premium v4 (claude code final)"** (Dawn 15.4.0-basis, eigen "Maison"-stijl: ivoor, zwart, goud; Cormorant + Jost).
+- Live thema (sinds 3 okt ±16:06): **"Dar Al Scents – premium v6 (geurwijzer fix 3 okt)"** (ID 210579685725). Toekomstige themawijzigingen op een kopie van v6. Oorspronkelijk gebaseerd op v4: (Dawn 15.4.0-basis, eigen "Maison"-stijl: ivoor, zwart, goud; Cormorant + Jost).
 - In v4: Geurwijzer-quiz (`/pages/geurwijzer`, knop rechtsboven in de header), chat-assistent "Hulp nodig?", logo in merkenband/chat/reviews, NL-filternamen, slanke Hoppy-verzendbalk.
 - Talen: NL (standaard), DE (`/de`), FR (`/fr`), EN (`/en`) actief op daralscents.nl en myshopify-domein. Thema (630 teksten), menu's, 14 collecties, 8 pagina's (incl. B2B) en alle 90 actieve producten (beschrijving + SEO) zijn vertaald.
 - SEO: alle 90 actieve producten hebben SEO-titel (≤ 60 tekens) en omschrijving (gecontroleerd 3 okt). 226 alt-teksten ingevuld.
