@@ -72,6 +72,15 @@ Communiceer met de eigenaar in het **Nederlands**.
 - Eigenaar moet v6 publiceren. Preview: https://daralscents.nl/?preview_theme_id=210579685725
 - Na publicatie is v6 het live thema; toekomstige themawijzigingen op een kopie van v6 doen.
 
+## Website-audit (3 okt 2026, middag) – zie `RAPPORT-2026-10-03-audit.md`
+- **Fragra-producten zijn volledig verwijderd** (niet gearchiveerd): totaal 72 producten, 38 actief, 34 gearchiveerd. Back-up in `backups/`.
+- 3 nieuwe producten afgemaakt (Banoffi, Rayhaan Elixir, 9PM Night Out): titel, type, SEO, alt, DE/FR/EN, collecties, Geurwijzer.
+- TikTok Favorieten (9) en Bestsellers (11) gevuld met voorraad vooraan; Dames/Heren/Unisex/Winter opnieuw gesorteerd.
+- 97 URL-redirects voor verdwenen/gearchiveerde producten + 3 lege pagina's (heren/dames/unisex-parfum, nu verborgen). Lijst: `backups/2026-10-03-redirects.json`.
+- Extra in thema v6 (210579685725): page.b2b.json (main-page-b2b) hersteld, page.reviews.json nieuw (Reviews-pagina toonde "Over ons"), uitgelicht product op collectiepagina's vervangen, promoblokken met oude producten en nep-badge "1,000+ sold" uitgezet, merkteksten (geen Faris/Nusuk/Maison Alhambra) + vertalingen, 3 nieuwe producten in Geurwijzer-data.
+- Claude heeft geen `write_legal_policies`: placeholders in wettelijke kennisgeving moet eigenaar invullen.
+- Thema-vertalingen zijn per thema: na tekstwijziging in een kopie `translationsRegister` op `gid://shopify/OnlineStoreTheme/<id>` met de nieuwe digest.
+
 ## Open punten
 1. **Overstap Fragra → Luxus Aroma** (zie `OVERDRACHT.md` voor de productlijst):
    - (Fragra gestopt: alle 14 zijn gearchiveerd; zo snel mogelijk via Luxus importeren.) Producten 1–8 nu overzetten, met Sample-variant (€14,95, SKU `<EAN>-SAMPLE`). Prijs 100ml niet aanpassen.
