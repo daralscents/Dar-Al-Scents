@@ -36,7 +36,10 @@ Communiceer met de eigenaar in het **Nederlands**.
 - Gevolg voor collecties: Giftset, Sprays en "Bundel: Day & Night" zijn leeg; Gourmand-bundel heeft 1 van 3; Dames Parfum nog maar 4 actieve producten; TikTok Favorieten 2.
 - Geurwijzer-data (`snippets/maison-geurwijzer-data.liquid`) bevat nog handles van gearchiveerde producten.
 - Collectieafbeeldingen van Winter Heren/Dames, Zomer Dames, Speciale Editie, Giftset, Sprays en beide bundels tonen nu gearchiveerde producten.
-- Vervanging: zoveel mogelijk via Luxus Aroma (of andere leverancier) in Syncee importeren.
+- Vervanging: zoveel mogelijk via Luxus Aroma (of andere leverancier) in Syncee importeren. Werklijst met EAN's: `fragra-vervangen.csv` (57 producten, gesorteerd Dames → Unisex → Heren).
+- 3 okt: "Sprays" uit hoofdmenu (Parfum) gehaald; Giftset/bundels stonden niet in menu's en worden niet op de homepage gelinkt. Terugzetten in menu zodra er weer sprays zijn.
+- 3 okt: collectieafbeeldingen vervangen door actieve producten: Winter Dames (Hawas Reina), Speciale Editie (Liquid Brun Limited), Zomer Dames (Hawas Eclat), Gourmand-bundel (Eclaire Pistache). Winter Heren: update geeft geen fout maar bestandsnaam blijft "Eternal_Oud" → eigenaar visueel controleren, anders handmatig vervangen in admin.
+- Lege collecties (Giftset, Sprays, Day & Night) houden hun oude afbeelding; niet zichtbaar zolang leeg.
 
 ## Open punten
 1. **Overstap Fragra → Luxus Aroma** (zie `OVERDRACHT.md` voor de productlijst):
