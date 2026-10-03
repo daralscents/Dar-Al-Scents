@@ -1,0 +1,169 @@
+{%- comment -%}
+  Maison — upsell in de winkelmand (cart drawer).
+  Toont onder de producten in de winkelmand één aanbevolen product, gebaseerd op het laatst toegevoegde product
+  (cart.items.first = nieuwste regel). Haalt aanbevelingen op via /recommendations/products.json;
+  valt terug op de collectie Best Sellers. Producten die al in de winkelmand liggen of uitverkocht zijn worden overgeslagen.
+{%- endcomment -%}
+{%- liquid
+  case request.locale.iso_code
+    when 'de'
+      assign up_title = 'Passt perfekt dazu'
+      assign up_add = 'Hinzufügen'
+      assign up_busy = 'Wird hinzugefügt…'
+      assign up_error = 'Das hat nicht geklappt. Bitte erneut versuchen.'
+    when 'fr'
+      assign up_title = 'Se marie parfaitement'
+      assign up_add = 'Ajouter'
+      assign up_busy = 'Ajout…'
+      assign up_error = 'Une erreur est survenue. Veuillez réessayer.'
+    when 'en'
+      assign up_title = 'Pairs perfectly with'
+      assign up_add = 'Add'
+      assign up_busy = 'Adding…'
+      assign up_error = 'Something went wrong. Please try again.'
+    else
+      assign up_title = 'Past er mooi bij'
+      assign up_add = 'Toevoegen'
+      assign up_busy = 'Toevoegen…'
+      assign up_error = 'Dat lukte niet. Probeer het opnieuw.'
+  endcase
+  assign up_in_cart = ','
+  for item in cart.items
+    assign up_in_cart = up_in_cart | append: item.product_id | append: ','
+  endfor
+-%}
+{%- if cart.item_count > 0 -%}
+  <maison-cart-upsell
+    class="m-upsell"
+    data-product-id="{{ cart.items.first.product_id }}"
+    data-in-cart="{{ up_in_cart }}"
+    data-root="{{ routes.root_url }}"
+    data-add-label="{{ up_add | escape }}"
+    data-busy-label="{{ up_busy | escape }}"
+    data-error-label="{{ up_error | escape }}"
+    data-locale="{{ request.locale.iso_code }}-NL"
+    data-currency="{{ cart.currency.iso_code }}"
+    hidden
+  >
+    <p class="m-upsell__title">{{ up_title }}</p>
+    <div class="m-upsell__card"></div>
+  </maison-cart-upsell>
+{%- endif -%}
+<style>
+  .m-upsell { margin: 2rem 0 1rem; padding-top: 1.8rem; border-top: 1px solid var(--m-line, rgba(0,0,0,.12)); }
+  .m-upsell__title { margin: 0 0 1.2rem; font: 500 1.1rem var(--m-sans, inherit); letter-spacing: .22em; text-transform: uppercase; color: var(--m-gold, #a8862a); }
+  .m-upsell__item { display: grid; grid-template-columns: 7.2rem 1fr auto; gap: 1.4rem; align-items: center; }
+  .m-upsell__img { width: 7.2rem; height: 7.2rem; object-fit: contain; background: var(--m-ivory, #f8f4ec); display: block; }
+  .m-upsell__name { display: block; font: 400 1.7rem/1.25 var(--m-serif, inherit); color: var(--m-ink, #111); text-decoration: none; }
+  .m-upsell__meta { margin: .4rem 0 0; font: 400 1.3rem var(--m-sans, inherit); color: rgba(0,0,0,.65); }
+  .m-upsell__btn { cursor: pointer; border: 1px solid var(--m-ink, #111); background: var(--m-ink, #111); color: var(--m-ivory, #fff); font: 500 1.05rem var(--m-sans, inherit); letter-spacing: .18em; text-transform: uppercase; padding: 1.1rem 1.4rem; border-radius: 0; white-space: nowrap; }
+  .m-upsell__btn:hover { background: transparent; color: var(--m-ink, #111); }
+  .m-upsell__btn[disabled] { opacity: .6; cursor: default; }
+  .m-upsell__error { grid-column: 1 / -1; margin: .6rem 0 0; font-size: 1.25rem; color: #b42318; }
+  @media (max-width: 380px) { .m-upsell__item { grid-template-columns: 6rem 1fr; } .m-upsell__img { width: 6rem; height: 6rem; } .m-upsell__btn { grid-column: 1 / -1; } }
+</style>
+<script>
+  if (!customElements.get('maison-cart-upsell')) {
+    customElements.define('maison-cart-upsell', class extends HTMLElement {
+      connectedCallback() {
+        if (this.dataset.loaded) return;
+        this.dataset.loaded = '1';
+        this.load().catch(() => {});
+      }
+      url(path) {
+        const root = (this.dataset.root || '/').replace(/\/$/, '');
+        return root + path;
+      }
+      async getJSON(path) {
+        const res = await fetch(this.url(path), { headers: { Accept: 'application/json' } });
+        if (!res.ok) throw new Error(res.status);
+        return res.json();
+      }
+      pick(products) {
+        const inCart = this.dataset.inCart || ',';
+        for (const p of products || []) {
+          if (!p || inCart.indexOf(',' + p.id + ',') !== -1) continue;
+          const variants = p.variants || [];
+          const v = variants.find((x) => x.available);
+          if (!v) continue;
+          return { p, v };
+        }
+        return null;
+      }
+      async load() {
+        let choice = null;
+        const pid = this.dataset.productId;
+        if (pid) {
+          try {
+            const rec = await this.getJSON('/recommendations/products.json?product_id=' + pid + '&limit=10&intent=related');
+            choice = this.pick(rec.products);
+          } catch (e) {}
+        }
+        if (!choice) {
+          try {
+            const col = await this.getJSON('/collections/best-sellers/products.json?limit=20');
+            choice = this.pick(col.products);
+          } catch (e) {}
+        }
+        if (choice) this.render(choice);
+      }
+      money(cents) {
+        const value = (typeof cents === 'string' && cents.indexOf('.') !== -1) ? parseFloat(cents) : Number(cents) / 100;
+        try {
+          return value.toLocaleString(this.dataset.locale || 'nl-NL', { style: 'currency', currency: this.dataset.currency || 'EUR' });
+        } catch (e) {
+          return '€' + value.toFixed(2).replace('.', ',');
+        }
+      }
+      esc(s) {
+        const d = document.createElement('div');
+        d.textContent = s == null ? '' : String(s);
+        return d.innerHTML;
+      }
+      render({ p, v }) {
+        let img = p.featured_image || (p.images && p.images[0] && (p.images[0].src || p.images[0])) || '';
+        if (img && typeof img === 'object') img = img.src || '';
+        if (img) img = img + (img.indexOf('?') === -1 ? '?' : '&') + 'width=200';
+        const vTitle = v.title && v.title !== 'Default Title' ? v.title + ' · ' : '';
+        const url = p.url || this.url('/products/' + p.handle);
+        this.querySelector('.m-upsell__card').innerHTML =
+          '<div class="m-upsell__item">' +
+          (img ? '<a href="' + this.esc(url) + '"><img class="m-upsell__img" src="' + this.esc(img) + '" alt="' + this.esc(p.title) + '" width="72" height="72" loading="lazy"></a>' : '<span></span>') +
+          '<div><a class="m-upsell__name" href="' + this.esc(url) + '">' + this.esc(p.title) + '</a>' +
+          '<p class="m-upsell__meta">' + this.esc(vTitle) + this.esc(this.money(v.price)) + '</p></div>' +
+          '<button type="button" class="m-upsell__btn">' + this.esc(this.dataset.addLabel) + '</button>' +
+          '</div>';
+        this.querySelector('.m-upsell__btn').addEventListener('click', (e) => this.add(e.currentTarget, v.id));
+        this.hidden = false;
+      }
+      async add(btn, variantId) {
+        btn.disabled = true;
+        btn.textContent = this.dataset.busyLabel;
+        try {
+          const res = await fetch((window.routes && window.routes.cart_add_url ? window.routes.cart_add_url : this.url('/cart/add')) + '.js', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+            body: JSON.stringify({ items: [{ id: variantId, quantity: 1 }], sections: 'cart-drawer,cart-icon-bubble', sections_url: window.location.pathname })
+          });
+          const data = await res.json();
+          if (!res.ok || data.status) throw new Error(data.description || 'error');
+          const drawer = document.querySelector('cart-drawer');
+          if (drawer && data.sections && typeof drawer.renderContents === 'function') {
+            drawer.renderContents(data);
+          } else {
+            window.location.href = (window.routes && window.routes.cart_url) || this.url('/cart');
+          }
+        } catch (e) {
+          btn.disabled = false;
+          btn.textContent = this.dataset.addLabel;
+          if (!this.querySelector('.m-upsell__error')) {
+            const p = document.createElement('p');
+            p.className = 'm-upsell__error';
+            p.textContent = this.dataset.errorLabel;
+            this.querySelector('.m-upsell__item').appendChild(p);
+          }
+        }
+      }
+    });
+  }
+</script>

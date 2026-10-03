@@ -81,6 +81,11 @@ Communiceer met de eigenaar in het **Nederlands**.
 - Claude heeft geen `write_legal_policies`: placeholders in wettelijke kennisgeving moet eigenaar invullen.
 - Thema-vertalingen zijn per thema: na tekstwijziging in een kopie `translationsRegister` op `gid://shopify/OnlineStoreTheme/<id>` met de nieuwe digest.
 
+## Winkelmand-upsell (3 okt 2026) – thema v7
+- Kopie **"Dar Al Scents – premium v7 (winkelmand upsell)"** (ID 210581520733) van live v6. Eigenaar moet publiceren.
+- Nieuw: `snippets/maison-cart-upsell.liquid` (kopie in `theme-snippets/`), gerenderd in `snippets/cart-drawer.liquid` direct onder de producttabel.
+- Werking: nieuwste product staat bovenaan (Shopify zet nieuwste regel eerst); daaronder 1 aanbevolen product via `/recommendations/products.json?intent=related` op basis van het laatst toegevoegde product, anders uit Best Sellers. Slaat producten over die al in de mand zitten of uitverkocht zijn. Knop "Toevoegen" voegt toe via `/cart/add.js` en ververst de drawer. Teksten NL/DE/FR/EN in de snippet.
+
 ## Open punten
 1. **Overstap Fragra → Luxus Aroma** (zie `OVERDRACHT.md` voor de productlijst):
    - (Fragra gestopt: alle 14 zijn gearchiveerd; zo snel mogelijk via Luxus importeren.) Producten 1–8 nu overzetten, met Sample-variant (€14,95, SKU `<EAN>-SAMPLE`). Prijs 100ml niet aanpassen.
