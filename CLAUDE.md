@@ -15,7 +15,7 @@ Communiceer met de eigenaar in het **Nederlands**.
 - Grote API-resultaten verwerken met jq/python op het weggeschreven bestand.
 
 ## Huidige stand
-- Live thema (sinds 3 okt ±16:06): **"Dar Al Scents – premium v6 (geurwijzer fix 3 okt)"** (ID 210579685725). Toekomstige themawijzigingen op een kopie van v6. Oorspronkelijk gebaseerd op v4: (Dawn 15.4.0-basis, eigen "Maison"-stijl: ivoor, zwart, goud; Cormorant + Jost).
+- Live thema (sinds 3 okt ±18:01): **"Dar Al Scents – premium v7 (winkelmand upsell)"** (ID 210581520733) = v6 + winkelmand-upsell. Toekomstige themawijzigingen op een kopie van v7. Oorspronkelijk gebaseerd op v4: (Dawn 15.4.0-basis, eigen "Maison"-stijl: ivoor, zwart, goud; Cormorant + Jost).
 - In v4: Geurwijzer-quiz (`/pages/geurwijzer`, knop rechtsboven in de header), chat-assistent "Hulp nodig?", logo in merkenband/chat/reviews, NL-filternamen, slanke Hoppy-verzendbalk.
 - Talen: NL (standaard), DE (`/de`), FR (`/fr`), EN (`/en`) actief op daralscents.nl en myshopify-domein. Thema (630 teksten), menu's, 14 collecties, 8 pagina's (incl. B2B) en alle 90 actieve producten (beschrijving + SEO) zijn vertaald.
 - SEO: alle 90 actieve producten hebben SEO-titel (≤ 60 tekens) en omschrijving (gecontroleerd 3 okt). 226 alt-teksten ingevuld.
@@ -82,7 +82,7 @@ Communiceer met de eigenaar in het **Nederlands**.
 - Thema-vertalingen zijn per thema: na tekstwijziging in een kopie `translationsRegister` op `gid://shopify/OnlineStoreTheme/<id>` met de nieuwe digest.
 
 ## Winkelmand-upsell (3 okt 2026) – thema v7
-- Kopie **"Dar Al Scents – premium v7 (winkelmand upsell)"** (ID 210581520733) van live v6. Eigenaar moet publiceren.
+- Kopie **"Dar Al Scents – premium v7 (winkelmand upsell)"** (ID 210581520733) van v6. Gepubliceerd door eigenaar 3 okt ±18:01.
 - Nieuw: `snippets/maison-cart-upsell.liquid` (kopie in `theme-snippets/`), gerenderd in `snippets/cart-drawer.liquid` direct onder de producttabel.
 - Werking: nieuwste product staat bovenaan (Shopify zet nieuwste regel eerst); daaronder 1 aanbevolen product via `/recommendations/products.json?intent=related` op basis van het laatst toegevoegde product, anders uit Best Sellers. Slaat producten over die al in de mand zitten of uitverkocht zijn. Knop "Toevoegen" voegt toe via `/cart/add.js` en ververst de drawer. Teksten NL/DE/FR/EN in de snippet.
 
