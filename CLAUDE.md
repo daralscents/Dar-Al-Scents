@@ -63,6 +63,15 @@ Communiceer met de eigenaar in het **Nederlands**.
 - Na publicatie is v5 het live thema; toekomstige themawijzigingen op een kopie van v5 doen.
 - Nog zwak: sectie "TikTok favorieten" op de homepage toont 2 uitverkochte producten.
 
+## Geurwijzer-fix (3 okt 2026)
+- Probleem: in het live thema (210579161437, "Bijgewerkte kopie van … premium v…", door eigenaar gepubliceerd 14:32) bevatte `templates/page.geurwijzer.json` alleen een "main-page"-sectie → de quiz stond niet meer op `/pages/geurwijzer`.
+- Kopie gemaakt: **"Dar Al Scents – premium v6 (geurwijzer fix 3 okt)"** (ID 210579685725), identiek aan live behalve:
+  - `templates/page.geurwijzer.json`: sectie `maison-geurwijzer` hersteld (collecties heren-parfum-1 / dames-parfum / unisex).
+  - `snippets/maison-geurwijzer-data.liquid`: 35 actieve producten, maar Liquid toont alleen producten die `available` zijn (via `collections.all.products limit: 250`). Uitverkochte producten komen dus vanzelf terug zodra er voorraad is.
+  - Let op: `collections.all` geeft zonder paginate max. 50 producten. Groeit de winkel boven 50, dan dit filter aanpassen.
+- Eigenaar moet v6 publiceren. Preview: https://daralscents.nl/?preview_theme_id=210579685725
+- Na publicatie is v6 het live thema; toekomstige themawijzigingen op een kopie van v6 doen.
+
 ## Open punten
 1. **Overstap Fragra → Luxus Aroma** (zie `OVERDRACHT.md` voor de productlijst):
    - (Fragra gestopt: alle 14 zijn gearchiveerd; zo snel mogelijk via Luxus importeren.) Producten 1–8 nu overzetten, met Sample-variant (€14,95, SKU `<EAN>-SAMPLE`). Prijs 100ml niet aanpassen.
