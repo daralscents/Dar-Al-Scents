@@ -18,15 +18,17 @@ Communiceer met de eigenaar in het **Nederlands**.
 - Live thema: **"Dar Al Scents – premium v4 (claude code final)"** (Dawn 15.4.0-basis, eigen "Maison"-stijl: ivoor, zwart, goud; Cormorant + Jost).
 - In v4: Geurwijzer-quiz (`/pages/geurwijzer`, knop rechtsboven in de header), chat-assistent "Hulp nodig?", logo in merkenband/chat/reviews, NL-filternamen, slanke Hoppy-verzendbalk.
 - Talen: NL (standaard), DE (`/de`), FR (`/fr`), EN (`/en`) actief op daralscents.nl en myshopify-domein. Thema (630 teksten), menu's, 14 collecties, 8 pagina's (incl. B2B) en alle 90 actieve producten (beschrijving + SEO) zijn vertaald.
-- SEO: alle 90 actieve producten hebben SEO-titel (≤ 60 tekens) en omschrijving. 226 alt-teksten ingevuld.
+- SEO: alle 90 actieve producten hebben SEO-titel (≤ 60 tekens) en omschrijving (gecontroleerd 3 okt). 226 alt-teksten ingevuld.
 - Badges van 1505 Watch staan in eigen Shopify-bestanden.
 - Producten komen binnen via **Syncee**. Tags: `FRAG` = leverancier Fragra, `LUAR` = leverancier Luxus Aroma.
 
-## Opschoning 3 okt 2026
-- 57 producttitels gestandaardiseerd naar `Merk Naam EDP 100ml` (producten met Sample-variant zonder inhoud in de titel). Handles ongewijzigd, Geurwijzer werkt op handles.
-- Producttypes genormaliseerd naar Eau de Parfum / Extrait de Parfum / Eau de Toilette / Body mist / Giftset (88 producten). Smart collectie "Sprays" filtert op titel "spray" of type "Body mist".
-- Back-up van de situatie vóór de opschoning: `backups/2026-10-03-producten-voor-opschoning.json`.
-- Nog te doen: DE/FR/EN titelvertalingen gelijkzetten, collectietitel "Bundel: Day &amp; Night", 3 producten zonder collectie (Liquid Brun EDP, 1505 Watch, Embrace), SEO-omschrijvingen (54 producten, 13 collecties), collectieafbeeldingen, ontbrekende EAN's op 7 producten.
+## Opschoning 3 okt 2026 (afgerond, zie `RAPPORT-2026-10-03.md`)
+- 57 producttitels gestandaardiseerd naar `Merk Naam EDP 100ml` (producten met Sample-variant zonder inhoud in de titel). Handles ongewijzigd; Geurwijzer werkt op handles. DE/FR/EN-titels gelijkgezet.
+- Producttypes: Eau de Parfum / Extrait de Parfum / Eau de Toilette / Body mist / Giftset. Smart collectie "Sprays" filtert op titel "spray" of type "Body mist".
+- Alle 90 actieve producten in minstens één collectie en met SEO-omschrijving (NL + DE/FR/EN). Nieuwe SEO-teksten noemen geen designer-merken.
+- Alle 14 collecties hebben SEO-omschrijving (+ vertalingen) en afbeelding. "Bundel: Day & Night" titel gerepareerd.
+- Vertaal-digest = SHA-256 van de brontekst (handig voor `translationsRegister`).
+- Back-up vóór opschoning: `backups/2026-10-03-producten-voor-opschoning.json`.
 
 ## Open punten
 1. **Overstap Fragra → Luxus Aroma** (zie `OVERDRACHT.md` voor de productlijst):
@@ -38,3 +40,7 @@ Communiceer met de eigenaar in het **Nederlands**.
 3. Klaviyo Customer Agent: nog niet geactiveerd. Na activatie kennisbank vullen.
 4. iDEAL staat niet aan bij de betaalmethoden: eigenaar laten controleren.
 5. Nieuwe producten komen niet vanzelf in de Geurwijzer-data: handmatig toevoegen.
+6. 31 producten hebben maar 1 foto: extra beelden nodig (eigenaar/leverancier).
+7. EAN ontbreekt op 100ml-variant van 7 producten (Khamrah Waha, Musamam Black Intense, Hawas Malibu, Hawas Fire, Vulcan Baie, Ana Abiyedh Rouge, Como Moiselle): opzoeken in Syncee.
+8. 15 thema's (max 20): oude thema's kan alleen de eigenaar verwijderen.
+9. Oudere SEO-teksten (±37 producten) noemen designer-parfums ("in de sfeer van …"): merkenrechtelijk risico, eventueel herschrijven.
