@@ -41,6 +41,12 @@ Communiceer met de eigenaar in het **Nederlands**.
 - 3 okt: collectieafbeeldingen vervangen door actieve producten: Winter Dames (Hawas Reina), Speciale Editie (Liquid Brun Limited), Zomer Dames (Hawas Eclat), Gourmand-bundel (Eclaire Pistache). Winter Heren: update geeft geen fout maar bestandsnaam blijft "Eternal_Oud" → eigenaar visueel controleren, anders handmatig vervangen in admin.
 - Lege collecties (Giftset, Sprays, Day & Night) houden hun oude afbeelding; niet zichtbaar zolang leeg.
 
+## Opbouw op huidige voorraad (3 okt 2026)
+- 35 actieve producten (2 nieuw via Syncee om 12:28: Khadlaj Island, Armaf Odyssey Spectra — alleen 3ml-variant). 19 met voorraad, 16 uitverkocht.
+- Keuze eigenaar: uitverkochte blijven online maar onderaan; unisex-geuren staan ook in Dames én Heren.
+- Collecties Dames (25), Heren (30), Unisex (21), Winter Heren (22), Winter Dames (17), Zomer Heren (14), Zomer Dames (13) aangevuld. Alle collecties op handmatige sortering: voorraad eerst (meeste voorraad bovenaan), uitverkocht onderaan. Deze volgorde is statisch: bij nieuwe voorraad/producten opnieuw sorteren.
+- Sample-varianten heten nu "3ml" (€15,95) — gewijzigd door Syncee-sync, niet door Claude.
+
 ## Open punten
 1. **Overstap Fragra → Luxus Aroma** (zie `OVERDRACHT.md` voor de productlijst):
    - (Fragra gestopt: alle 14 zijn gearchiveerd; zo snel mogelijk via Luxus importeren.) Producten 1–8 nu overzetten, met Sample-variant (€14,95, SKU `<EAN>-SAMPLE`). Prijs 100ml niet aanpassen.
