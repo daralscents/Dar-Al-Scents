@@ -93,6 +93,11 @@ Communiceer met de eigenaar in het **Nederlands**.
 - Thema **v8 (conversie)** ID 210649547101 = v7 + snelle betaalknoppen op productpagina + verzendbalk €75 voor BE. Eigenaar moet publiceren.
 - VS-verkeer (±370 sessies/2 wk) = bots.
 
+## Knop-fix (6 okt 2026) – thema v9
+- v8 is door eigenaar gepubliceerd. Fout: met snelle betaalknoppen maakt Dawn "Aan winkelwagen toevoegen" `button--secondary` → zwarte tekst op zwarte Maison-knop (onzichtbaar).
+- **v9 (knop fix)** ID 210651283805 = v8 + `snippets/buy-buttons.liquid` altijd `button--primary`. Eigenaar moet publiceren.
+- Hoppy Free Shipping (app-korting "fblink…"): gratis verzending ≥ €60 voor álle landen (ook BE → overrulet BE €75-regel), gratis cadeau ≥ €100 verwijst naar **niet-bestaande variant 65940863648093** (verwijderd Fragra-product), €20 korting ≥ €400. Teksten Engels. Alles aanpassen in de Hoppy-app zelf (eigenaar).
+
 ## Open punten
 1. **Overstap Fragra → Luxus Aroma** (zie `OVERDRACHT.md` voor de productlijst):
    - (Fragra gestopt: alle 14 zijn gearchiveerd; zo snel mogelijk via Luxus importeren.) Producten 1–8 nu overzetten, met Sample-variant (€14,95, SKU `<EAN>-SAMPLE`). Prijs 100ml niet aanpassen.
