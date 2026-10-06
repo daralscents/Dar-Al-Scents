@@ -98,13 +98,17 @@ Communiceer met de eigenaar in het **Nederlands**.
 - **v9 (knop fix)** ID 210651283805 = v8 + `snippets/buy-buttons.liquid` altijd `button--primary`. Eigenaar moet publiceren.
 - Hoppy Free Shipping (app-korting "fblink…"): gratis verzending ≥ €60 voor álle landen (ook BE → overrulet BE €75-regel), gratis cadeau ≥ €100 verwijst naar **niet-bestaande variant 65940863648093** (verwijderd Fragra-product), €20 korting ≥ €400. Teksten Engels. Alles aanpassen in de Hoppy-app zelf (eigenaar).
 
+## Hoppy-balk verborgen (7 okt 2026) – thema v10
+- v9 (knop fix) is door eigenaar gepubliceerd.
+- **v10 (zonder Hoppy-balk)** ID 210651906397 = v9 + `assets/maison-apps.css`: alle Hoppy/Futureblink-elementen (`[class*="futureblink"]`) verborgen, oude Hoppy-styling eruit. App-embed staat nog aan (Hoppy-korting in de kassa blijft werken). Eigen NL-verzendbalk in winkelmand + aankondigingsbalk blijven. Eigenaar moet publiceren.
+
 ## Open punten
 1. **Overstap Fragra → Luxus Aroma** (zie `OVERDRACHT.md` voor de productlijst):
    - (Fragra gestopt: alle 14 zijn gearchiveerd; zo snel mogelijk via Luxus importeren.) Producten 1–8 nu overzetten, met Sample-variant (€14,95, SKU `<EAN>-SAMPLE`). Prijs 100ml niet aanpassen.
    - Producten 9–14 pas overzetten als Luxus weer voorraad heeft.
    - Eerst in Syncee uitzoeken: kan een bestaand product op SKU/EAN gekoppeld worden (route B) of moet er nieuw geïmporteerd worden en het oude gearchiveerd (route A)?
    - Syncee-UI was lastig via Chrome te bedienen ("Setup guide"-venster blokkeerde klikken).
-2. Hoppy Free Shipping: klantteksten nog Engels ("You're only … away from free shipping!"). Aanpassen in de app zelf.
+2. Hoppy Free Shipping: balk verborgen in v10. In de app nog regelen: gratis cadeau ≥ €100 (verwijst naar verwijderde variant) + gratis verzending ≥ €60 ook voor BE.
 3. Klaviyo Customer Agent: nog niet geactiveerd. Na activatie kennisbank vullen.
 4. ~~iDEAL~~ werkt via Mollie. Wel nog: Bancontact voor België controleren/aanzetten.
 5. Nieuwe producten komen niet vanzelf in de Geurwijzer-data: handmatig toevoegen.
