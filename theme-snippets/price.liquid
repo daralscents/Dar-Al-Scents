@@ -1,0 +1,16 @@
+{%- comment -%}
+  Maison (7 okt 2026): productkaarten (card-product: price_class '' + show_compare_at_price, geen use_variant)
+  tonen de prijs via 'maison-card-price'. Alle andere plekken gebruiken de originele Dawn-snippet 'price-dawn'.
+{%- endcomment -%}
+{%- if use_variant != true and placeholder == blank and price_class == '' and show_compare_at_price and show_badges != true and product != blank -%}
+  {%- render 'maison-card-price', product: product -%}
+{%- else -%}
+  {%- render 'price-dawn',
+    product: product,
+    placeholder: placeholder,
+    use_variant: use_variant,
+    show_badges: show_badges,
+    price_class: price_class,
+    show_compare_at_price: show_compare_at_price
+  -%}
+{%- endif -%}

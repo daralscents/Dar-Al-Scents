@@ -1,0 +1,74 @@
+{%- comment -%}
+  Maison – prijs op de productkaart (7 okt 2026).
+  - Hoofdprijs = grote fles (duurste variant die geen sample is), niet "Vanaf €15,95".
+  - Sample apart eronder als instapper.
+  - Echte lage voorraad (1–5 stuks, voorraad bijgehouden) als korte melding.
+  - Is de grote fles uitverkocht maar de sample niet: sampleprijs tonen + melding.
+  Accepts: product
+{%- endcomment -%}
+{%- liquid
+  assign lang = request.locale.iso_code | slice: 0, 2
+  assign main = nil
+  assign sample = nil
+  for v in product.variants
+    assign vt = v.title | downcase
+    if vt contains 'sample' or vt contains 'proef' or vt == '3ml' or vt == '3 ml'
+      assign sample = v
+    elsif main == nil or v.price > main.price
+      assign main = v
+    endif
+  endfor
+  if main == nil
+    assign main = sample
+    assign sample = nil
+  endif
+
+  case lang
+    when 'de'
+      assign t_sample = 'Auch als Probe'
+      assign t_sample_short = 'Probe'
+      assign t_low = 'Nur noch [n] auf Lager'
+      assign t_out = 'vorübergehend ausverkauft'
+    when 'fr'
+      assign t_sample = 'Aussi en échantillon'
+      assign t_sample_short = 'Échantillon'
+      assign t_low = 'Plus que [n] en stock'
+      assign t_out = 'temporairement épuisé'
+    when 'en'
+      assign t_sample = 'Also as a sample'
+      assign t_sample_short = 'Sample'
+      assign t_low = 'Only [n] left'
+      assign t_out = 'temporarily sold out'
+    else
+      assign t_sample = 'Ook als sample'
+      assign t_sample_short = 'Sample'
+      assign t_low = 'Nog maar [n] op voorraad'
+      assign t_out = 'tijdelijk uitverkocht'
+  endcase
+
+  assign main_size = ''
+  if main.title != 'Default Title'
+    assign main_size = main.title
+  endif
+-%}
+{%- if main.available or sample == nil or sample.available == false -%}
+  <div class="m-price{% if main.compare_at_price > main.price %} m-price--sale{% endif %}">
+    {%- if main.compare_at_price > main.price -%}
+      <s class="m-price__was">{{ main.compare_at_price | money }}</s>
+    {%- endif -%}
+    <span class="m-price__now">{{ main.price | money }}</span>
+    {%- if main_size != blank -%}<span class="m-price__size">{{ main_size }}</span>{%- endif -%}
+  </div>
+  {%- if main.available and main.inventory_management == 'shopify' and main.inventory_quantity > 0 and main.inventory_quantity <= 5 -%}
+    <p class="m-card-note m-card-note--low">{{ t_low | replace: '[n]', main.inventory_quantity }}</p>
+  {%- endif -%}
+  {%- if main.available and sample and sample.available -%}
+    <p class="m-card-note">{{ t_sample }} · {{ sample.price | money }}</p>
+  {%- endif -%}
+{%- else -%}
+  <div class="m-price">
+    <span class="m-price__now">{{ sample.price | money }}</span>
+    <span class="m-price__size">{{ t_sample_short }}</span>
+  </div>
+  <p class="m-card-note">{{ main_size | default: product.title }} {{ t_out }}</p>
+{%- endif -%}
