@@ -101,6 +101,7 @@ Communiceer met de eigenaar in het **Nederlands**.
 ## Hoppy-balk verborgen (7 okt 2026) – thema v10
 - v9 (knop fix) is door eigenaar gepubliceerd.
 - **v10 (zonder Hoppy-balk)** ID 210651906397 = v9 + `assets/maison-apps.css`: alle Hoppy/Futureblink-elementen (`[class*="futureblink"]`) verborgen, oude Hoppy-styling eruit. App-embed staat nog aan (Hoppy-korting in de kassa blijft werken). Eigen NL-verzendbalk in winkelmand + aankondigingsbalk blijven. Eigenaar moet publiceren.
+- Ook in v10 (catalogus, 7 okt): `templates/collection.json` (geldt voor /collections/all en alle collecties zonder eigen template; Dames/Heren/Unisex hebben eigen templates en zijn NIET aangepast): productgrid direct onder de banner, 24 per pagina, 4 kolommen (mobiel 2), vierkante foto's, tweede foto bij hover, merknaam, snel toevoegen, horizontale filters + sortering. Dubbele blokken (uitgelicht product, Best Sellers-kopie) uit; categorieblok onder het grid. CSS-blok "Catalogus" in `assets/maison-apps.css`: zandkleurige tegels met hele flesfoto (contain), titels max. 2 regels in Cormorant, goud merklabel, strakke badges/knoppen, filterbalk met lijnen. Thema heet nu "Dar Al Scents – v10 (Hoppy uit + catalogus)". Preview: https://daralscents.nl/collections/all?preview_theme_id=210651906397
 
 ## Open punten
 1. **Overstap Fragra → Luxus Aroma** (zie `OVERDRACHT.md` voor de productlijst):
