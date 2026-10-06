@@ -86,6 +86,13 @@ Communiceer met de eigenaar in het **Nederlands**.
 - Nieuw: `snippets/maison-cart-upsell.liquid` (kopie in `theme-snippets/`), gerenderd in `snippets/cart-drawer.liquid` direct onder de producttabel.
 - Werking: nieuwste product staat bovenaan (Shopify zet nieuwste regel eerst); daaronder 1 aanbevolen product via `/recommendations/products.json?intent=related` op basis van het laatst toegevoegde product, anders uit Best Sellers. Slaat producten over die al in de mand zitten of uitverkocht zijn. Knop "Toevoegen" voegt toe via `/cart/add.js` en ververst de drawer. Teksten NL/DE/FR/EN in de snippet.
 
+## Conversie-analyse + verzending (6 okt 2026) – zie `RAPPORT-2026-10-06-conversie.md`
+- 65% van het verkeer is Belgisch mobiel (TikTok), 0 bestellingen. Oorzaak o.a. verzendkosten BE €12,95 (EU-zone).
+- Verzending nu: NL €4,95, gratis ≥ €60 (korting "Gratis verzending vanaf €60": NL/DE/CH/PL). **BE: eigen zone €4,95, gratis ≥ €75** (korting "Gratis verzending België vanaf €75"). Besluit eigenaar.
+- iDEAL werkt via Mollie (order #1012) – open punt 4 vervalt.
+- Thema **v8 (conversie)** ID 210649547101 = v7 + snelle betaalknoppen op productpagina + verzendbalk €75 voor BE. Eigenaar moet publiceren.
+- VS-verkeer (±370 sessies/2 wk) = bots.
+
 ## Open punten
 1. **Overstap Fragra → Luxus Aroma** (zie `OVERDRACHT.md` voor de productlijst):
    - (Fragra gestopt: alle 14 zijn gearchiveerd; zo snel mogelijk via Luxus importeren.) Producten 1–8 nu overzetten, met Sample-variant (€14,95, SKU `<EAN>-SAMPLE`). Prijs 100ml niet aanpassen.
@@ -94,7 +101,7 @@ Communiceer met de eigenaar in het **Nederlands**.
    - Syncee-UI was lastig via Chrome te bedienen ("Setup guide"-venster blokkeerde klikken).
 2. Hoppy Free Shipping: klantteksten nog Engels ("You're only … away from free shipping!"). Aanpassen in de app zelf.
 3. Klaviyo Customer Agent: nog niet geactiveerd. Na activatie kennisbank vullen.
-4. iDEAL staat niet aan bij de betaalmethoden: eigenaar laten controleren.
+4. ~~iDEAL~~ werkt via Mollie. Wel nog: Bancontact voor België controleren/aanzetten.
 5. Nieuwe producten komen niet vanzelf in de Geurwijzer-data: handmatig toevoegen.
 6. 31 producten hebben maar 1 foto: extra beelden nodig (eigenaar/leverancier).
 7. EAN ontbreekt op 100ml-variant van 7 producten (Khamrah Waha, Musamam Black Intense, Hawas Malibu, Hawas Fire, Vulcan Baie, Ana Abiyedh Rouge, Como Moiselle): opzoeken in Syncee.
