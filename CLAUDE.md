@@ -114,6 +114,10 @@ Communiceer met de eigenaar in het **Nederlands**.
 - Alle handmatige collecties opnieuw gesorteerd: grote fles op voorraad eerst (voorraad aflopend, afgetopt op 50), dan alleen sample op voorraad, dan uitverkocht.
 - Let op voorraad: bij veel nieuwe producten heeft de 100ml-variant 0 voorraad en alleen de Sample voorraad (Syncee). Kaarten tonen dat nu eerlijk.
 
+## v11 (7 okt 2026) – knop-vangnet + Hoppy-embed uit
+- Eigenaar stuurde screenshot van productpagina met onleesbare "Aan winkelwagen toevoegen" en Engelse Hoppy-widget ("You're only €30,05 away…" + productcarrousel). Live v10 had beide fixes al → waarschijnlijk oude preview/cache in de browser. Toch zekerheidshalve:
+- **v11 (knop + Hoppy uit)** ID 210674352477 = v10 + `config/settings_data.json`: Hoppy app-embed `disabled: true` (balk én productpagina-widget weg; de Hoppy-korting in de kassa is een Shopify-korting en blijft werken) + `assets/maison-apps.css` vangnet: `.product-form__submit` altijd zwart met ivoren tekst. Eigenaar moet publiceren.
+
 ## Open punten
 1. **Overstap Fragra → Luxus Aroma** (zie `OVERDRACHT.md` voor de productlijst):
    - (Fragra gestopt: alle 14 zijn gearchiveerd; zo snel mogelijk via Luxus importeren.) Producten 1–8 nu overzetten, met Sample-variant (€14,95, SKU `<EAN>-SAMPLE`). Prijs 100ml niet aanpassen.
