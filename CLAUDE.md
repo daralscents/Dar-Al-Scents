@@ -132,6 +132,13 @@ Communiceer met de eigenaar in het **Nederlands**.
 - **Thema v12 (verzending + samples)** ID 210713051485 = v11 + verzendbedragen €50/€60 overal (aankondigingsbalk, collectiebanner, winkelmand-balk NL 5000/anders 6000, productpagina-tab, chat-assistent, homepage hero/USP, `maison-t` trust_free) + samplepakket-promo (aankondiging, hero-knop 2, regel in collectiebanner, regel in `maison-pdp-trust` bij producten met sample, hint in winkelmand bij 1–2 samples / "korting toegepast"). Thema-vertalingen DE/FR/EN geregistreerd. Kopieën in `theme-snippets/*.v12.liquid`. **Eigenaar moet v12 publiceren.**
 - Verzendbeleid (`/policies/shipping-policy`) kan Claude niet schrijven: eigenaar moet bedragen daar zelf aanpassen.
 
+## Merkcollecties + pop-up (8 okt 2026, avond)
+- 10 smart collecties op leverancier (VENDOR): `lattafa-parfum` (STARTS_WITH "Lattafa", incl. Lattafa Pride), `french-avenue-parfum`, `rasasi-parfum`, `armaf-parfum`, `maison-alhambra-parfum`, `afnan-parfum`, `riiffs-parfum`, `mykonos-parfum`, `rayhaan-parfum`, `khadlaj-parfum` (IDs 727717773661 … 727718068573). NL-tekst + SEO, DE/FR/EN vertaald, gepubliceerd op Webshop/Shop/TikTok/Google/Facebook. Handmatige sortering: grote fles op voorraad → alleen sample → uitverkocht (statisch: bij nieuwe voorraad opnieuw sorteren; nieuwe producten komen onderaan). Emper/Nusuk (1 product) geen collectie.
+- Hoofdmenu: "Merken" (Marken/Marques/Brands) met de 10 merken, na "Parfum".
+- Klaviyo-pop-up **"Pop-up WELKOM10 (10% eerste bestelling)"** (form TrJ5jq) als **concept**: na 8 sec of exit-intent, 7 dagen pauze na sluiten, aanmelding op Email List TFJL6r (dubbele opt-in → welkomstflow start pas na bevestiging), bedankstap toont WELKOM10 + knop naar samplepakket. Alleen NL-tekst. **Eigenaar moet hem in Klaviyo live zetten** (API kan alleen concepten maken).
+- Let op: 2 conceptproducten met Spaanse variantnamen ("Frasco Original 100ml", "Muestra 5 ml") in Lattafa/French Avenue (Syncee-import?), niet zichtbaar zolang concept.
+- Klantmail na aankoop: Judge.me stuurt eigen review-verzoek (dag 14, standaard groene opmaak) naast Klaviyo review-mail (dag 12). Advies: één van beide; Judge.me-opmaak aanpassen in de app (eigenaar).
+
 ## Open punten
 1. **Overstap Fragra → Luxus Aroma** (zie `OVERDRACHT.md` voor de productlijst):
    - (Fragra gestopt: alle 14 zijn gearchiveerd; zo snel mogelijk via Luxus importeren.) Producten 1–8 nu overzetten, met Sample-variant (€14,95, SKU `<EAN>-SAMPLE`). Prijs 100ml niet aanpassen.
