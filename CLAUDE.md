@@ -122,6 +122,16 @@ Communiceer met de eigenaar in het **Nederlands**.
 - Echte conversie ±0,06% (1 webshop-order in 14 dagen; #1005–#1011 zijn conceptorders). België mobiel: 95% bounce, 7 sec. Probleem zit in verkeer/aansluiting video→pagina, reviews (1 in hele winkel), voorraad, Bancontact.
 - Redirects aangepast: oude Angham Second Song-URL (TikTok, 250 sessies) → nieuw product `lattafa-angham-second-song-edp`; oude Honor & Glory-URL → `lattafa-badee-al-oud-honor-glory-edp`.
 
+## Samplepakket, kortingen, review-mail + thema v12 (8 okt 2026)
+- Verzendkortingen (door eigenaar aangepast 8 okt): **NL gratis ≥ €50**, **BE ≥ €60**, DE/PL/CH ≥ €60. Hoppy app-korting (2303479677277) door Claude **gedeactiveerd** (akkoord eigenaar).
+- **WELKOM10** (10%, 1× per klant, combineert met verzending) aangemaakt: stond al in 3 Klaviyo-mails maar bestond niet.
+- **REVIEW10** (zelfde instellingen) = beloning voor een review.
+- **Samplepakket**: automatische korting "Samplepakket: 3 samples voor €25" (DiscountAutomaticNode/2306581266781): 47,75% op 64 sample-varianten bij min. 3 stuks (3 × €15,95 → €24,99). **Nieuwe producten: sample-variant handmatig aan deze korting toevoegen.** Smart collectie `samplepakket` (727700996445, regel varianttitel = Sample) + menu-item "Samples: 3 voor €25" (beide vertaald DE/FR/EN).
+- Klaviyo post-aankoop e-mail 2 (flow TSMJ8P, actie 118153045): nieuwe template met REVIEW10-code, onderwerp "Hoe bevalt je nieuwe geur? (+10% voor jou)". Klaviyo kopieert de template bij koppeling (flow-template UD4tL5; bron VnHLSB). Flow-templates kun je niet via `update_email_template` wijzigen (404) → nieuwe template maken en flow-actie omhangen.
+- Klaviyo-afzender nog `daralscents@gmail.com` (niet aangepast: info@daralscents.nl is niet als afzender/sending domain geverifieerd). Geen aanmeldformulier → welkomstflow start nooit.
+- **Thema v12 (verzending + samples)** ID 210713051485 = v11 + verzendbedragen €50/€60 overal (aankondigingsbalk, collectiebanner, winkelmand-balk NL 5000/anders 6000, productpagina-tab, chat-assistent, homepage hero/USP, `maison-t` trust_free) + samplepakket-promo (aankondiging, hero-knop 2, regel in collectiebanner, regel in `maison-pdp-trust` bij producten met sample, hint in winkelmand bij 1–2 samples / "korting toegepast"). Thema-vertalingen DE/FR/EN geregistreerd. Kopieën in `theme-snippets/*.v12.liquid`. **Eigenaar moet v12 publiceren.**
+- Verzendbeleid (`/policies/shipping-policy`) kan Claude niet schrijven: eigenaar moet bedragen daar zelf aanpassen.
+
 ## Open punten
 1. **Overstap Fragra → Luxus Aroma** (zie `OVERDRACHT.md` voor de productlijst):
    - (Fragra gestopt: alle 14 zijn gearchiveerd; zo snel mogelijk via Luxus importeren.) Producten 1–8 nu overzetten, met Sample-variant (€14,95, SKU `<EAN>-SAMPLE`). Prijs 100ml niet aanpassen.

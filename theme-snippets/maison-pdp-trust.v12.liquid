@@ -1,0 +1,18 @@
+<div class="m-pdp-trust">
+  <div class="m-pdp-trust__row">{% render 'maison-icon', icon: 'truck' %}<span>{% render 'maison-t', k: 'trust_ship' %}</span></div>
+  <div class="m-pdp-trust__row">{% render 'maison-icon', icon: 'gift' %}<span>{% render 'maison-t', k: 'trust_free' %}</span></div>
+  {%- liquid
+    assign das_has_sample = false
+    for v in product.variants
+      assign vt = v.title | downcase
+      if vt contains 'sample' or vt == '3ml' or vt == '3 ml'
+        assign das_has_sample = true
+      endif
+    endfor
+  -%}
+  {%- if das_has_sample -%}
+    <div class="m-pdp-trust__row">{% render 'maison-icon', icon: 'gift' %}<span><a href="{{ routes.collections_url }}/samplepakket" style="color: inherit; text-underline-offset: .3rem;">{% render 'maison-t', k: 'trust_sample' %}</a></span></div>
+  {%- endif -%}
+  <div class="m-pdp-trust__row">{% render 'maison-icon', icon: 'return' %}<span>{% render 'maison-t', k: 'trust_return' %}</span></div>
+  <div class="m-pdp-trust__row">{% render 'maison-icon', icon: 'check' %}<span>{% render 'maison-t', k: 'trust_original' %}</span></div>
+</div>

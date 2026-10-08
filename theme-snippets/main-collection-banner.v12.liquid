@@ -1,0 +1,151 @@
+{% comment %}theme-check-disable ImgLazyLoading{% endcomment %}
+{{ 'component-collection-hero.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign das_lang = request.locale.iso_code | slice: 0, 2
+  assign das_cc = localization.country.iso_code
+  assign das_threshold = ''
+  if das_cc == 'NL'
+    assign das_threshold = '€50'
+  elsif das_cc == 'BE' or das_cc == 'DE' or das_cc == 'CH' or das_cc == 'PL'
+    assign das_threshold = '€60'
+  endif
+  case das_lang
+    when 'de'
+      assign das_ship = 'Kostenloser Versand ab [t]'
+      assign das_fast = 'Versand in 1–3 Werktagen'
+      assign das_orig = '100 % Originalmarken'
+      assign das_sample = 'Unsicher? 3 Proben für 25 €'
+      assign das_more = 'Mehr lesen'
+      assign das_less = 'Weniger'
+    when 'fr'
+      assign das_ship = 'Livraison gratuite dès [t]'
+      assign das_fast = 'Expédié sous 1 à 3 jours ouvrés'
+      assign das_orig = 'Marques 100 % originales'
+      assign das_sample = 'Hésitant ? 3 échantillons pour 25 €'
+      assign das_more = 'Lire plus'
+      assign das_less = 'Moins'
+    when 'en'
+      assign das_ship = 'Free shipping from [t]'
+      assign das_fast = 'Shipped within 1–3 working days'
+      assign das_orig = '100% original brands'
+      assign das_sample = 'Not sure? 3 samples for €25'
+      assign das_more = 'Read more'
+      assign das_less = 'Less'
+    else
+      assign das_ship = 'Gratis verzending vanaf [t]'
+      assign das_fast = 'Verzonden binnen 1–3 werkdagen'
+      assign das_orig = '100% originele merken'
+      assign das_sample = 'Twijfel je? 3 samples voor €25'
+      assign das_more = 'Lees meer'
+      assign das_less = 'Minder'
+  endcase
+  if das_threshold == ''
+    assign das_ship = ''
+  else
+    assign das_ship = das_ship | replace: '[t]', das_threshold
+  endif
+-%}
+
+{%- style -%}
+  .m-trust__link { color: inherit; text-decoration: underline; text-underline-offset: .3rem; text-decoration-color: var(--m-gold, #a8862a); }
+  @media screen and (max-width: 749px) {
+    .collection-hero--with-image .collection-hero__inner {
+      padding-bottom: calc({{ settings.media_shadow_vertical_offset | at_least: 0 }}px + 2rem);
+    }
+  }
+{%- endstyle -%}
+
+<div class="collection-hero{% if section.settings.show_collection_image and collection.image %} collection-hero--with-image{% endif %} color-{{ section.settings.color_scheme }} gradient">
+  <div class="collection-hero__inner page-width {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+    <div class="collection-hero__text-wrapper">
+      <h1 class="collection-hero__title">
+        <span class="visually-hidden">{{ 'sections.collection_template.title' | t }}: </span>
+        {{- collection.title | escape -}}
+      </h1>
+
+      {%- if section.settings.show_collection_description and collection.description != blank -%}
+        <div class="collection-hero__description rte m-desc" id="MaisonDesc-{{ section.id }}">{{ collection.description }}</div>
+        <button type="button" class="m-desc__more" hidden aria-expanded="false" aria-controls="MaisonDesc-{{ section.id }}">{{ das_more }}</button>
+      {%- endif -%}
+
+      {%- comment -%} Maison – vertrouwensbalk (7 okt 2026). Drempels gelijk aan de verzendkortingen (8 okt): NL €50, BE/DE/CH/PL €60. Sample-regel linkt naar het samplepakket. {%- endcomment -%}
+      <ul class="m-trust list-unstyled" role="list">
+        {%- if das_ship != blank -%}<li>{{ das_ship }}</li>{%- endif -%}
+        <li>{{ das_fast }}</li>
+        <li>{{ das_orig }}</li>
+        <li><a href="{{ routes.collections_url }}/samplepakket" class="m-trust__link">{{ das_sample }}</a></li>
+      </ul>
+    </div>
+
+    {%- if section.settings.show_collection_image and collection.image -%}
+      <div class="collection-hero__image-container media gradient">
+        <img
+          srcset="
+            {%- if collection.image.width >= 165 -%}{{ collection.image | image_url: width: 165 }} 165w,{%- endif -%}
+            {%- if collection.image.width >= 360 -%}{{ collection.image | image_url: width: 360 }} 360w,{%- endif -%}
+            {%- if collection.image.width >= 535 -%}{{ collection.image | image_url: width: 535 }} 535w,{%- endif -%}
+            {%- if collection.image.width >= 750 -%}{{ collection.image | image_url: width: 750 }} 750w,{%- endif -%}
+            {%- if collection.image.width >= 1070 -%}{{ collection.image | image_url: width: 1070 }} 1070w,{%- endif -%}
+            {%- if collection.image.width >= 1500 -%}{{ collection.image | image_url: width: 1500 }} 1500w,{%- endif -%}
+            {{ collection.image | image_url }} {{ collection.image.width }}w
+          "
+          src="{{ collection.image | image_url: width: 750 }}"
+          sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 2 }}px, (min-width: 750px) calc(50vw - 130px), calc(50vw - 55px)"
+          alt="{{ collection.image.alt | escape }}"
+          width="{{ collection.image.width }}"
+          height="{{ collection.image.height }}"
+        >
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{%- if section.settings.show_collection_description and collection.description != blank -%}
+  <script>
+    (function () {
+      var d = document.getElementById('MaisonDesc-{{ section.id }}');
+      if (!d) return;
+      var b = d.nextElementSibling;
+      function check() { if (!d.classList.contains('is-open')) b.hidden = d.scrollHeight <= d.clientHeight + 2; }
+      check();
+      window.addEventListener('resize', check);
+      b.addEventListener('click', function () {
+        var open = d.classList.toggle('is-open');
+        b.setAttribute('aria-expanded', open);
+        b.textContent = open ? {{ das_less | json }} : {{ das_more | json }};
+      });
+    })();
+  </script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "t:sections.main-collection-banner.name",
+  "class": "section",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "t:sections.main-collection-banner.settings.paragraph.content"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_collection_description",
+      "default": true,
+      "label": "t:sections.main-collection-banner.settings.show_collection_description.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_collection_image",
+      "default": false,
+      "label": "t:sections.main-collection-banner.settings.show_collection_image.label"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    }
+  ]
+}
+{% endschema %}
