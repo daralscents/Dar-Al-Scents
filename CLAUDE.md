@@ -118,6 +118,10 @@ Communiceer met de eigenaar in het **Nederlands**.
 - Eigenaar stuurde screenshot van productpagina met onleesbare "Aan winkelwagen toevoegen" en Engelse Hoppy-widget ("You're only €30,05 away…" + productcarrousel). Live v10 had beide fixes al → waarschijnlijk oude preview/cache in de browser. Toch zekerheidshalve:
 - **v11 (knop + Hoppy uit)** ID 210674352477 = v10 + `config/settings_data.json`: Hoppy app-embed `disabled: true` (balk én productpagina-widget weg; de Hoppy-korting in de kassa is een Shopify-korting en blijft werken) + `assets/maison-apps.css` vangnet: `.product-form__submit` altijd zwart met ivoren tekst. **Door eigenaar gepubliceerd 7 okt (gecontroleerd 8 okt: alle bestanden kloppen, kortingen actief).** Toekomstige themawijzigingen op een kopie van v11.
 
+## Conversie-analyse 8 okt 2026 – zie `RAPPORT-2026-10-08-conversie.md`
+- Echte conversie ±0,06% (1 webshop-order in 14 dagen; #1005–#1011 zijn conceptorders). België mobiel: 95% bounce, 7 sec. Probleem zit in verkeer/aansluiting video→pagina, reviews (1 in hele winkel), voorraad, Bancontact.
+- Redirects aangepast: oude Angham Second Song-URL (TikTok, 250 sessies) → nieuw product `lattafa-angham-second-song-edp`; oude Honor & Glory-URL → `lattafa-badee-al-oud-honor-glory-edp`.
+
 ## Open punten
 1. **Overstap Fragra → Luxus Aroma** (zie `OVERDRACHT.md` voor de productlijst):
    - (Fragra gestopt: alle 14 zijn gearchiveerd; zo snel mogelijk via Luxus importeren.) Producten 1–8 nu overzetten, met Sample-variant (€14,95, SKU `<EAN>-SAMPLE`). Prijs 100ml niet aanpassen.
