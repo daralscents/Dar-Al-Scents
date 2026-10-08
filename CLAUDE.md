@@ -116,7 +116,7 @@ Communiceer met de eigenaar in het **Nederlands**.
 
 ## v11 (7 okt 2026) – knop-vangnet + Hoppy-embed uit
 - Eigenaar stuurde screenshot van productpagina met onleesbare "Aan winkelwagen toevoegen" en Engelse Hoppy-widget ("You're only €30,05 away…" + productcarrousel). Live v10 had beide fixes al → waarschijnlijk oude preview/cache in de browser. Toch zekerheidshalve:
-- **v11 (knop + Hoppy uit)** ID 210674352477 = v10 + `config/settings_data.json`: Hoppy app-embed `disabled: true` (balk én productpagina-widget weg; de Hoppy-korting in de kassa is een Shopify-korting en blijft werken) + `assets/maison-apps.css` vangnet: `.product-form__submit` altijd zwart met ivoren tekst. Eigenaar moet publiceren.
+- **v11 (knop + Hoppy uit)** ID 210674352477 = v10 + `config/settings_data.json`: Hoppy app-embed `disabled: true` (balk én productpagina-widget weg; de Hoppy-korting in de kassa is een Shopify-korting en blijft werken) + `assets/maison-apps.css` vangnet: `.product-form__submit` altijd zwart met ivoren tekst. **Door eigenaar gepubliceerd 7 okt (gecontroleerd 8 okt: alle bestanden kloppen, kortingen actief).** Toekomstige themawijzigingen op een kopie van v11.
 
 ## Open punten
 1. **Overstap Fragra → Luxus Aroma** (zie `OVERDRACHT.md` voor de productlijst):
