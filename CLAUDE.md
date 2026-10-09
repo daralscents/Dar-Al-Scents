@@ -139,6 +139,12 @@ Communiceer met de eigenaar in het **Nederlands**.
 - Let op: 2 conceptproducten met Spaanse variantnamen ("Frasco Original 100ml", "Muestra 5 ml") in Lattafa/French Avenue (Syncee-import?), niet zichtbaar zolang concept.
 - Klantmail na aankoop: Judge.me stuurt eigen review-verzoek (dag 14, standaard groene opmaak) naast Klaviyo review-mail (dag 12). Advies: één van beide; Judge.me-opmaak aanpassen in de app (eigenaar).
 
+## Verlaten winkelwagen: unieke codes + Google-feed (9 okt 2026)
+- Shopify-korting **"Verlaten winkelwagen 10% (Klaviyo, unieke codes)"** (DiscountCodeNode/2306777383261): 10% op alles, 1× per klant, combineert alleen met verzendkorting, 300 unieke codes `DAS` + 7 tekens.
+- Klaviyo-coupon **VERLATEN10** (uploaded, alarm bij < 100 over) met dezelfde 300 codes. Templates gebruiken `{% coupon_code 'VERLATEN10' %}`. **Bijna op → nieuwe codes in Shopify (`discountRedeemCodeBulkAdd`) én Klaviyo (`bulk_create_coupon_codes`) toevoegen.**
+- Flow "Verlaten winkelwagen" (Vf85R5): mail 1 (1 u) ongewijzigd zonder korting; mail 2 (24 u) en mail 3 (72 u) nu met persoonlijke unieke code (templates TH3LNT / XCZPfM, flow-kopieën UpgjEK / Wuceqh). WELKOM10 + onterechte "48 uur geldig" eruit. Mail 2 en 3 geven elk een eigen code; Shopify staat maar 1 gebruik per klant toe.
+- Google-feed: alle 70 actieve producten staan op het Google & YouTube-kanaal, alle grote flessen hebben een EAN. 40 producten zonder (juiste) Shopify-categorie kregen categorie Eaux de parfum / Parfum extracten / Parfum sample en ontdekking set / Parfums en colognes. Sample-varianten hebben geen EAN (Google kan ze beperken). Verdachte EAN's: Rasasi Hawas Fire (6921699090254) en Hawas Eclat (7771325846514) – controleren bij leverancier.
+
 ## Open punten
 1. **Overstap Fragra → Luxus Aroma** (zie `OVERDRACHT.md` voor de productlijst):
    - (Fragra gestopt: alle 14 zijn gearchiveerd; zo snel mogelijk via Luxus importeren.) Producten 1–8 nu overzetten, met Sample-variant (€14,95, SKU `<EAN>-SAMPLE`). Prijs 100ml niet aanpassen.
