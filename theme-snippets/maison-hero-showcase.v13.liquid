@@ -1,0 +1,198 @@
+{%- comment -%}
+  Maison hero showcase (v13, 10 okt 2026).
+  Donkere openingshero: titel + knoppen + vertrouwensregel links,
+  rechts 3 bestsellers die nu op voorraad zijn (grote fles leverbaar).
+  Met een eigen afbeelding toont de rechterkant die afbeelding i.p.v. producten.
+{%- endcomment -%}
+{%- liquid
+  assign c = section.settings.collection
+  assign hs_lang = request.locale.iso_code | slice: 0, 2
+  assign hs_cc = localization.country.iso_code
+  assign hs_threshold = ''
+  if hs_cc == 'NL'
+    assign hs_threshold = '€50'
+  elsif hs_cc == 'BE' or hs_cc == 'DE' or hs_cc == 'CH' or hs_cc == 'PL'
+    assign hs_threshold = '€60'
+  endif
+  case hs_lang
+    when 'de'
+      assign hs_ship = 'Kostenloser Versand ab [t]'
+      assign hs_fast = 'Versand in 1–3 Werktagen'
+      assign hs_orig = '100 % Originalmarken'
+    when 'fr'
+      assign hs_ship = 'Livraison gratuite dès [t]'
+      assign hs_fast = 'Expédié sous 1 à 3 jours'
+      assign hs_orig = 'Marques 100 % originales'
+    when 'en'
+      assign hs_ship = 'Free shipping from [t]'
+      assign hs_fast = 'Shipped in 1–3 working days'
+      assign hs_orig = '100% original brands'
+    else
+      assign hs_ship = 'Gratis verzending vanaf [t]'
+      assign hs_fast = 'Verzonden binnen 1–3 werkdagen'
+      assign hs_orig = '100% originele merken'
+  endcase
+  if hs_threshold == ''
+    assign hs_ship = ''
+  else
+    assign hs_ship = hs_ship | replace: '[t]', hs_threshold
+  endif
+-%}
+
+<style>
+  .m-hs { position: relative; overflow: hidden; background: var(--m-ink); color: #ece4d4; }
+  .m-hs::before { content: ""; position: absolute; inset: -20% -10% auto auto; width: 70%; height: 140%; background: radial-gradient(closest-side, rgba(201, 178, 136, .16), rgba(201, 178, 136, 0)); pointer-events: none; }
+  .m-hs__grid { position: relative; display: grid; grid-template-columns: 1fr 1.05fr; align-items: center; gap: clamp(3.2rem, 5vw, 8rem); min-height: min(82vh, 78rem); padding-block: clamp(5.6rem, 7vw, 9rem); }
+  .m-hs .m-eyebrow { color: var(--m-gold-soft); }
+  .m-hs__title { font: 400 clamp(4.4rem, 6.4vw, 8.8rem)/.98 var(--m-serif); letter-spacing: -.02em; margin: 0; color: #f7f2ea; }
+  .m-hs__title em { font-style: italic; color: var(--m-gold-soft); }
+  .m-hs__text, .m-hs__text p { font: 300 clamp(1.6rem, 1.3vw, 1.85rem)/1.7 var(--m-sans); color: #bdb3a2; max-width: 50rem; }
+  .m-hs__text { margin: 2.6rem 0 3.4rem; }
+  .m-hs__text p { margin: 0; }
+  .m-hs .m-btn { background: var(--m-ivory); color: var(--m-ink); border-color: var(--m-ivory); }
+  .m-hs .m-btn:hover { background: transparent; color: var(--m-ivory); }
+  .m-hs .m-btn--ghost { background: transparent; color: var(--m-ivory); border-color: rgba(236, 228, 212, .45); }
+  .m-hs .m-btn--ghost:hover { background: var(--m-ivory); color: var(--m-ink); border-color: var(--m-ivory); }
+  .m-hs__sample { display: inline-block; margin-top: 2.2rem; font-size: 1.4rem; letter-spacing: .04em; color: #e6dcc7; text-decoration: underline; text-underline-offset: .4rem; text-decoration-color: var(--m-gold-soft); }
+  .m-hs__sample:hover { color: var(--m-gold-soft); }
+  .m-hs__trust { display: flex; flex-wrap: wrap; gap: 1.2rem 2.8rem; margin: 3.6rem 0 0; padding: 2.4rem 0 0; list-style: none; border-top: 1px solid rgba(236, 228, 212, .14); }
+  .m-hs__trust li { display: flex; align-items: center; gap: 1rem; font-size: 1.3rem; letter-spacing: .05em; color: #cfc5b3; }
+  .m-hs__trust svg { flex: none; width: 1.9rem; height: 1.9rem; color: var(--m-gold-soft); }
+
+  .m-hs__show-label { margin: 0 0 1.6rem; font: 500 1.05rem/1 var(--m-sans); letter-spacing: .26em; text-transform: uppercase; color: var(--m-gold-soft); text-align: right; }
+  .m-hs__show { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(1.2rem, 1.6vw, 2rem); align-items: end; }
+  .m-hs__item { position: relative; display: block; color: inherit; text-decoration: none; }
+  .m-hs__item:nth-child(2) { transform: translateY(-3.2rem); }
+  .m-hs__media { position: relative; display: block; aspect-ratio: 3 / 4; overflow: hidden; background: radial-gradient(120% 90% at 50% 25%, #f7f1e6 0%, var(--m-sand) 60%, var(--m-stone) 100%); }
+  .m-hs__item:nth-child(2) .m-hs__media { aspect-ratio: 3 / 4.4; }
+  .m-hs__media::after { content: ""; position: absolute; inset: 1rem; border: 1px solid rgba(156, 125, 72, .35); pointer-events: none; transition: border-color .5s var(--m-ease); }
+  .m-hs__item:hover .m-hs__media::after { border-color: rgba(156, 125, 72, .8); }
+  .m-hs__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; padding: 12%; mix-blend-mode: multiply; transition: transform 1.4s var(--m-ease); }
+  .m-hs__item:hover .m-hs__img { transform: scale(1.05); }
+  .m-hs__body { display: grid; gap: .4rem; padding-top: 1.4rem; }
+  .m-hs__vendor { font: 500 1rem/1.3 var(--m-sans); letter-spacing: .22em; text-transform: uppercase; color: var(--m-gold-soft); }
+  .m-hs__name { font: 500 clamp(1.7rem, 1.4vw, 2.1rem)/1.18 var(--m-serif); color: #f7f2ea; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .m-hs__price { font-size: 1.35rem; letter-spacing: .04em; color: #cfc5b3; }
+
+  .m-hs__visual { position: relative; aspect-ratio: 4 / 5; overflow: hidden; background: #1c1a16; }
+  .m-hs__visual img { width: 100%; height: 100%; object-fit: cover; }
+  .m-hs__visual::after { content: ""; position: absolute; inset: 1.4rem; border: 1px solid rgba(201, 178, 136, .5); pointer-events: none; }
+
+  @media (max-width: 989px) {
+    .m-hs__grid { grid-template-columns: 1fr; min-height: 0; gap: 4rem; padding-block: 4.4rem 4.8rem; }
+    .m-hs__show-label { text-align: left; }
+  }
+  @media (max-width: 749px) {
+    .m-hs__title { font-size: clamp(3.8rem, 11vw, 5.2rem); }
+    .m-hs__text { margin: 1.8rem 0 2.6rem; }
+    .m-hs .m-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .m-hs .m-btn { padding: 0 1.2rem; letter-spacing: .14em; font-size: 1.05rem; min-height: 4.8rem; }
+    .m-hs__trust { flex-direction: column; gap: 1rem; margin-top: 2.6rem; padding-top: 2rem; }
+    .m-hs__show { grid-auto-flow: column; grid-template-columns: none; grid-auto-columns: 58%; align-items: start; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; margin-inline: calc(-1 * clamp(1.6rem, 4vw, 4.8rem)); padding-inline: clamp(1.6rem, 4vw, 4.8rem); scroll-padding-inline: clamp(1.6rem, 4vw, 4.8rem); }
+    .m-hs__show::-webkit-scrollbar { display: none; }
+    .m-hs__item { scroll-snap-align: start; }
+    .m-hs__item:nth-child(2) { transform: none; }
+    .m-hs__item:nth-child(2) .m-hs__media { aspect-ratio: 3 / 4; }
+  }
+</style>
+
+<section class="m-hs">
+  <div class="m-wrap m-hs__grid">
+    <div class="m-hs__copy">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="m-eyebrow">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+      <h1 class="m-hs__title">{{ section.settings.heading }}</h1>
+      {%- if section.settings.text != blank -%}
+        <div class="m-hs__text">{{ section.settings.text }}</div>
+      {%- endif -%}
+      <div class="m-actions">
+        {%- if section.settings.button_label != blank -%}
+          <a class="m-btn" href="{{ section.settings.button_link | default: routes.all_products_collection_url }}">{{ section.settings.button_label }}</a>
+        {%- endif -%}
+        {%- if section.settings.button2_label != blank -%}
+          <a class="m-btn m-btn--ghost" href="{{ section.settings.button2_link | default: routes.all_products_collection_url }}">{{ section.settings.button2_label }}</a>
+        {%- endif -%}
+      </div>
+      {%- if section.settings.sample_label != blank -%}
+        <a class="m-hs__sample" href="{{ section.settings.sample_link | default: routes.all_products_collection_url }}">{{ section.settings.sample_label }}</a>
+      {%- endif -%}
+      {%- if section.settings.show_trust -%}
+        <ul class="m-hs__trust" role="list">
+          {%- if hs_ship != blank -%}<li>{% render 'maison-icon', icon: 'truck' %}{{ hs_ship }}</li>{%- endif -%}
+          <li>{% render 'maison-icon', icon: 'return' %}{{ hs_fast }}</li>
+          <li>{% render 'maison-icon', icon: 'check' %}{{ hs_orig }}</li>
+        </ul>
+      {%- endif -%}
+    </div>
+
+    {%- if section.settings.image != blank -%}
+      <div class="m-hs__visual">
+        {{ section.settings.image | image_url: width: 1600 | image_tag: loading: 'eager', fetchpriority: 'high', sizes: '(min-width: 990px) 50vw, 100vw', widths: '600, 900, 1200, 1600', alt: section.settings.image.alt }}
+      </div>
+    {%- elsif c != blank -%}
+      <div class="m-hs__showcase">
+        {%- if section.settings.show_label != blank -%}<p class="m-hs__show-label">{{ section.settings.show_label }}</p>{%- endif -%}
+        <div class="m-hs__show">
+          {%- assign shown = 0 -%}
+          {%- for p in c.products limit: 30 -%}
+            {%- if shown >= 3 -%}{%- break -%}{%- endif -%}
+            {%- unless p.available -%}{%- continue -%}{%- endunless -%}
+            {%- assign best = nil -%}
+            {%- for v in p.variants -%}
+              {%- if v.available and v.price > 2000 -%}
+                {%- if best == nil or v.price > best.price -%}{%- assign best = v -%}{%- endif -%}
+              {%- endif -%}
+            {%- endfor -%}
+            {%- if best == nil or p.featured_media == blank -%}{%- continue -%}{%- endif -%}
+            {%- assign shown = shown | plus: 1 -%}
+            {%- assign hs_title = p.title | remove_first: p.vendor | strip -%}
+            {%- assign hs_alt = p.featured_media.alt | default: p.title -%}
+            {%- if hs_title == blank -%}{%- assign hs_title = p.title -%}{%- endif -%}
+            <a class="m-hs__item" href="{{ best.url }}">
+              <span class="m-hs__media">
+                {%- liquid
+                  if shown == 1
+                    assign hs_load = 'eager'
+                  else
+                    assign hs_load = 'lazy'
+                  endif
+                -%}
+                {{ p.featured_media | image_url: width: 800 | image_tag: loading: hs_load, sizes: '(min-width: 990px) 16vw, 58vw', widths: '360, 540, 800', class: 'm-hs__img', alt: hs_alt }}
+              </span>
+              <span class="m-hs__body">
+                <span class="m-hs__vendor">{{ p.vendor }}</span>
+                <span class="m-hs__name">{{ hs_title }}</span>
+                <span class="m-hs__price">{{ best.price | money }}</span>
+              </span>
+            </a>
+          {%- endfor -%}
+        </div>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Maison hero showcase",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Bovenregel", "default": "Originele Arabische & niche parfums" },
+    { "type": "inline_richtext", "id": "heading", "label": "Titel", "info": "Maak een woord cursief voor het gouden accent.", "default": "Vind jouw <em>signatuurgeur</em>." },
+    { "type": "richtext", "id": "text", "label": "Tekst" },
+    { "type": "text", "id": "button_label", "label": "Knop 1 tekst", "default": "Shop bestsellers" },
+    { "type": "url", "id": "button_link", "label": "Knop 1 link" },
+    { "type": "text", "id": "button2_label", "label": "Knop 2 tekst", "default": "Doe de geurwijzer" },
+    { "type": "url", "id": "button2_link", "label": "Knop 2 link" },
+    { "type": "text", "id": "sample_label", "label": "Tekstlink onder knoppen" },
+    { "type": "url", "id": "sample_link", "label": "Tekstlink link" },
+    { "type": "checkbox", "id": "show_trust", "label": "Toon vertrouwensregel", "default": true },
+    { "type": "header", "content": "Rechterkant" },
+    { "type": "collection", "id": "collection", "label": "Producten uit collectie", "info": "Toont de eerste 3 producten waarvan de grote fles op voorraad is." },
+    { "type": "text", "id": "show_label", "label": "Label boven producten", "default": "Meest gekozen" },
+    { "type": "image_picker", "id": "image", "label": "Eigen afbeelding (optioneel)", "info": "Vervangt de producten door een eigen foto." }
+  ],
+  "presets": [{ "name": "Maison hero showcase" }]
+}
+{% endschema %}

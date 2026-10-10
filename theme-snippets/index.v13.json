@@ -1,0 +1,367 @@
+{
+  "sections": {
+    "hero": {
+      "type": "maison-hero",
+      "settings": {
+        "eyebrow": "Arabische & niche parfums",
+        "heading": "Geuren die <em>blijven</em> hangen.",
+        "text": "<p>Originele parfums van Lattafa, Armaf, Rasasi, French Avenue en RIIFS. Zorgvuldig geselecteerd op kwaliteit, karakter en langdurige geurbeleving.</p>",
+        "button_label": "Ontdek de collectie",
+        "button_link": "shopify://collections/all",
+        "button2_label": "3 samples voor €25",
+        "button2_link": "shopify://collections/samplepakket",
+        "meta": "Gratis verzending vanaf €50 (NL)  ·  Verzonden binnen 1–3 werkdagen  ·  14 dagen bedenktijd",
+        "product": "armaf-club-de-nuit-overdose",
+        "show_tag": true,
+        "tag_label": "Signature",
+        "heading_tag": "h2"
+      }
+    },
+    "brands": {
+      "type": "maison-marquee",
+      "settings": {
+        "brands": "Lattafa, Armaf, Rasasi, French Avenue, RIIFS, Afnan, Rayhaan, Khadlaj, Emper",
+        "label": "Onze merken"
+      }
+    },
+    "bestsellers": {
+      "type": "maison-products",
+      "settings": {
+        "eyebrow": "Meest geliefd",
+        "heading": "Onze <em>bestsellers</em>",
+        "collection": "best-sellers",
+        "limit": 8,
+        "columns": 4,
+        "link_label": "Bekijk alle bestsellers",
+        "background": "ivory"
+      }
+    },
+    "signatures": {
+      "type": "maison-collections",
+      "blocks": {
+        "heren": {
+          "type": "collection",
+          "settings": {
+            "collection": "heren-parfum-1",
+            "title": "Heren",
+            "kicker": ""
+          }
+        },
+        "dames": {
+          "type": "collection",
+          "settings": {
+            "collection": "dames-parfum",
+            "title": "Dames",
+            "kicker": ""
+          }
+        },
+        "unisex": {
+          "type": "collection",
+          "settings": {
+            "collection": "unisex",
+            "title": "Unisex",
+            "kicker": ""
+          }
+        }
+      },
+      "block_order": [
+        "heren",
+        "dames",
+        "unisex"
+      ],
+      "settings": {
+        "eyebrow": "Collecties",
+        "heading": "Kies jouw <em>signatuur</em>",
+        "link_label": "Alle parfums",
+        "link": "shopify://collections/all",
+        "show_count": true,
+        "background": "sand"
+      }
+    },
+    "story": {
+      "type": "maison-story",
+      "blocks": {
+        "fact_1": {
+          "type": "fact",
+          "settings": {
+            "number": "100%",
+            "label": "Originele merken, geen imitaties"
+          }
+        },
+        "fact_2": {
+          "type": "fact",
+          "settings": {
+            "number": "1–3",
+            "label": "Werkdagen tot verzending"
+          }
+        },
+        "fact_3": {
+          "type": "fact",
+          "settings": {
+            "number": "14",
+            "label": "Dagen bedenktijd"
+          }
+        }
+      },
+      "block_order": [
+        "fact_1",
+        "fact_2",
+        "fact_3"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/ChatGPT_Image_9_okt_2025_18_22_08.png",
+        "image_right": false,
+        "eyebrow": "Over Dar Al Scents",
+        "heading": "Luxe, karakter <em>en elegantie</em>.",
+        "text": "<p>Dar Al Scents is gespecialiseerd in luxe parfums met een Arabische en niche uitstraling. Wij bieden merken zoals Lattafa, Armaf, Rasasi, French Avenue, RIIFS en Afnan.</p><p>Elke geur is zorgvuldig geselecteerd op kwaliteit, karakter en langdurige geurbeleving.</p>",
+        "button_label": "Lees ons verhaal",
+        "button_link": "shopify://pages/over-ons",
+        "background": "ink"
+      }
+    },
+    "trending": {
+      "type": "maison-products",
+      "settings": {
+        "eyebrow": "Trending",
+        "heading": "TikTok <em>favorieten</em>",
+        "collection": "tiktok-favorieten",
+        "limit": 4,
+        "columns": 4,
+        "link_label": "Bekijk alle favorieten",
+        "background": "ivory"
+      }
+    },
+    "quiz_cta": {
+      "type": "maison-quiz-cta",
+      "blocks": {
+        "s1": {
+          "type": "step",
+          "settings": {
+            "label": "Voor wie is de geur?"
+          }
+        },
+        "s2": {
+          "type": "step",
+          "settings": {
+            "label": "Welke sfeer spreekt je aan?"
+          }
+        },
+        "s3": {
+          "type": "step",
+          "settings": {
+            "label": "Jouw favoriete noten"
+          }
+        },
+        "s4": {
+          "type": "step",
+          "settings": {
+            "label": "Seizoen en moment"
+          }
+        },
+        "s5": {
+          "type": "step",
+          "settings": {
+            "label": "Jouw drie beste matches"
+          }
+        }
+      },
+      "block_order": [
+        "s1",
+        "s2",
+        "s3",
+        "s4",
+        "s5"
+      ],
+      "settings": {
+        "eyebrow": "Geurwijzer",
+        "heading": "Welke geur past <em>bij jou</em>?",
+        "text": "<p>Beantwoord vijf korte vragen en ontdek jouw drie beste matches uit onze collectie. Binnen een minuut weet je welke geuren bij je passen.</p>",
+        "button_label": "Start de geurwijzer",
+        "button_link": "shopify://pages/geurwijzer",
+        "background": "ink"
+      }
+    },
+    "seasons": {
+      "type": "maison-collections",
+      "blocks": {
+        "winter_heren": {
+          "type": "collection",
+          "settings": {
+            "collection": "winter-collectie",
+            "title": "Winter heren",
+            "kicker": ""
+          }
+        },
+        "winter_dames": {
+          "type": "collection",
+          "settings": {
+            "collection": "winter-collectie-dames",
+            "title": "Winter dames",
+            "kicker": ""
+          }
+        },
+        "zomer_heren": {
+          "type": "collection",
+          "settings": {
+            "collection": "zomer-collectie-heren",
+            "title": "Zomer heren",
+            "kicker": ""
+          }
+        },
+        "zomer_dames": {
+          "type": "collection",
+          "settings": {
+            "collection": "zomer-collectie-dames",
+            "title": "Zomer dames",
+            "kicker": ""
+          }
+        }
+      },
+      "block_order": [
+        "winter_heren",
+        "winter_dames",
+        "zomer_heren",
+        "zomer_dames"
+      ],
+      "settings": {
+        "eyebrow": "Voor elk seizoen",
+        "heading": "Het juiste parfum <em>voor elk moment</em>",
+        "link_label": "",
+        "show_count": true,
+        "background": "sand"
+      }
+    },
+    "reviews": {
+      "type": "maison-reviews",
+      "blocks": {
+        "r1": {
+          "type": "review",
+          "settings": {
+            "quote": "Superblij met mijn bestelling! De Teriaq Gift Set is prachtig en de geur is echt heerlijk. Ook snel en netjes geleverd. Zeker een aanrader",
+            "name": "Maha",
+            "meta": "",
+            "rating": 5
+          }
+        },
+        "r2": {
+          "type": "review",
+          "settings": {
+            "quote": "Lekker en scherp geprijsd!!!!",
+            "name": "Eli",
+            "meta": "",
+            "rating": 5
+          }
+        },
+        "r3": {
+          "type": "review",
+          "settings": {
+            "quote": "Makkelijk site en lekkere geurtjes. Heel lekker geurtje",
+            "name": "Justin",
+            "meta": "",
+            "rating": 5
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2",
+        "r3"
+      ],
+      "settings": {
+        "eyebrow": "Wat klanten zeggen",
+        "heading": "Echte reviews van <em>echte klanten</em>",
+        "link_label": "Volg ons op Instagram",
+        "link": "https://www.instagram.com/dar.al.scents/",
+        "background": "ivory"
+      }
+    },
+    "service": {
+      "type": "maison-usps",
+      "blocks": {
+        "u1": {
+          "type": "usp",
+          "settings": {
+            "icon": "truck",
+            "title": "Snelle verzending",
+            "text": "Verzonden binnen 1–3 werkdagen. Gratis vanaf €50 (NL) / €60 (BE/DE)."
+          }
+        },
+        "u2": {
+          "type": "usp",
+          "settings": {
+            "icon": "check",
+            "title": "Originele merken",
+            "text": "Alleen authentieke parfummerken, geen imitaties."
+          }
+        },
+        "u3": {
+          "type": "usp",
+          "settings": {
+            "icon": "chat",
+            "title": "Persoonlijk advies",
+            "text": "Ons team helpt je graag met advies of vragen."
+          }
+        },
+        "u4": {
+          "type": "usp",
+          "settings": {
+            "icon": "lock",
+            "title": "Veilig betalen",
+            "text": "Met 14 dagen bedenktijd op je bestelling."
+          }
+        }
+      },
+      "block_order": [
+        "u1",
+        "u2",
+        "u3",
+        "u4"
+      ],
+      "settings": {
+        "background": "ivory",
+        "padding": 24
+      }
+    },
+    "newsletter": {
+      "type": "maison-newsletter",
+      "settings": {
+        "eyebrow": "Nieuwsbrief",
+        "heading": "Word deel van <em>ons huis</em>",
+        "text": "<p>Meld je aan voor onze e-mails en ontvang speciale kortingscodes.</p>",
+        "button_label": "Aanmelden",
+        "small": "Je kunt je op elk moment afmelden."
+      }
+    },
+    "hero_main": {
+      "type": "maison-hero-showcase",
+      "settings": {
+        "eyebrow": "Originele Arabische & niche parfums",
+        "heading": "Vind jouw <em>signatuurgeur</em>.",
+        "text": "<p>Lattafa, Armaf, Rasasi, French Avenue en meer. 100% origineel, zorgvuldig geselecteerd en snel in huis.</p>",
+        "button_label": "Shop bestsellers",
+        "button_link": "shopify://collections/best-sellers",
+        "button2_label": "Doe de geurwijzer",
+        "button2_link": "shopify://pages/geurwijzer",
+        "sample_label": "Twijfel je? Probeer eerst 3 samples voor €25",
+        "sample_link": "shopify://collections/samplepakket",
+        "show_trust": true,
+        "collection": "tiktok-favorieten",
+        "show_label": "Trending op TikTok"
+      }
+    }
+  },
+  "order": [
+    "hero_main",
+    "brands",
+    "bestsellers",
+    "signatures",
+    "story",
+    "trending",
+    "quiz_cta",
+    "seasons",
+    "reviews",
+    "hero",
+    "service",
+    "newsletter"
+  ]
+}

@@ -1,0 +1,84 @@
+{%- liquid
+  assign hero_product = section.settings.product
+  assign hero_image = section.settings.image
+  if hero_image == blank and hero_product != blank
+    assign hero_image = hero_product.featured_media.preview_image
+  endif
+  assign hero_alt = section.settings.heading | strip_html
+  if hero_product != blank
+    assign hero_alt = hero_product.title
+    assign tag_title = hero_product.title | remove_first: hero_product.vendor | strip
+  endif
+  assign hero_tag = section.settings.heading_tag | default: 'h1'
+  if hero_tag == 'h1'
+    assign hero_loading = 'eager'
+    assign hero_priority = 'high'
+  else
+    assign hero_loading = 'lazy'
+    assign hero_priority = 'auto'
+  endif
+-%}
+<section class="m-hero">
+  <div class="m-wrap m-hero__grid">
+    <div class="m-hero__copy">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="m-eyebrow m-reveal">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+      <{{ hero_tag }} class="m-display m-reveal">{{ section.settings.heading }}</{{ hero_tag }}>
+      {%- if section.settings.text != blank -%}
+        <div class="m-lead m-hero__text m-reveal">{{ section.settings.text }}</div>
+      {%- endif -%}
+      <div class="m-actions m-reveal">
+        {%- if section.settings.button_label != blank -%}
+          <a class="m-btn" href="{{ section.settings.button_link | default: routes.all_products_collection_url }}">{{ section.settings.button_label }}</a>
+        {%- endif -%}
+        {%- if section.settings.button2_label != blank -%}
+          <a class="m-btn m-btn--ghost" href="{{ section.settings.button2_link | default: routes.all_products_collection_url }}">{{ section.settings.button2_label }}</a>
+        {%- endif -%}
+      </div>
+      {%- if section.settings.meta != blank -%}
+        <p class="m-hero__meta m-reveal">{{ section.settings.meta }}</p>
+      {%- endif -%}
+    </div>
+    <div class="m-hero__visual m-reveal">
+      <div class="m-arch">
+        {%- if hero_image != blank -%}
+          {{ hero_image | image_url: width: 1400 | image_tag: loading: hero_loading, fetchpriority: hero_priority, sizes: '(min-width: 990px) 42vw, 90vw', widths: '600, 900, 1200, 1400', class: 'm-arch__img', alt: hero_alt }}
+        {%- else -%}
+          {{ 'product-1' | placeholder_svg_tag: 'm-arch__img' }}
+        {%- endif -%}
+      </div>
+      {%- if hero_product != blank and section.settings.show_tag -%}
+        <a class="m-hero__tag" href="{{ hero_product.url }}">
+          <span class="m-hero__tag-label">{{ section.settings.tag_label }}</span>
+          <span class="m-hero__tag-title">{{ tag_title | default: hero_product.title }}</span>
+          <span class="m-hero__tag-price">{% if hero_product.price_varies %}{% render 'maison-t', k: 'from' %} {% endif %}{{ hero_product.price | money }}</span>
+        </a>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Maison hero",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Bovenregel", "default": "Arabische & niche parfums" },
+    { "type": "inline_richtext", "id": "heading", "label": "Titel", "info": "Maak een woord cursief voor het gouden accent.", "default": "Arabische parfums, <em>verfijnd</em> gekozen." },
+    { "type": "select", "id": "heading_tag", "label": "Titelniveau", "info": "Kies H1 alleen als dit de bovenste sectie van de pagina is.", "options": [{ "value": "h1", "label": "H1 (bovenaan pagina)" }, { "value": "h2", "label": "H2 (lager op pagina)" }], "default": "h1" },
+    { "type": "richtext", "id": "text", "label": "Tekst" },
+    { "type": "text", "id": "button_label", "label": "Knop 1 tekst", "default": "Ontdek de collectie" },
+    { "type": "url", "id": "button_link", "label": "Knop 1 link" },
+    { "type": "text", "id": "button2_label", "label": "Knop 2 tekst" },
+    { "type": "url", "id": "button2_link", "label": "Knop 2 link" },
+    { "type": "text", "id": "meta", "label": "Kleine regel onder knoppen" },
+    { "type": "header", "content": "Beeld" },
+    { "type": "product", "id": "product", "label": "Uitgelicht product" },
+    { "type": "image_picker", "id": "image", "label": "Eigen afbeelding", "info": "Optioneel. Standaard wordt de foto van het uitgelichte product gebruikt." },
+    { "type": "checkbox", "id": "show_tag", "label": "Toon productlabel", "default": true },
+    { "type": "text", "id": "tag_label", "label": "Productlabel", "default": "Signature" }
+  ],
+  "presets": [{ "name": "Maison hero" }]
+}
+{% endschema %}
