@@ -346,7 +346,10 @@
         "sample_link": "shopify://collections/samplepakket",
         "show_trust": true,
         "collection": "tiktok-favorieten",
-        "show_label": "Trending op TikTok"
+        "show_label": "Trending op TikTok",
+        "bg_image": "shopify://shop_images/dar-al-scents-hero-banner.webp",
+        "bg_focus_desktop": 40,
+        "bg_focus_mobile": 70
       }
     }
   },
