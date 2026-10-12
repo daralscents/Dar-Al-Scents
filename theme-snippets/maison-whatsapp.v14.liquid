@@ -1,0 +1,53 @@
+{%- comment -%}
+  Maison WhatsApp (v14, 11 okt 2026). Nummer: +31 6 44 83 53 15.
+  Gebruik: {% render 'maison-whatsapp', context: 'float' %}  (zwevende knop, via sectie maison-whatsapp-float in footer-group)
+           {% render 'maison-whatsapp', context: 'pdp' %}    (regel in maison-pdp-trust, gebruikt product)
+  Bericht wordt vooraf ingevuld in de taal van de bezoeker.
+{%- endcomment -%}
+{%- liquid
+  assign wa_number = '31644835315'
+  assign wa_lang = request.locale.iso_code | slice: 0, 2
+  case wa_lang
+    when 'de'
+      assign wa_msg = 'Hallo Dar Al Scents, ich habe eine Frage'
+      assign wa_msg_p = 'Hallo Dar Al Scents, ich habe eine Frage zu: '
+      assign wa_label = 'Fragen? Schreib uns auf WhatsApp'
+      assign wa_short = 'WhatsApp'
+    when 'fr'
+      assign wa_msg = "Bonjour Dar Al Scents, j'ai une question"
+      assign wa_msg_p = "Bonjour Dar Al Scents, j'ai une question sur : "
+      assign wa_label = 'Une question ? Écrivez-nous sur WhatsApp'
+      assign wa_short = 'WhatsApp'
+    when 'en'
+      assign wa_msg = 'Hi Dar Al Scents, I have a question'
+      assign wa_msg_p = 'Hi Dar Al Scents, I have a question about: '
+      assign wa_label = 'Questions? Message us on WhatsApp'
+      assign wa_short = 'WhatsApp'
+    else
+      assign wa_msg = 'Hoi Dar Al Scents, ik heb een vraag'
+      assign wa_msg_p = 'Hoi Dar Al Scents, ik heb een vraag over: '
+      assign wa_label = 'Vragen over deze geur? App ons via WhatsApp'
+      assign wa_short = 'Vraag het ons'
+  endcase
+  if context == 'pdp' and product
+    assign wa_text = wa_msg_p | append: product.title
+  else
+    assign wa_text = wa_msg
+  endif
+  assign wa_enc = wa_text | url_encode | replace: '+', '%20'
+  assign wa_href = 'https://wa.me/' | append: wa_number | append: '?text=' | append: wa_enc
+-%}
+{%- capture wa_icon -%}<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91A9.84 9.84 0 0 0 12.04 2Zm0 18.15h-.01a8.23 8.23 0 0 1-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.22 8.22 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24a8.2 8.2 0 0 1 8.24 8.25c0 4.54-3.7 8.23-8.23 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.17.24-.64.8-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.13-.15.17-.25.25-.42.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.23.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.28Z"/></svg>{%- endcapture -%}
+{%- if context == 'pdp' -%}
+  <div class="m-pdp-trust__row m-wa-row"><a class="m-wa-row__link" href="{{ wa_href }}" target="_blank" rel="noopener">{{ wa_icon }}<span>{{ wa_label }}</span></a></div>
+{%- else -%}
+  <style>
+    .m-wa { position: fixed; left: 1.6rem; bottom: 1.6rem; z-index: 40; display: inline-flex; align-items: center; gap: 1rem; height: 5.2rem; padding: 0 1.8rem 0 1.4rem; border-radius: 999px; background: var(--m-ink, #100f0d); color: var(--m-ivory, #f7f2ea); border: 1px solid rgba(201, 178, 136, .55); box-shadow: 0 14px 34px -14px rgba(16, 15, 13, .55); font: 500 1.1rem/1 var(--m-sans, sans-serif); letter-spacing: .16em; text-transform: uppercase; text-decoration: none; transition: transform .35s ease, background .35s ease; }
+    .m-wa:hover { transform: translateY(-2px); background: #1f1c18; }
+    .m-wa svg { width: 2.4rem; height: 2.4rem; flex: none; color: #4fce5d; }
+    @media (max-width: 749px) { .m-wa { left: 1.2rem; bottom: 1.2rem; height: 4.8rem; width: 4.8rem; padding: 0; justify-content: center; } .m-wa__label { display: none; } }
+    .m-wa-row__link { display: inline-flex; align-items: center; gap: 1.2rem; color: inherit; text-decoration: underline; text-underline-offset: .3rem; text-decoration-color: var(--m-gold, #9c7d48); }
+    .m-wa-row__link svg { width: 1.9rem; height: 1.9rem; flex: none; color: #2aa63a; }
+  </style>
+  <a class="m-wa" href="{{ wa_href }}" target="_blank" rel="noopener" aria-label="WhatsApp">{{ wa_icon }}<span class="m-wa__label">{{ wa_short }}</span></a>
+{%- endif -%}

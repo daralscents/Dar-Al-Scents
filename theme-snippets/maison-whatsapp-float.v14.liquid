@@ -1,0 +1,14 @@
+{%- if section.settings.enabled -%}
+  {% render 'maison-whatsapp', context: 'float' %}
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Maison WhatsApp-knop",
+  "tag": "div",
+  "settings": [
+    { "type": "checkbox", "id": "enabled", "label": "WhatsApp-knop tonen", "default": true, "info": "Zwevende knop linksonder. Nummer staat in snippets/maison-whatsapp.liquid." }
+  ],
+  "presets": [{ "name": "Maison WhatsApp-knop" }]
+}
+{% endschema %}
