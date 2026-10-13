@@ -73,7 +73,7 @@
           "settings": {
             "label": "Verzending",
             "keywords": "verzend, verzending, lever, bezorg, levertijd, pakket, track, shipping, verstuur",
-            "answer": "Je bestelling wordt binnen 1–3 werkdagen verzonden. Verzending is gratis vanaf €50 in Nederland en vanaf €60 in België en Duitsland.",
+            "answer": "Je bestelling wordt binnen 1–3 werkdagen verzonden. Verzending naar Nederland, België en Duitsland kost €4,95 per bestelling, ook bij meerdere geuren. Gratis vanaf €50 in Nederland en vanaf €60 in België en Duitsland.",
             "link_label": "Bekijk verzendbeleid",
             "link": "/policies/shipping-policy"
           }

@@ -1,0 +1,287 @@
+{%- comment -%}
+  Maison vertalingen voor vaste teksten in Liquid.
+  Gebruik: {% render 'maison-t', k: 'view' %}
+  Talen: nl (standaard), de, fr, en.
+{%- endcomment -%}
+{%- liquid
+  assign l = request.locale.iso_code | slice: 0, 2
+  case k
+    when 'nav_quiz'
+      case l
+        when 'de'
+          echo 'Duftfinder'
+        when 'fr'
+          echo 'Guide olfactif'
+        when 'en'
+          echo 'Scent Finder'
+        else
+          echo 'Geurwijzer'
+      endcase
+    when 'view'
+      case l
+        when 'de'
+          echo 'Duft ansehen'
+        when 'fr'
+          echo 'Voir le parfum'
+        when 'en'
+          echo 'View fragrance'
+        else
+          echo 'Bekijk geur'
+      endcase
+    when 'sold_out'
+      case l
+        when 'de'
+          echo 'Ausverkauft'
+        when 'fr'
+          echo "Épuisé"
+        when 'en'
+          echo 'Sold out'
+        else
+          echo 'Uitverkocht'
+      endcase
+    when 'from'
+      case l
+        when 'de'
+          echo 'Ab'
+        when 'fr'
+          echo "À partir de"
+        when 'en'
+          echo 'From'
+        else
+          echo 'Vanaf'
+      endcase
+    when 'scents'
+      case l
+        when 'de'
+          echo "Düfte"
+        when 'fr'
+          echo 'parfums'
+        when 'en'
+          echo 'fragrances'
+        else
+          echo 'geuren'
+      endcase
+    when 'email_placeholder'
+      case l
+        when 'de'
+          echo 'Deine E-Mail-Adresse'
+        when 'fr'
+          echo 'Votre adresse e-mail'
+        when 'en'
+          echo 'Your email address'
+        else
+          echo 'Je e-mailadres'
+      endcase
+    when 'email_label'
+      case l
+        when 'de'
+          echo 'E-Mail-Adresse'
+        when 'fr'
+          echo 'Adresse e-mail'
+        when 'en'
+          echo 'Email address'
+        else
+          echo 'E-mailadres'
+      endcase
+    when 'news_ok'
+      case l
+        when 'de'
+          echo "Danke für deine Anmeldung!"
+        when 'fr'
+          echo "Merci pour votre inscription !"
+        when 'en'
+          echo 'Thank you for subscribing!'
+        else
+          echo 'Bedankt voor je aanmelding!'
+      endcase
+    when 'rating'
+      case l
+        when 'de'
+          echo 'Bewertung'
+        when 'fr'
+          echo 'note'
+        when 'en'
+          echo 'rating'
+        else
+          echo 'beoordeling'
+      endcase
+    when 'close'
+      case l
+        when 'de'
+          echo "Schließen"
+        when 'fr'
+          echo 'Fermer'
+        when 'en'
+          echo 'Close'
+        else
+          echo 'Sluiten'
+      endcase
+    when 'ask'
+      case l
+        when 'de'
+          echo 'Stelle deine Frage'
+        when 'fr'
+          echo 'Posez votre question'
+        when 'en'
+          echo 'Ask your question'
+        else
+          echo 'Stel je vraag'
+      endcase
+    when 'send'
+      case l
+        when 'de'
+          echo 'Senden'
+        when 'fr'
+          echo 'Envoyer'
+        when 'en'
+          echo 'Send'
+        else
+          echo 'Verstuur'
+      endcase
+    when 'trust_ship'
+      case l
+        when 'de'
+          echo "Versand innerhalb von 1–3 Werktagen"
+        when 'fr'
+          echo "Expédié sous 1 à 3 jours ouvrés"
+        when 'en'
+          echo "Ships within 1–3 business days"
+        else
+          echo "Verzonden binnen 1–3 werkdagen"
+      endcase
+    when 'trust_free'
+      case l
+        when 'de'
+          echo "Versand 4,95 € (NL/BE/DE) · kostenlos ab 50 € (NL) / 60 € (BE/DE)"
+        when 'fr'
+          echo "Livraison 4,95 € (NL/BE/DE) · gratuite dès 50 € (NL) / 60 € (BE/DE)"
+        when 'en'
+          echo "Shipping €4.95 (NL/BE/DE) · free from €50 (NL) / €60 (BE/DE)"
+        else
+          echo "Verzending €4,95 (NL/BE/DE) · gratis vanaf €50 (NL) / €60 (BE/DE)"
+      endcase
+    when 'trust_sample'
+      case l
+        when 'de'
+          echo "Erst testen? 3 Proben nach Wahl für 25 €"
+        when 'fr'
+          echo "Envie d’essayer ? 3 échantillons au choix pour 25 €"
+        when 'en'
+          echo "Try first? Any 3 samples for €25"
+        else
+          echo "Eerst proberen? 3 samples naar keuze voor €25"
+      endcase
+    when 'trust_return'
+      case l
+        when 'de'
+          echo '14 Tage Widerrufsrecht'
+        when 'fr'
+          echo "14 jours de rétractation"
+        when 'en'
+          echo '14-day right of withdrawal'
+        else
+          echo '14 dagen bedenktijd'
+      endcase
+    when 'trust_original'
+      case l
+        when 'de'
+          echo "100 % original – keine Imitate"
+        when 'fr'
+          echo "100 % authentique – aucune imitation"
+        when 'en'
+          echo "100% authentic – no imitations"
+        else
+          echo "100% origineel – geen imitaties"
+      endcase
+    when 'quiz_prev'
+      case l
+        when 'de'
+          echo "← Zurück"
+        when 'fr'
+          echo "← Précédent"
+        when 'en'
+          echo "← Back"
+        else
+          echo "← Vorige"
+      endcase
+    when 'quiz_next'
+      case l
+        when 'de'
+          echo 'Weiter'
+        when 'fr'
+          echo 'Suivant'
+        when 'en'
+          echo 'Next'
+        else
+          echo 'Volgende'
+      endcase
+    when 'quiz_nojs'
+      case l
+        when 'de'
+          echo 'Aktiviere JavaScript, um den Duftfinder zu nutzen.'
+        when 'fr'
+          echo 'Activez JavaScript pour utiliser le guide olfactif.'
+        when 'en'
+          echo 'Enable JavaScript to use the Scent Finder.'
+        else
+          echo 'Zet JavaScript aan om de Geurwijzer te gebruiken.'
+      endcase
+    when 'quiz_profile'
+      case l
+        when 'de'
+          echo 'Dein Duftprofil'
+        when 'fr'
+          echo 'Votre profil olfactif'
+        when 'en'
+          echo 'Your scent profile'
+        else
+          echo 'Jouw geurprofiel'
+      endcase
+    when 'quiz_matches'
+      case l
+        when 'de'
+          echo 'Das sind <em>deine Matches</em>'
+        when 'fr'
+          echo "Voici <em>vos parfums idéaux</em>"
+        when 'en'
+          echo 'These are <em>your matches</em>'
+        else
+          echo 'Dit zijn <em>jouw matches</em>'
+      endcase
+    when 'quiz_results_lead'
+      case l
+        when 'de'
+          echo "Basierend auf deinen Antworten haben wir unsere Kollektion durchsucht. Diese Düfte passen am besten zu dir."
+        when 'fr'
+          echo "Sur la base de vos réponses, nous avons parcouru notre collection. Voici les parfums qui vous correspondent le mieux."
+        when 'en'
+          echo 'Based on your answers, we searched our collection. These are the fragrances that suit you best.'
+        else
+          echo 'Op basis van jouw antwoorden hebben we onze collectie doorzocht. Dit zijn de geuren die het best bij jou passen.'
+      endcase
+    when 'quiz_restart'
+      case l
+        when 'de'
+          echo 'Neu starten'
+        when 'fr'
+          echo 'Recommencer'
+        when 'en'
+          echo 'Start over'
+        else
+          echo 'Opnieuw beginnen'
+      endcase
+    when 'quiz_more'
+      case l
+        when 'de'
+          echo "Weitere Düfte ansehen"
+        when 'fr'
+          echo 'Voir plus de parfums'
+        when 'en'
+          echo 'View more fragrances'
+        else
+          echo 'Bekijk meer geuren'
+      endcase
+    else
+      echo k
+  endcase
+-%}
