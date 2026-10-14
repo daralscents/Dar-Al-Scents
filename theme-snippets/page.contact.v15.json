@@ -1,0 +1,175 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "multicolumn_k7gCLM": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_bVLHk9": {
+          "type": "column",
+          "settings": {
+            "title": "📧 <strong>E-mail</strong>",
+            "text": "<h3></h3><p>Heb je een vraag over je bestelling of over een parfum?<br/><br/>Mail ons op<br/><br/><a href=\"mailto:daralscents@gmail.com\" title=\"mailto:daralscents@gmail.com\"><strong>daralscents@gmail.com</strong></a><br/><br/>We reageren meestal binnen 24 uur.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_XxndDK": {
+          "type": "column",
+          "settings": {
+            "title": "📱 <strong>Instagram DM</strong>",
+            "text": "<p>Stuur ons een bericht via Instagram:<br/><br/><a href=\"https://instagram.com/dar.al.scents\">@dar.al.scents</a><br/><br/>We zijn actief op social media en reageren snel via DM.</p>",
+            "link_label": "DM ons op insta!",
+            "link": "https://www.instagram.com/dar.al.scents/"
+          }
+        },
+        "column_YKxhge": {
+          "type": "column",
+          "settings": {
+            "title": "📝 <strong>Contactformulier</strong>",
+            "text": "<p><br/>Liever direct via de website?<br/><br/>Vul het <a href=\"/pages/contact\" title=\"Contact\">contactformulier</a> in en we nemen zo snel mogelijk contact met je op.<br/><br/>Geschikt voor al je vragen of opmerkingen.</p><p> </p><p>Vul hieronder het contactformulier in.<br/><br/></p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_bVLHk9",
+        "column_XxndDK",
+        "column_YKxhge"
+      ],
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "title": "Contact",
+        "heading_size": "hxl",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 3,
+        "column_alignment": "left",
+        "background_style": "primary",
+        "color_scheme": "scheme-1e80eb72-cd16-4467-9206-575e6504b5e0",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "form": {
+      "type": "contact-form",
+      "settings": {
+        "heading": "Contactformulier",
+        "heading_size": "hxl",
+        "color_scheme": "scheme-1e80eb72-cd16-4467-9206-575e6504b5e0",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "image_with_text_ehLhVr": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_RBVUmm": {
+          "type": "heading",
+          "settings": {
+            "heading": "Afbeelding met tekst",
+            "heading_size": "h1"
+          }
+        },
+        "text_9ErAYt": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Plaats een afbeelding bij stukken tekst om de aandacht op je gekozen product, collectie of blogpost te richten. Voeg details over beschikbaarheid en stijl toe of plaats een productrecensie.</p>",
+            "text_style": "body"
+          }
+        },
+        "button_8p6hmQ": {
+          "type": "button",
+          "settings": {
+            "button_label": "Knoplabel",
+            "button_link": "",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_RBVUmm",
+        "text_9ErAYt",
+        "button_8p6hmQ"
+      ],
+      "disabled": true,
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/f9f60a0d-1f56-4ad7-93fe-e2a96bfcd6f1.png",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "text_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "",
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "newsletter_eUWkY4": {
+      "type": "newsletter",
+      "blocks": {
+        "heading_xU3PBc": {
+          "type": "heading",
+          "settings": {
+            "heading": "Abonneer op onze e-mails",
+            "heading_size": "h1"
+          }
+        },
+        "paragraph_rVKnHG": {
+          "type": "paragraph",
+          "settings": {
+            "text": "<p>Kom als eerste te weten als er nieuwe collecties en exclusieve aanbiedingen zijn.</p>"
+          }
+        },
+        "email_form_dgdrUw": {
+          "type": "email_form",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "heading_xU3PBc",
+        "paragraph_rVKnHG",
+        "email_form_dgdrUw"
+      ],
+      "name": "t:sections.newsletter.presets.name",
+      "settings": {
+        "color_scheme": "scheme-1e80eb72-cd16-4467-9206-575e6504b5e0",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    }
+  },
+  "order": [
+    "main",
+    "multicolumn_k7gCLM",
+    "form",
+    "image_with_text_ehLhVr",
+    "newsletter_eUWkY4"
+  ]
+}

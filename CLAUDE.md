@@ -159,3 +159,10 @@ Communiceer met de eigenaar in het **Nederlands**.
 7. EAN ontbreekt op 100ml-variant van 7 producten (Khamrah Waha, Musamam Black Intense, Hawas Malibu, Hawas Fire, Vulcan Baie, Ana Abiyedh Rouge, Como Moiselle): opzoeken in Syncee.
 8. 15 thema's (max 20): oude thema's kan alleen de eigenaar verwijderen.
 9. Oudere SEO-teksten (±37 producten) noemen designer-parfums ("in de sfeer van …"): merkenrechtelijk risico, eventueel herschrijven.
+
+## Contact-e-mail gelijkgetrokken + thema v15 (14 okt 2026)
+- **Werkwijze thema's (eigenaar, 14 okt): geen nieuwe kopie per wijziging.** Altijd het bovenste niet-gepubliceerde thema onder het live thema bijwerken (= live + nieuwe wijziging), tenzij de eigenaar anders zegt. Nu: **v15 "Dar Al Scents – v15 (contact e-mail)" ID 210893996381** (kopie van live v14 210797101405).
+- v15: `templates/page.contact.json` → `info.daralscents@gmail.com` vervangen door klikbaar `daralscents@gmail.com` (+ DE/FR/EN-vertaling). Kopie in `theme-snippets/page.contact.v15.json`. **Eigenaar moet v15 publiceren.**
+- Klantadres = **daralscents@gmail.com**; zakelijk = daralscents.zakelijk@gmail.com (B2B, laten staan). `info@daralscents.nl` niet meer gebruiken. Adres: Lammerweide 11, **2727 ET** Zoetermeer.
+- Klaviyo: reply-to van alle 10 live flow-mails naar daralscents@gmail.com. Standaard-afzender in Klaviyo-account staat nog op info@daralscents.nl (alleen in Klaviyo-instellingen te wijzigen).
+- Beleid: Claude heeft geen `write_legal_policies`. Kant-en-klare HTML in `beleid-2026-10-14/` (wettelijke kennisgeving, retour, verzending, voorwaarden, contact) → eigenaar plakt zelf. Back-up oud: `backups/2026-10-14-policies-voor-emailfix.json`.
