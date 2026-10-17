@@ -172,4 +172,5 @@ Communiceer met de eigenaar in het **Nederlands**.
 - Samples van die 4 producten toegevoegd aan korting "Samplepakket: 3 samples voor €25" (nu 68 varianten).
 - 9 verouderde thema-vertalingen ("Bekijk ook" op Dames/Heren/Unisex) ververst.
 - Beleidsteksten nog NIET geplakt door eigenaar (nog info@daralscents.nl / 2724SL / oude verzendbedragen). Klaviyo reply-to OK.
-- Nieuwe 4 producten nog niet in Geurwijzer-data.
+- **Thema v16 "Dar Al Scents – v16 (geurwijzer 17 okt)" ID 210797101405** (= oude v14, nu bijgewerkt tot live v15 + Geurwijzer): page.contact.json gelijk aan v15 (+ vertalingen), Geurwijzer-data +8 geuren (Bade'e Al Oud Sublime, Yara, Yara Moi, Ard Al Zaafaran Ana Abiyedh, Fahad, Prive Rose, Obsidian, Esta Fleur); alle 73 actieve parfums (excl. giftsets/bezorggarantie) staan nu in de data. Kopie `theme-snippets/maison-geurwijzer-data.v16.liquid`. **Eigenaar moet v16 publiceren.**
+- Beleid opnieuw geprobeerd 17 okt (eigenaar gaf toestemming): nog steeds geen `write_legal_policies` → eigenaar moet plakken of de connector-rechten uitbreiden. Klaviyo-standaardafzender: geen API, alleen in Klaviyo-instellingen.
