@@ -162,7 +162,14 @@ Communiceer met de eigenaar in het **Nederlands**.
 
 ## Contact-e-mail gelijkgetrokken + thema v15 (14 okt 2026)
 - **Werkwijze thema's (eigenaar, 14 okt): geen nieuwe kopie per wijziging.** Altijd het bovenste niet-gepubliceerde thema onder het live thema bijwerken (= live + nieuwe wijziging), tenzij de eigenaar anders zegt. Nu: **v15 "Dar Al Scents – v15 (contact e-mail)" ID 210893996381** (kopie van live v14 210797101405).
-- v15: `templates/page.contact.json` → `info.daralscents@gmail.com` vervangen door klikbaar `daralscents@gmail.com` (+ DE/FR/EN-vertaling). Kopie in `theme-snippets/page.contact.v15.json`. **Eigenaar moet v15 publiceren.**
+- v15: `templates/page.contact.json` → `info.daralscents@gmail.com` vervangen door klikbaar `daralscents@gmail.com` (+ DE/FR/EN-vertaling). Kopie in `theme-snippets/page.contact.v15.json`. **v15 door eigenaar gepubliceerd (gecontroleerd 17 okt: identiek aan v14 behalve page.contact.json; vertalingen DE/FR/EN actueel).** Bovenste niet-gepubliceerde thema is nu v14 (210797101405) → volgende themawijzigingen daar (eerst gelijk trekken met live v15: page.contact.json).
 - Klantadres = **daralscents@gmail.com**; zakelijk = daralscents.zakelijk@gmail.com (B2B, laten staan). `info@daralscents.nl` niet meer gebruiken. Adres: Lammerweide 11, **2727 ET** Zoetermeer.
 - Klaviyo: reply-to van alle 10 live flow-mails naar daralscents@gmail.com. Standaard-afzender in Klaviyo-account staat nog op info@daralscents.nl (alleen in Klaviyo-instellingen te wijzigen).
 - Beleid: Claude heeft geen `write_legal_policies`. Kant-en-klare HTML in `beleid-2026-10-14/` (wettelijke kennisgeving, retour, verzending, voorwaarden, contact) → eigenaar plakt zelf. Back-up oud: `backups/2026-10-14-policies-voor-emailfix.json`.
+
+## Controle na publicatie v15 (17 okt 2026)
+- Syncee had 4 nieuwe producten (14 okt: Lattafa Fahad, Riiffs Prive Rose, Rayhaan Obsidian, Volare Esta Fleur; 8 varianten) weer in profiel "Luxus Aroma" gezet → dubbele verzendkosten. Teruggezet naar Algemeen profiel; Luxus-profiel 0 varianten; draftOrderCalculate NL/BE/DE = €4,95. **Na elke Syncee-import: profiel Luxus Aroma (150926197085) controleren.**
+- Samples van die 4 producten toegevoegd aan korting "Samplepakket: 3 samples voor €25" (nu 68 varianten).
+- 9 verouderde thema-vertalingen ("Bekijk ook" op Dames/Heren/Unisex) ververst.
+- Beleidsteksten nog NIET geplakt door eigenaar (nog info@daralscents.nl / 2724SL / oude verzendbedragen). Klaviyo reply-to OK.
+- Nieuwe 4 producten nog niet in Geurwijzer-data.
