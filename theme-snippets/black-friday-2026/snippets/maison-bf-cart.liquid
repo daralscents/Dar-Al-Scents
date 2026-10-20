@@ -1,0 +1,47 @@
+{%- comment -%}
+  Maison – Black Friday-hulp in de winkelmand (27–30 nov 2026, alleen zichtbaar tijdens de actie).
+  - Fles (die meedoet) maar nog geen sample: "kies je gratis sample" + knop naar samplepakket.
+  - Fles + sample: "gratis sample wordt in de kassa verrekend".
+  - 1–4 samples: "nog X samples voor 50%"; 5+: "50% gaat eraf in de kassa".
+{%- endcomment -%}
+{%- liquid
+  assign bfc_bottles = 0
+  assign bfc_samples = 0
+  for item in cart.items
+    assign vt = item.variant.title | downcase
+    if vt contains 'sample' or vt == '3ml' or vt == '3 ml'
+      assign bfc_samples = bfc_samples | plus: item.quantity
+    elsif item.product.handle != 'bezorggarantie'
+      capture bfc_ok
+        render 'maison-bf-gift', product: item.product
+      endcapture
+      if bfc_ok contains 'ja'
+        assign bfc_bottles = bfc_bottles | plus: item.quantity
+      endif
+    endif
+  endfor
+  assign bfc_left = 5 | minus: bfc_samples
+-%}
+{%- if bfc_bottles > 0 or bfc_samples > 0 -%}
+  <div class="m-bfc das-bf-live-only">
+    {%- if bfc_bottles > 0 and bfc_samples == 0 -%}
+      <p class="m-bfc__row"><span>{% render 'maison-bf-t', k: 'cart_pick' %}</span>
+        <a class="m-bfc__btn" href="{{ routes.collections_url }}/samplepakket">{% render 'maison-bf-t', k: 'cart_pick_btn' %}</a></p>
+    {%- elsif bfc_bottles > 0 -%}
+      <p class="m-bfc__row"><span>✓ {% render 'maison-bf-t', k: 'cart_gift_ok' %}</span></p>
+    {%- endif -%}
+    {%- if bfc_samples >= 5 -%}
+      <p class="m-bfc__row"><span>✓ {% render 'maison-bf-t', k: 'cart_50ok' %}</span></p>
+    {%- elsif bfc_samples > 0 -%}
+      {%- capture bfc_more -%}{% render 'maison-bf-t', k: 'cart_more' %}{%- endcapture -%}
+      <p class="m-bfc__row"><span>{{ bfc_more | replace: '[n]', bfc_left }}</span>
+        <a class="m-bfc__btn" href="{{ routes.collections_url }}/samplepakket">+</a></p>
+    {%- endif -%}
+  </div>
+  <style>
+    .m-bfc { display: grid; gap: .8rem; margin: 0 0 1.2rem; padding: 1.2rem 1.4rem; background: #0b0a09; color: #e4cd8c; border-top: 3px solid #c9a24b; }
+    .m-bfc__row { display: flex; align-items: center; justify-content: space-between; gap: 1.2rem; margin: 0; font: 500 1.3rem/1.4 var(--m-sans, inherit); }
+    .m-bfc__btn { flex: none; padding: .7rem 1.2rem; background: #c9a24b; color: #0b0a09; font-size: 1.15rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; text-decoration: none; }
+    .m-bfc__btn:hover { background: #e4cd8c; }
+  </style>
+{%- endif -%}

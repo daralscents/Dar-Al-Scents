@@ -1,0 +1,46 @@
+<div class="m-pdp-trust">
+  {%- comment -%} Black Friday 2026: regels alleen zichtbaar tijdens 27–30 nov (zie maison-bf-head). {%- endcomment -%}
+  {%- liquid
+    assign bfp_in = false
+    for col in product.collections
+      if col.handle == 'black-friday'
+        assign bfp_in = true
+      endif
+    endfor
+    capture bfp_gift
+      render 'maison-bf-gift', product: product
+    endcapture
+    assign bfp_bottle = false
+    for v in product.variants
+      assign vt = v.title | downcase
+      unless vt contains 'sample' or vt == '3ml' or vt == '3 ml'
+        assign bfp_bottle = true
+      endunless
+    endfor
+  -%}
+  {%- if bfp_in -%}
+    <div class="m-pdp-trust__row m-pdp-trust__row--bf das-bf-live-only">{% render 'maison-icon', icon: 'gift' %}<span>{% render 'maison-bf-t', k: 'pdp_10' %}</span></div>
+  {%- endif -%}
+  {%- if bfp_bottle and bfp_gift contains 'ja' -%}
+    <div class="m-pdp-trust__row m-pdp-trust__row--bf das-bf-live-only">{% render 'maison-icon', icon: 'gift' %}<span><a href="{{ routes.collections_url }}/samplepakket" style="color: inherit; text-underline-offset: .3rem;">{% render 'maison-bf-t', k: 'pdp_gift' %}</a></span></div>
+  {%- endif -%}
+  <div class="m-pdp-trust__row">{% render 'maison-icon', icon: 'truck' %}<span>{% render 'maison-t', k: 'trust_ship' %}</span></div>
+  <div class="m-pdp-trust__row">{% render 'maison-icon', icon: 'gift' %}<span>{% render 'maison-t', k: 'trust_free' %}</span></div>
+  {%- liquid
+    assign das_has_sample = false
+    for v in product.variants
+      assign vt = v.title | downcase
+      if v.available
+        if vt contains 'sample' or vt == '3ml' or vt == '3 ml'
+          assign das_has_sample = true
+        endif
+      endif
+    endfor
+  -%}
+  {%- if das_has_sample -%}
+    <div class="m-pdp-trust__row">{% render 'maison-icon', icon: 'gift' %}<span><a href="{{ routes.collections_url }}/samplepakket" style="color: inherit; text-underline-offset: .3rem;">{% render 'maison-t', k: 'trust_sample' %}</a></span></div>
+  {%- endif -%}
+  <div class="m-pdp-trust__row">{% render 'maison-icon', icon: 'return' %}<span>{% render 'maison-t', k: 'trust_return' %}</span></div>
+  <div class="m-pdp-trust__row">{% render 'maison-icon', icon: 'check' %}<span>{% render 'maison-t', k: 'trust_original' %}</span></div>
+  {% render 'maison-whatsapp', context: 'pdp' %}
+</div>

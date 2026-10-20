@@ -1,0 +1,63 @@
+{%- comment -%}
+  Maison – Black Friday 2026, sitebrede laag (in header-group).
+  - Zet <html> op das-bf-pre / das-bf-live / das-bf-post op basis van de echte tijd van de bezoeker
+    (actie 27 nov 00:00 – 30 nov 23:59 NL-tijd, gelijk aan de automatische kortingen).
+  - .das-bf-live-only / .das-bf-pre-only / .das-bf-post-only tonen alleen in die fase,
+    zodat er nooit een Black Friday-prijs staat die de kassa (nog) niet geeft.
+  - [data-bf-countdown] telt af naar de start (vóór) of het einde (tijdens).
+  - Zwart-gouden aankondigingsbalk.
+{%- endcomment -%}
+<style>
+  :root { --bf-black: #0b0a09; --bf-gold: #c9a24b; --bf-gold-soft: #e4cd8c; }
+  html:not(.das-bf-live) .das-bf-live-only,
+  html:not(.das-bf-pre) .das-bf-pre-only,
+  html:not(.das-bf-post) .das-bf-post-only,
+  html.das-bf-post .das-bf-hide-post { display: none !important; }
+  .announcement-bar-section .utility-bar,
+  .announcement-bar-section .announcement-bar { background: var(--bf-black) !important; color: var(--bf-gold-soft) !important; }
+  .announcement-bar-section .announcement-bar__message,
+  .announcement-bar-section .announcement-bar__link,
+  .announcement-bar-section .announcement-bar__message span { color: var(--bf-gold-soft) !important; letter-spacing: .14em; }
+  .announcement-bar-section .slider-button { color: var(--bf-gold-soft) !important; }
+  .m-card-note--bf { color: #9c7d48 !important; font-weight: 500; }
+  .m-pdp-trust__row--bf { color: #0b0a09; font-weight: 500; }
+  .m-pdp-trust__row--bf svg { color: var(--bf-gold); }
+</style>
+<script>
+  (function () {
+    var S = Date.parse('2026-11-27T00:00:00+01:00');
+    var E = Date.parse('2026-11-30T23:59:59+01:00');
+    var root = document.documentElement;
+    function phase() { var n = Date.now(); return n < S ? 'pre' : (n <= E ? 'live' : 'post'); }
+    function setPhase() {
+      var p = phase();
+      root.classList.remove('das-bf-pre', 'das-bf-live', 'das-bf-post');
+      root.classList.add('das-bf-' + p);
+      return p;
+    }
+    var last = setPhase();
+    function pad(x) { return (x < 10 ? '0' : '') + x; }
+    function tick() {
+      var p = setPhase();
+      var target = p === 'pre' ? S : E;
+      var diff = Math.max(0, target - Date.now());
+      var d = Math.floor(diff / 864e5), h = Math.floor(diff / 36e5) % 24, m = Math.floor(diff / 6e4) % 60, s = Math.floor(diff / 1e3) % 60;
+      document.querySelectorAll('[data-bf-countdown]').forEach(function (el) {
+        var set = function (k, v) { var t = el.querySelector('[data-bf-' + k + ']'); if (t) t.textContent = v; };
+        set('d', d); set('h', pad(h)); set('m', pad(m)); set('s', pad(s));
+      });
+      if (p !== last) { last = p; }
+    }
+    window.DAS_BF = { start: S, end: E, phase: phase };
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', tick); else tick();
+    setInterval(tick, 1000);
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Black Friday – sitebreed",
+  "tag": "div",
+  "settings": []
+}
+{% endschema %}

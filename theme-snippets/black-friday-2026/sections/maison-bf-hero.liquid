@@ -1,0 +1,150 @@
+{%- comment -%}
+  Maison – Black Friday hero (27–30 nov 2026).
+  Zwart-goud: titel, aftelklok (naar start of einde), de 3 deals, knoppen,
+  rechts 3 producten uit de Black Friday-collectie met normale prijs en BF-prijs (alleen tijdens de actie).
+  Teksten NL/DE/FR/EN via snippet maison-bf-t. Na afloop toont de hero een bedankregel.
+{%- endcomment -%}
+{%- liquid
+  assign c = section.settings.collection
+  if c == blank
+    assign c = collections['black-friday']
+  endif
+-%}
+<style>
+  .m-bf { position: relative; overflow: hidden; background: #0b0a09; color: #ece4d4; }
+  .m-bf::before { content: ""; position: absolute; inset: -30% auto auto -15%; width: 70%; height: 160%; background: radial-gradient(closest-side, rgba(201, 162, 75, .22), rgba(201, 162, 75, 0)); pointer-events: none; }
+  .m-bf::after { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 4px; background: linear-gradient(90deg, #8a6a2c, #e4cd8c 50%, #8a6a2c); }
+  .m-bf__grid { position: relative; display: grid; grid-template-columns: 1.05fr 1fr; gap: clamp(3.2rem, 5vw, 7rem); align-items: center; padding-block: clamp(5rem, 7vw, 9rem); }
+  .m-bf__kicker { display: inline-flex; align-items: center; gap: 1rem; margin: 0 0 1.6rem; font: 500 1.15rem/1 var(--m-sans); letter-spacing: .3em; text-transform: uppercase; color: #e4cd8c; }
+  .m-bf__kicker::before { content: ""; width: 3.2rem; height: 1px; background: #c9a24b; }
+  .m-bf__title { margin: 0; font: 500 clamp(5rem, 8.4vw, 11rem)/.9 var(--m-serif); letter-spacing: -.01em; text-transform: uppercase; color: #f7f2ea; }
+  .m-bf__title span { display: block; color: transparent; -webkit-text-stroke: 1px #c9a24b; }
+  .m-bf__lead { margin: 2.2rem 0 0; max-width: 48rem; font: 300 clamp(1.55rem, 1.25vw, 1.8rem)/1.65 var(--m-sans); color: #bdb3a2; }
+  .m-bf__cd { display: flex; align-items: flex-end; gap: 1.4rem; margin: 3rem 0 0; }
+  .m-bf__cd-label { margin: 0 0 1rem; font: 500 1.05rem/1 var(--m-sans); letter-spacing: .26em; text-transform: uppercase; color: #c9a24b; }
+  .m-bf__cd-unit { display: grid; justify-items: center; min-width: 6.4rem; padding: 1.2rem .8rem 1rem; border: 1px solid rgba(201, 162, 75, .45); background: rgba(255, 255, 255, .02); }
+  .m-bf__cd-num { font: 500 clamp(2.8rem, 2.6vw, 3.6rem)/1 var(--m-serif); color: #f7f2ea; font-variant-numeric: tabular-nums; }
+  .m-bf__cd-txt { margin-top: .5rem; font-size: 1rem; letter-spacing: .18em; text-transform: uppercase; color: #9c917f; }
+  .m-bf__deals { display: grid; gap: 1rem; margin: 3.2rem 0 0; padding: 0; list-style: none; }
+  .m-bf__deal { display: grid; grid-template-columns: auto 1fr; gap: 1.4rem; align-items: center; padding: 1.4rem 1.6rem; border: 1px solid rgba(236, 228, 212, .12); background: rgba(255, 255, 255, .03); }
+  .m-bf__deal-n { display: grid; place-items: center; width: 3.6rem; height: 3.6rem; border-radius: 50%; background: #c9a24b; color: #0b0a09; font: 600 1.4rem/1 var(--m-sans); }
+  .m-bf__deal-t { display: block; font: 500 1.75rem/1.25 var(--m-serif); color: #f7f2ea; }
+  .m-bf__deal-s { display: block; margin-top: .3rem; font-size: 1.3rem; line-height: 1.45; color: #a9a08f; }
+  .m-bf .m-actions { margin-top: 3rem; }
+  .m-bf .m-btn { background: #c9a24b; color: #0b0a09; border-color: #c9a24b; }
+  .m-bf .m-btn:hover { background: transparent; color: #e4cd8c; }
+  .m-bf .m-btn--ghost { background: transparent; color: #f7f2ea; border-color: rgba(236, 228, 212, .45); }
+  .m-bf .m-btn--ghost:hover { background: #f7f2ea; color: #0b0a09; border-color: #f7f2ea; }
+  .m-bf__auto { margin: 1.8rem 0 0; font-size: 1.25rem; letter-spacing: .03em; color: #8f8574; }
+  .m-bf__over { margin: 3rem 0 0; font: 400 2rem/1.4 var(--m-serif); color: #e4cd8c; }
+
+  .m-bf__show { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(1.2rem, 1.6vw, 2rem); align-items: end; }
+  .m-bf__item { position: relative; display: block; color: inherit; text-decoration: none; }
+  .m-bf__item:nth-child(2) { transform: translateY(-3rem); }
+  .m-bf__media { position: relative; display: block; aspect-ratio: 3 / 4; overflow: hidden; background: radial-gradient(120% 90% at 50% 25%, #f7f1e6 0%, #e9dfcc 60%, #cbbd9f 100%); }
+  .m-bf__media::after { content: ""; position: absolute; inset: 1rem; border: 1px solid rgba(156, 125, 72, .4); pointer-events: none; }
+  .m-bf__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; padding: 12%; mix-blend-mode: multiply; transition: transform 1.4s var(--m-ease); }
+  .m-bf__item:hover .m-bf__img { transform: scale(1.05); }
+  .m-bf__badge { position: absolute; top: 1.2rem; left: 1.2rem; z-index: 1; padding: .6rem .9rem; background: #0b0a09; color: #e4cd8c; font: 600 1.1rem/1 var(--m-sans); letter-spacing: .12em; }
+  .m-bf__body { display: grid; gap: .3rem; padding-top: 1.3rem; }
+  .m-bf__vendor { font: 500 1rem/1.3 var(--m-sans); letter-spacing: .22em; text-transform: uppercase; color: #c9a24b; }
+  .m-bf__name { font: 500 clamp(1.6rem, 1.3vw, 2rem)/1.18 var(--m-serif); color: #f7f2ea; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .m-bf__price { font-size: 1.35rem; color: #cfc5b3; }
+  .m-bf__price s { color: #8f8574; margin-right: .6rem; }
+  .m-bf__price b { color: #e4cd8c; font-weight: 500; }
+  .m-bf__note { font-size: 1.15rem; color: #8f8574; }
+
+  @media (max-width: 989px) {
+    .m-bf__grid { grid-template-columns: 1fr; gap: 4rem; padding-block: 4.6rem 5rem; }
+  }
+  @media (max-width: 749px) {
+    .m-bf__cd { gap: .8rem; }
+    .m-bf__cd-unit { min-width: 0; flex: 1; padding: 1rem .4rem .8rem; }
+    .m-bf__deal { padding: 1.2rem; gap: 1.1rem; }
+    .m-bf__deal-t { font-size: 1.6rem; }
+    .m-bf .m-actions { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+    .m-bf__show { grid-auto-flow: column; grid-template-columns: none; grid-auto-columns: 58%; align-items: start; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; margin-inline: calc(-1 * clamp(1.6rem, 4vw, 4.8rem)); padding-inline: clamp(1.6rem, 4vw, 4.8rem); }
+    .m-bf__show::-webkit-scrollbar { display: none; }
+    .m-bf__item { scroll-snap-align: start; }
+    .m-bf__item:nth-child(2) { transform: none; }
+  }
+</style>
+
+<section class="m-bf">
+  <div class="m-wrap m-bf__grid">
+    <div class="m-bf__copy">
+      <p class="m-bf__kicker">{% render 'maison-bf-t', k: 'dates' %}</p>
+      <h1 class="m-bf__title">Black<span>Friday</span></h1>
+      <p class="m-bf__lead das-bf-hide-post">{% render 'maison-bf-t', k: 'lead' %}</p>
+
+      <div class="das-bf-hide-post" data-bf-countdown>
+        <p class="m-bf__cd-label" style="margin-top:3rem"><span class="das-bf-pre-only">{% render 'maison-bf-t', k: 'starts_in' %}</span><span class="das-bf-live-only">{% render 'maison-bf-t', k: 'ends_in' %}</span></p>
+        <div class="m-bf__cd" style="margin-top:0" role="timer" aria-live="off">
+          <span class="m-bf__cd-unit"><span class="m-bf__cd-num" data-bf-d>0</span><span class="m-bf__cd-txt">{% render 'maison-bf-t', k: 'd' %}</span></span>
+          <span class="m-bf__cd-unit"><span class="m-bf__cd-num" data-bf-h>00</span><span class="m-bf__cd-txt">{% render 'maison-bf-t', k: 'h' %}</span></span>
+          <span class="m-bf__cd-unit"><span class="m-bf__cd-num" data-bf-m>00</span><span class="m-bf__cd-txt">{% render 'maison-bf-t', k: 'm' %}</span></span>
+          <span class="m-bf__cd-unit"><span class="m-bf__cd-num" data-bf-s>00</span><span class="m-bf__cd-txt">{% render 'maison-bf-t', k: 's' %}</span></span>
+        </div>
+      </div>
+
+      <ul class="m-bf__deals das-bf-hide-post" role="list">
+        <li class="m-bf__deal"><span class="m-bf__deal-n">1</span><span><span class="m-bf__deal-t">{% render 'maison-bf-t', k: 'deal1_t' %}</span><span class="m-bf__deal-s">{% render 'maison-bf-t', k: 'deal1_s' %}</span></span></li>
+        <li class="m-bf__deal"><span class="m-bf__deal-n">2</span><span><span class="m-bf__deal-t">{% render 'maison-bf-t', k: 'deal2_t' %}</span><span class="m-bf__deal-s">{% render 'maison-bf-t', k: 'deal2_s' %}</span></span></li>
+        <li class="m-bf__deal"><span class="m-bf__deal-n">3</span><span><span class="m-bf__deal-t">{% render 'maison-bf-t', k: 'deal3_t' %}</span><span class="m-bf__deal-s">{% render 'maison-bf-t', k: 'deal3_s' %}</span></span></li>
+      </ul>
+
+      <div class="m-actions das-bf-hide-post">
+        <a class="m-btn" href="{{ routes.collections_url }}/black-friday">{% render 'maison-bf-t', k: 'btn1' %}</a>
+        <a class="m-btn m-btn--ghost" href="{{ routes.collections_url }}/samplepakket">{% render 'maison-bf-t', k: 'btn2' %}</a>
+      </div>
+      <p class="m-bf__auto das-bf-hide-post">{% render 'maison-bf-t', k: 'auto' %}</p>
+      <p class="m-bf__over das-bf-post-only">{% render 'maison-bf-t', k: 'over' %}</p>
+    </div>
+
+    {%- if c != blank -%}
+      <div class="m-bf__show">
+        {%- assign shown = 0 -%}
+        {%- for p in c.products limit: 20 -%}
+          {%- if shown >= 3 -%}{%- break -%}{%- endif -%}
+          {%- assign best = nil -%}
+          {%- for v in p.variants -%}
+            {%- assign vt = v.title | downcase -%}
+            {%- if vt contains 'sample' -%}{%- continue -%}{%- endif -%}
+            {%- if v.available -%}{%- if best == nil or v.price > best.price -%}{%- assign best = v -%}{%- endif -%}{%- endif -%}
+          {%- endfor -%}
+          {%- if best == nil or p.featured_media == blank -%}{%- continue -%}{%- endif -%}
+          {%- assign shown = shown | plus: 1 -%}
+          {%- assign bf_title = p.title | remove_first: p.vendor | strip -%}
+          {%- if bf_title == blank -%}{%- assign bf_title = p.title -%}{%- endif -%}
+          {%- assign bf_new = best.price | times: 90 | divided_by: 100 -%}
+          {%- assign bf_alt = p.featured_media.alt | default: p.title -%}
+          <a class="m-bf__item" href="{{ best.url }}">
+            <span class="m-bf__media">
+              <span class="m-bf__badge">−10%</span>
+              {{ p.featured_media | image_url: width: 800 | image_tag: loading: 'eager', sizes: '(min-width: 990px) 15vw, 58vw', widths: '360, 540, 800', class: 'm-bf__img', alt: bf_alt }}
+            </span>
+            <span class="m-bf__body">
+              <span class="m-bf__vendor">{{ p.vendor }}</span>
+              <span class="m-bf__name">{{ bf_title }}</span>
+              <span class="m-bf__price das-bf-live-only"><s>{{ best.price | money }}</s><b>{{ bf_new | money }}</b></span>
+              <span class="m-bf__price das-bf-pre-only">{{ best.price | money }}</span>
+              <span class="m-bf__note das-bf-pre-only">{% render 'maison-bf-t', k: 'bf_price' %} {{ bf_new | money }} {% render 'maison-bf-t', k: 'from27' %}</span>
+              <span class="m-bf__price das-bf-post-only">{{ best.price | money }}</span>
+            </span>
+          </a>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Black Friday hero",
+  "tag": "div",
+  "settings": [
+    { "type": "collection", "id": "collection", "label": "Producten rechts (collectie)", "info": "Standaard: Black Friday. Toont de eerste 3 producten waarvan de grote fles op voorraad is." }
+  ],
+  "presets": [{ "name": "Black Friday hero" }]
+}
+{% endschema %}

@@ -1,0 +1,14 @@
+{%- comment -%}
+  Geeft 'ja' als dit product meedoet met "gratis sample bij je fles" (heeft een grote fles en staat niet op de uitsluitlijst
+  van producten met een te kleine marge). Moet gelijk blijven aan de BXGY-korting "Black Friday: gratis sample bij je fles".
+  Accepts: product
+{%- endcomment -%}
+{%- liquid
+  assign bf_excl = '|rasasi-hawas-tropical-100ml|rasasi-hawas-eclat-edp|armaf-club-nuit-intense-105ml|french-avenue-chronicles-80ml|rasasi-hawas-reina-edp|riiffs-momento-liquid-gold-extrait-de-parfum|riiffs-freeze-extrait-parfum-100ml|bezorggarantie|khadlaj-frische-ext-de-parfum|armaf-odyssey-spectra-edp-100ml|'
+  assign bf_key = '|' | append: product.handle | append: '|'
+  if bf_excl contains bf_key
+    echo ''
+  else
+    echo 'ja'
+  endif
+-%}
