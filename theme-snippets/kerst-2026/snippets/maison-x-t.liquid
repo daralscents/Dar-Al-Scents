@@ -1,0 +1,28 @@
+{%- comment -%}
+  Kerst 2026 – teksten NL/DE/FR/EN. Gebruik: {% render 'maison-x-t', k: 'sleutel' %}
+  Besteldeadline "op tijd onder de boom": 18 december (ook in maison-x-head: DEADLINE). Wijzig op beide plekken.
+{%- endcomment -%}
+{%- assign l = request.locale.iso_code | slice: 0, 2 -%}
+{%- case k -%}
+  {%- when 'eyebrow' -%}{%- case l -%}{%- when 'de' -%}Weihnachten 2026{%- when 'fr' -%}Noël 2026{%- when 'en' -%}Christmas 2026{%- else -%}Kerst 2026{%- endcase -%}
+  {%- when 'title' -%}{%- case l -%}{%- when 'de' -%}Schenk einen Duft, der <em>bleibt</em>.{%- when 'fr' -%}Offrez un parfum qui <em>reste</em>.{%- when 'en' -%}Give a scent that <em>lingers</em>.{%- else -%}Geef een geur die <em>blijft</em>.{%- endcase -%}
+  {%- when 'lead' -%}{%- case l -%}{%- when 'de' -%}Originale arabische Parfums und Geschenksets – sorgfältig ausgewählt, schnell zu Hause. Das Geschenk, an das man sich erinnert.{%- when 'fr' -%}Parfums arabes originaux et coffrets – soigneusement sélectionnés, livrés rapidement. Le cadeau dont on se souvient.{%- when 'en' -%}Original Arabic perfumes and gift sets – carefully selected, delivered fast. The gift they'll remember.{%- else -%}Originele Arabische parfums en giftsets – zorgvuldig gekozen, snel in huis. Het cadeau dat ze onthouden.{%- endcase -%}
+  {%- when 'deadline' -%}{%- case l -%}{%- when 'de' -%}18. Dezember{%- when 'fr' -%}18 décembre{%- when 'en' -%}18 December{%- else -%}18 december{%- endcase -%}
+  {%- when 'ontime' -%}{%- case l -%}{%- when 'de' -%}Bestelle bis zum [d], dann liegt es rechtzeitig unter dem Baum{%- when 'fr' -%}Commande avant le [d] pour qu'il soit au pied du sapin{%- when 'en' -%}Order by [d] to have it under the tree in time{%- else -%}Bestel vóór [d], dan ligt het op tijd onder de boom{%- endcase -%}
+  {%- when 'late' -%}{%- case l -%}{%- when 'de' -%}Achtung: Bestellungen nach dem [d] kommen eventuell erst nach Weihnachten an{%- when 'fr' -%}Attention : les commandes passées après le [d] pourraient arriver après Noël{%- when 'en' -%}Please note: orders placed after [d] may arrive after Christmas{%- else -%}Let op: bestellingen na [d] komen mogelijk pas na kerst aan{%- endcase -%}
+  {%- when 'cd_label' -%}{%- case l -%}{%- when 'de' -%}Noch Zeit, um rechtzeitig zu bestellen{%- when 'fr' -%}Temps restant pour commander à temps{%- when 'en' -%}Time left to order in time{%- else -%}Nog zo lang om op tijd te bestellen{%- endcase -%}
+  {%- when 'd' -%}{%- case l -%}{%- when 'de' -%}Tage{%- when 'fr' -%}jours{%- when 'en' -%}days{%- else -%}dagen{%- endcase -%}
+  {%- when 'h' -%}{%- case l -%}{%- when 'de' -%}Std{%- when 'fr' -%}h{%- when 'en' -%}hrs{%- else -%}uur{%- endcase -%}
+  {%- when 'm' -%}{%- case l -%}{%- when 'de' -%}Min{%- when 'fr' -%}min{%- when 'en' -%}min{%- else -%}min{%- endcase -%}
+  {%- when 'g_her' -%}{%- case l -%}{%- when 'de' -%}Für sie{%- when 'fr' -%}Pour elle{%- when 'en' -%}For her{%- else -%}Voor haar{%- endcase -%}
+  {%- when 'g_him' -%}{%- case l -%}{%- when 'de' -%}Für ihn{%- when 'fr' -%}Pour lui{%- when 'en' -%}For him{%- else -%}Voor hem{%- endcase -%}
+  {%- when 'g_30' -%}{%- case l -%}{%- when 'de' -%}Unter €30{%- when 'fr' -%}Moins de 30 €{%- when 'en' -%}Under €30{%- else -%}Onder €30{%- endcase -%}
+  {%- when 'g_sets' -%}{%- case l -%}{%- when 'de' -%}Geschenksets{%- when 'fr' -%}Coffrets{%- when 'en' -%}Gift sets{%- else -%}Giftsets{%- endcase -%}
+  {%- when 'g_samples' -%}{%- case l -%}{%- when 'de' -%}3 Proben für €25{%- when 'fr' -%}3 échantillons pour 25 €{%- when 'en' -%}3 samples for €25{%- else -%}3 samples voor €25{%- endcase -%}
+  {%- when 'g_samples_s' -%}{%- case l -%}{%- when 'de' -%}Das perfekte kleine Extra{%- when 'fr' -%}Le petit plus parfait{%- when 'en' -%}The perfect stocking filler{%- else -%}Het perfecte cadeautje erbij{%- endcase -%}
+  {%- when 'guide' -%}{%- case l -%}{%- when 'de' -%}Geschenkfinder{%- when 'fr' -%}Guide cadeaux{%- when 'en' -%}Gift guide{%- else -%}Cadeaugids{%- endcase -%}
+  {%- when 'btn1' -%}{%- case l -%}{%- when 'de' -%}Geschenksets ansehen{%- when 'fr' -%}Voir les coffrets{%- when 'en' -%}Shop gift sets{%- else -%}Bekijk giftsets{%- endcase -%}
+  {%- when 'btn2' -%}{%- case l -%}{%- when 'de' -%}Duftfinder starten{%- when 'fr' -%}Trouver son parfum{%- when 'en' -%}Find their scent{%- else -%}Vind hun geur{%- endcase -%}
+  {%- when 'unsure' -%}{%- case l -%}{%- when 'de' -%}Unsicher, welcher Duft passt? Verschenke 3 Proben für €25.{%- when 'fr' -%}Pas sûr du parfum ? Offre 3 échantillons pour 25 €.{%- when 'en' -%}Not sure which scent? Gift 3 samples for €25.{%- else -%}Twijfel je welke geur past? Geef 3 samples voor €25.{%- endcase -%}
+  {%- when 'merry' -%}{%- case l -%}{%- when 'de' -%}Frohe Weihnachten und ein duftendes neues Jahr!{%- when 'fr' -%}Joyeux Noël et une année parfumée !{%- when 'en' -%}Merry Christmas and a fragrant new year!{%- else -%}Fijne feestdagen en een geurig nieuwjaar!{%- endcase -%}
+{%- endcase -%}

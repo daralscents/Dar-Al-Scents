@@ -1,0 +1,52 @@
+{%- comment -%}
+  Maison – Kerst 2026, sitebrede laag (in header-group).
+  Zet <html> op das-x-ontime (vóór besteldeadline) / das-x-late (deadline voorbij, t/m 26 dec) / das-x-post (daarna),
+  op basis van de echte tijd van de bezoeker. Telt af naar de deadline in [data-x-countdown].
+  DEADLINE = 18 dec 23:59 NL-tijd (ook tekst in maison-x-t, sleutel 'deadline'). Kerstkleuren voor de aankondigingsbalk.
+{%- endcomment -%}
+<style>
+  :root { --x-green: #12302a; --x-green-2: #1c4238; --x-gold: #c9a24b; --x-gold-soft: #e4cd8c; --x-ivory: #f7f2ea; }
+  html:not(.das-x-ontime) .das-x-ontime-only,
+  html:not(.das-x-late) .das-x-late-only,
+  html:not(.das-x-post) .das-x-post-only,
+  html.das-x-post .das-x-hide-post { display: none !important; }
+  .announcement-bar-section .utility-bar,
+  .announcement-bar-section .announcement-bar { background: var(--x-green) !important; color: var(--x-gold-soft) !important; }
+  .announcement-bar-section .announcement-bar__message,
+  .announcement-bar-section .announcement-bar__link,
+  .announcement-bar-section .announcement-bar__message span { color: var(--x-gold-soft) !important; letter-spacing: .12em; }
+  .announcement-bar-section .slider-button { color: var(--x-gold-soft) !important; }
+  .m-pdp-trust__row--x { color: var(--x-green); font-weight: 500; }
+  .m-pdp-trust__row--x svg { color: var(--x-gold); }
+</style>
+<script>
+  (function () {
+    var D = Date.parse('2026-12-18T23:59:59+01:00');
+    var P = Date.parse('2026-12-26T23:59:59+01:00');
+    var root = document.documentElement;
+    function phase() { var n = Date.now(); return n <= D ? 'ontime' : (n <= P ? 'late' : 'post'); }
+    function pad(x) { return (x < 10 ? '0' : '') + x; }
+    function tick() {
+      var p = phase();
+      root.classList.remove('das-x-ontime', 'das-x-late', 'das-x-post');
+      root.classList.add('das-x-' + p);
+      var diff = Math.max(0, D - Date.now());
+      var d = Math.floor(diff / 864e5), h = Math.floor(diff / 36e5) % 24, m = Math.floor(diff / 6e4) % 60;
+      document.querySelectorAll('[data-x-countdown]').forEach(function (el) {
+        var set = function (k, v) { var t = el.querySelector('[data-x-' + k + ']'); if (t) t.textContent = v; };
+        set('d', d); set('h', pad(h)); set('m', pad(m));
+      });
+    }
+    tick();
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', tick);
+    setInterval(tick, 30000);
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Kerst – sitebreed",
+  "tag": "div",
+  "settings": []
+}
+{% endschema %}

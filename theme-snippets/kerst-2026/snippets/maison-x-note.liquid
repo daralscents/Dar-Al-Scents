@@ -1,0 +1,18 @@
+{%- comment -%}
+  Kerst 2026 – korte regel over de besteldeadline (productpagina en winkelmand).
+  Accepts: style ('pdp' of 'cart')
+{%- endcomment -%}
+{%- capture x_dl -%}{% render 'maison-x-t', k: 'deadline' %}{%- endcapture -%}
+{%- capture x_on -%}{% render 'maison-x-t', k: 'ontime' %}{%- endcapture -%}
+{%- capture x_late -%}{% render 'maison-x-t', k: 'late' %}{%- endcapture -%}
+{%- if style == 'cart' -%}
+  <p class="m-xc das-x-ontime-only">{{ x_on | replace: '[d]', x_dl }}</p>
+  <p class="m-xc m-xc--late das-x-late-only">{{ x_late | replace: '[d]', x_dl }}</p>
+  <style>
+    .m-xc { margin: 0 0 1.2rem; padding: 1rem 1.3rem; background: #12302a; color: #e4cd8c; border-top: 3px solid #c9a24b; font: 500 1.3rem/1.4 var(--m-sans, inherit); text-align: center; }
+    .m-xc--late { background: #fbf8f1; color: #12302a; border: 1px solid #c9a24b; }
+  </style>
+{%- else -%}
+  <div class="m-pdp-trust__row m-pdp-trust__row--x das-x-ontime-only">{% render 'maison-icon', icon: 'gift' %}<span>{{ x_on | replace: '[d]', x_dl }}</span></div>
+  <div class="m-pdp-trust__row m-pdp-trust__row--x das-x-late-only">{% render 'maison-icon', icon: 'truck' %}<span>{{ x_late | replace: '[d]', x_dl }}</span></div>
+{%- endif -%}

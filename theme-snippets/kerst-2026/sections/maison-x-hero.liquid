@@ -1,0 +1,125 @@
+{%- comment -%}
+  Maison – Kerst hero (1–24 dec 2026).
+  Diepgroen met goud en ivoor (geen sterren/iconen, merkstijl). Links titel, aftelklok tot de besteldeadline,
+  knoppen; rechts een cadeaugids met 5 tegels (voor haar, voor hem, onder €30, giftsets, 3 samples voor €25).
+  Teksten NL/DE/FR/EN via maison-x-t. Fases (op tijd / te laat / na kerst) via maison-x-head.
+{%- endcomment -%}
+{%- liquid
+  assign x_tiles = 'dames-parfum|g_her,heren-parfum-1|g_him,cadeaus-onder-30|g_30,giftset|g_sets,samplepakket|g_samples' | split: ','
+-%}
+<style>
+  .m-x { position: relative; overflow: hidden; background: #12302a; color: #ece4d4; }
+  .m-x::before { content: ""; position: absolute; inset: auto -10% -40% auto; width: 70%; height: 140%; background: radial-gradient(closest-side, rgba(201, 162, 75, .18), rgba(201, 162, 75, 0)); pointer-events: none; }
+  .m-x::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: linear-gradient(90deg, #8a6a2c, #e4cd8c 50%, #8a6a2c); }
+  .m-x__grid { position: relative; display: grid; grid-template-columns: 1fr 1.1fr; gap: clamp(3.2rem, 5vw, 7rem); align-items: center; padding-block: clamp(5rem, 7vw, 9rem); }
+  .m-x__eyebrow { display: inline-flex; align-items: center; gap: 1rem; margin: 0 0 1.6rem; font: 500 1.15rem/1 var(--m-sans); letter-spacing: .3em; text-transform: uppercase; color: #e4cd8c; }
+  .m-x__eyebrow::before { content: ""; width: 3.2rem; height: 1px; background: #c9a24b; }
+  .m-x__title { margin: 0; font: 400 clamp(4.4rem, 6.2vw, 8.4rem)/1 var(--m-serif); letter-spacing: -.015em; color: #f7f2ea; }
+  .m-x__title em { font-style: italic; color: #e4cd8c; }
+  .m-x__lead { margin: 2.4rem 0 0; max-width: 48rem; font: 300 clamp(1.55rem, 1.25vw, 1.8rem)/1.65 var(--m-sans); color: #c5cbbf; }
+  .m-x__dl { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 1.2rem 1.8rem; margin: 3rem 0 0; padding: 1.6rem 1.8rem; border: 1px solid rgba(228, 205, 140, .45); background: rgba(255, 255, 255, .03); }
+  .m-x__dl-text { font: 500 1.45rem/1.4 var(--m-sans); color: #f7f2ea; max-width: 32rem; }
+  .m-x__cd { display: flex; gap: .8rem; }
+  .m-x__cd-unit { display: grid; justify-items: center; min-width: 5.6rem; padding: .9rem .6rem .7rem; background: #0e2621; border: 1px solid rgba(201, 162, 75, .35); }
+  .m-x__cd-num { font: 500 2.6rem/1 var(--m-serif); color: #e4cd8c; font-variant-numeric: tabular-nums; }
+  .m-x__cd-txt { margin-top: .4rem; font-size: 1rem; letter-spacing: .16em; text-transform: uppercase; color: #9fa89b; }
+  .m-x__late { margin: 3rem 0 0; font-size: 1.4rem; color: #e4cd8c; }
+  .m-x .m-actions { margin-top: 3rem; }
+  .m-x .m-btn { background: #e4cd8c; color: #12302a; border-color: #e4cd8c; }
+  .m-x .m-btn:hover { background: transparent; color: #e4cd8c; }
+  .m-x .m-btn--ghost { background: transparent; color: #f7f2ea; border-color: rgba(236, 228, 212, .45); }
+  .m-x .m-btn--ghost:hover { background: #f7f2ea; color: #12302a; border-color: #f7f2ea; }
+  .m-x__unsure { display: inline-block; margin-top: 2rem; font-size: 1.35rem; color: #e6dcc7; text-decoration: underline; text-underline-offset: .4rem; text-decoration-color: #c9a24b; }
+  .m-x__merry { margin: 3rem 0 0; font: 400 2.2rem/1.4 var(--m-serif); color: #e4cd8c; }
+
+  .m-x__guide-label { margin: 0 0 1.6rem; font: 500 1.05rem/1 var(--m-sans); letter-spacing: .26em; text-transform: uppercase; color: #c9a24b; }
+  .m-x__tiles { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: clamp(1rem, 1.2vw, 1.6rem); }
+  .m-x__tile { position: relative; grid-column: span 2; display: block; color: inherit; text-decoration: none; }
+  .m-x__tile:nth-child(4), .m-x__tile:nth-child(5) { grid-column: span 3; }
+  .m-x__media { position: relative; display: block; aspect-ratio: 1 / 1; overflow: hidden; background: radial-gradient(120% 90% at 50% 25%, #f7f1e6 0%, #e9dfcc 60%, #cbbd9f 100%); }
+  .m-x__tile:nth-child(4) .m-x__media, .m-x__tile:nth-child(5) .m-x__media { aspect-ratio: 16 / 10; }
+  .m-x__media::after { content: ""; position: absolute; inset: .9rem; border: 1px solid rgba(156, 125, 72, .4); pointer-events: none; transition: border-color .5s var(--m-ease); }
+  .m-x__tile:hover .m-x__media::after { border-color: rgba(156, 125, 72, .9); }
+  .m-x__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; padding: 14%; mix-blend-mode: multiply; transition: transform 1.2s var(--m-ease); }
+  .m-x__tile:hover .m-x__img { transform: scale(1.05); }
+  .m-x__name { display: flex; justify-content: space-between; align-items: baseline; gap: .8rem; padding-top: 1.1rem; font: 500 clamp(1.6rem, 1.3vw, 1.95rem)/1.2 var(--m-serif); color: #f7f2ea; }
+  .m-x__name small { font: 400 1.15rem/1.3 var(--m-sans); color: #9fa89b; }
+  .m-x__arrow { color: #c9a24b; font-family: var(--m-sans); }
+
+  @media (max-width: 989px) {
+    .m-x__grid { grid-template-columns: 1fr; gap: 4.4rem; padding-block: 4.6rem 5rem; }
+  }
+  @media (max-width: 749px) {
+    .m-x__dl { display: grid; gap: 1.2rem; width: 100%; }
+    .m-x__cd-unit { flex: 1; min-width: 0; }
+    .m-x .m-actions { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+    .m-x__tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .m-x__tile, .m-x__tile:nth-child(4), .m-x__tile:nth-child(5) { grid-column: span 1; }
+    .m-x__tile:nth-child(5) { grid-column: span 2; }
+    .m-x__tile:nth-child(4) .m-x__media { aspect-ratio: 1 / 1; }
+  }
+</style>
+
+<section class="m-x">
+  <div class="m-wrap m-x__grid">
+    <div class="m-x__copy">
+      <p class="m-x__eyebrow">{% render 'maison-x-t', k: 'eyebrow' %}</p>
+      <h1 class="m-x__title">{% render 'maison-x-t', k: 'title' %}</h1>
+      <p class="m-x__lead">{% render 'maison-x-t', k: 'lead' %}</p>
+
+      {%- capture x_dl -%}{% render 'maison-x-t', k: 'deadline' %}{%- endcapture -%}
+      {%- capture x_on -%}{% render 'maison-x-t', k: 'ontime' %}{%- endcapture -%}
+      {%- capture x_late -%}{% render 'maison-x-t', k: 'late' %}{%- endcapture -%}
+      <div class="m-x__dl das-x-ontime-only" data-x-countdown>
+        <span class="m-x__dl-text">{{ x_on | replace: '[d]', x_dl }}</span>
+        <span class="m-x__cd" role="timer" aria-label="{% render 'maison-x-t', k: 'cd_label' %}">
+          <span class="m-x__cd-unit"><span class="m-x__cd-num" data-x-d>0</span><span class="m-x__cd-txt">{% render 'maison-x-t', k: 'd' %}</span></span>
+          <span class="m-x__cd-unit"><span class="m-x__cd-num" data-x-h>00</span><span class="m-x__cd-txt">{% render 'maison-x-t', k: 'h' %}</span></span>
+          <span class="m-x__cd-unit"><span class="m-x__cd-num" data-x-m>00</span><span class="m-x__cd-txt">{% render 'maison-x-t', k: 'm' %}</span></span>
+        </span>
+      </div>
+      <p class="m-x__late das-x-late-only">{{ x_late | replace: '[d]', x_dl }}</p>
+
+      <div class="m-actions das-x-hide-post">
+        <a class="m-btn" href="{{ routes.collections_url }}/giftset">{% render 'maison-x-t', k: 'btn1' %}</a>
+        <a class="m-btn m-btn--ghost" href="{{ routes.root_url | append: '/pages/geurwijzer' | replace: '//', '/' }}">{% render 'maison-x-t', k: 'btn2' %}</a>
+      </div>
+      <a class="m-x__unsure das-x-hide-post" href="{{ routes.collections_url }}/samplepakket">{% render 'maison-x-t', k: 'unsure' %}</a>
+      <p class="m-x__merry das-x-post-only">{% render 'maison-x-t', k: 'merry' %}</p>
+    </div>
+
+    <div class="m-x__guide">
+      <p class="m-x__guide-label">{% render 'maison-x-t', k: 'guide' %}</p>
+      <div class="m-x__tiles">
+        {%- for t in x_tiles -%}
+          {%- assign parts = t | split: '|' -%}
+          {%- assign col = collections[parts[0]] -%}
+          {%- if col == blank -%}{%- continue -%}{%- endif -%}
+          {%- assign img = nil -%}
+          {%- for p in col.products limit: 12 -%}
+            {%- if p.available and p.featured_media != blank -%}{%- assign img = p.featured_media -%}{%- break -%}{%- endif -%}
+          {%- endfor -%}
+          {%- if img == nil and col.image != blank -%}{%- assign img = col.image -%}{%- endif -%}
+          {%- capture x_label -%}{% render 'maison-x-t', k: parts[1] %}{%- endcapture -%}
+          <a class="m-x__tile" href="{{ col.url }}">
+            <span class="m-x__media">
+              {%- if img -%}
+                {{ img | image_url: width: 700 | image_tag: loading: 'eager', sizes: '(min-width: 990px) 16vw, 45vw', widths: '360, 540, 700', class: 'm-x__img', alt: x_label }}
+              {%- endif -%}
+            </span>
+            <span class="m-x__name"><span>{{ x_label }}{% if parts[1] == 'g_samples' %} <small>{% render 'maison-x-t', k: 'g_samples_s' %}</small>{% endif %}</span><span class="m-x__arrow" aria-hidden="true">&rarr;</span></span>
+          </a>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Kerst hero",
+  "tag": "div",
+  "settings": [],
+  "presets": [{ "name": "Kerst hero" }]
+}
+{% endschema %}
