@@ -110,12 +110,17 @@
     "maison-x-head": {
       "type": "maison-x-head",
       "settings": {}
+    },
+    "maison-x-strip": {
+      "type": "maison-x-strip",
+      "settings": {}
     }
   },
   "order": [
     "maison-head",
     "maison-x-head",
     "announcement-bar",
-    "header"
+    "header",
+    "maison-x-strip"
   ]
 }

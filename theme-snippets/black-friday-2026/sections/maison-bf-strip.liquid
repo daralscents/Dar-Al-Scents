@@ -1,0 +1,29 @@
+{%- comment -%}
+  Black Friday-strook onder de menubalk (alle pagina's behalve homepage): aftelklok + link naar de deals.
+  Fases via maison-bf-head. Verdwijnt na 30 nov.
+{%- endcomment -%}
+{%- unless template.name == 'index' -%}
+<a class="m-bfs das-bf-hide-post" href="{{ routes.collections_url }}/black-friday" data-bf-countdown>
+  <span class="m-bfs__tag">Black Friday</span>
+  <span class="m-bfs__txt"><span class="das-bf-pre-only">{% render 'maison-bf-t', k: 'dates' %} · {% render 'maison-bf-t', k: 'starts_in' %}</span><span class="das-bf-live-only">{% render 'maison-bf-t', k: 'ends_in' %}</span></span>
+  <span class="m-bfs__cd"><b data-bf-d>0</b>{% render 'maison-bf-t', k: 'd' %} <b data-bf-h>00</b>:<b data-bf-m>00</b>:<b data-bf-s>00</b></span>
+  <span class="m-bfs__go">{% render 'maison-bf-t', k: 'btn1' %} &rarr;</span>
+</a>
+<style>
+  .m-bfs { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: .6rem 1.6rem; padding: 1rem 1.6rem; background: #0b0a09; color: #e4cd8c; text-decoration: none; font: 500 1.2rem/1.3 var(--m-sans, inherit); letter-spacing: .1em; border-bottom: 1px solid rgba(201, 162, 75, .4); }
+  .m-bfs__tag { padding: .4rem .8rem; background: #c9a24b; color: #0b0a09; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; font-size: 1.05rem; }
+  .m-bfs__cd { font-variant-numeric: tabular-nums; color: #f7f2ea; }
+  .m-bfs__cd b { font-weight: 500; }
+  .m-bfs__go { text-transform: uppercase; letter-spacing: .18em; font-size: 1.05rem; text-decoration: underline; text-underline-offset: .3rem; }
+  .m-bfs:hover .m-bfs__go { color: #f7f2ea; }
+  @media (max-width: 749px) { .m-bfs { gap: .4rem 1rem; font-size: 1.1rem; } .m-bfs__go { display: none; } }
+</style>
+{%- endunless -%}
+
+{% schema %}
+{
+  "name": "Black Friday – strook",
+  "tag": "div",
+  "settings": []
+}
+{% endschema %}

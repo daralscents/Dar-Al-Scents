@@ -22,6 +22,33 @@
   .m-card-note--bf { color: #9c7d48 !important; font-weight: 500; }
   .m-pdp-trust__row--bf { color: #0b0a09; font-weight: 500; }
   .m-pdp-trust__row--bf svg { color: var(--bf-gold); }
+  /* ===== Sitebrede Black Friday-stijl (21 okt): header, collecties, homepage, kaarten, footer, winkelmand ===== */
+  .header-wrapper { border-bottom: 2px solid var(--bf-gold) !important; }
+  .header__menu-item:hover span { text-decoration-color: var(--bf-gold) !important; }
+  .collection-hero { --color-background: 11,10,9; --gradient-background: #0b0a09; --color-foreground: 236,228,212; position: relative; background: #0b0a09 !important; color: #ece4d4 !important; }
+  .collection-hero::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: linear-gradient(90deg, #8a6a2c, #e4cd8c 50%, #8a6a2c); }
+  .collection-hero__title { color: #f7f2ea !important; }
+  .collection-hero__description, .collection-hero__description p { color: #b8ae9d !important; }
+  .collection-hero .m-trust, .collection-hero .m-trust a, .collection-hero .m-desc__more { color: #e4cd8c !important; }
+  .card-wrapper .card__inner { transition: box-shadow .4s ease; }
+  .card-wrapper:hover .card__inner { box-shadow: inset 0 0 0 1px var(--bf-gold); }
+  .footer { border-top: 3px solid var(--bf-gold) !important; }
+  cart-drawer .drawer__header { border-bottom: 2px solid var(--bf-gold); }
+  cart-drawer .drawer__heading::after { content: " · Black Friday"; color: #9c7d48; font-size: .6em; letter-spacing: .14em; text-transform: uppercase; }
+  html:not(.das-bf-live) cart-drawer .drawer__heading::after { content: none; }
+  /* Homepage: lichte Maison-secties worden zwart met goud (zandkleurige secties blijven als contrast) */
+  .m-section:not(.m-section--sand):not(:has(.m-news)) { --m-text: #ece4d4; --m-muted: #a9a08f; --m-line: rgba(236, 228, 212, .16); background: #0b0a09; color: #ece4d4; }
+  .m-section:not(.m-section--sand):not(:has(.m-news)) .m-eyebrow { color: #c9a24b; }
+  .m-section:not(.m-section--sand):not(:has(.m-news)) .m-h2, .m-section:not(.m-section--sand):not(:has(.m-news)) .m-card__title a { color: #f7f2ea; }
+  .m-section:not(.m-section--sand):not(:has(.m-news)) .m-h2 em { color: #e4cd8c; }
+  .m-section:not(.m-section--sand):not(:has(.m-news)) .m-card__vendor { color: #c9a24b; }
+  .m-section:not(.m-section--sand):not(:has(.m-news)) .m-price__now, .m-section:not(.m-section--sand):not(:has(.m-news)) .m-card__price { color: #f7f2ea; }
+  .m-section:not(.m-section--sand):not(:has(.m-news)) .m-card-note, .m-section:not(.m-section--sand):not(:has(.m-news)) .m-price__size { color: #a9a08f; }
+  .m-section:not(.m-section--sand):not(:has(.m-news)) .m-card-note--bf { color: #e4cd8c !important; }
+  .m-section:not(.m-section--sand):not(:has(.m-news)) .m-btn { background: #c9a24b; color: #0b0a09; border-color: #c9a24b; }
+  .m-section:not(.m-section--sand):not(:has(.m-news)) .m-btn:hover { background: transparent; color: #e4cd8c; }
+  .m-section:not(.m-section--sand):not(:has(.m-news)) .m-link { color: #e4cd8c; }
+  .m-card-note--gift { color: #9c7d48 !important; }
 </style>
 <script>
   (function () {

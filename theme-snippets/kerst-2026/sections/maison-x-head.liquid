@@ -18,6 +18,28 @@
   .announcement-bar-section .slider-button { color: var(--x-gold-soft) !important; }
   .m-pdp-trust__row--x { color: var(--x-green); font-weight: 500; }
   .m-pdp-trust__row--x svg { color: var(--x-gold); }
+  /* ===== Sitebrede kerststijl (21 okt): header, collecties, kaarten, footer, winkelmand ===== */
+  .header-wrapper { border-bottom: 2px solid var(--x-gold) !important; }
+  .header__menu-item:hover span { text-decoration-color: var(--x-gold) !important; }
+  .collection-hero { --color-background: 18,48,42; --gradient-background: #12302a; --color-foreground: 236,228,212; position: relative; background: #12302a !important; color: #ece4d4 !important; }
+  .collection-hero::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: linear-gradient(90deg, #8a6a2c, #e4cd8c 50%, #8a6a2c); }
+  .collection-hero__title { color: #f7f2ea !important; }
+  .collection-hero__description, .collection-hero__description p { color: #c5cbbf !important; }
+  .collection-hero .m-trust, .collection-hero .m-trust a, .collection-hero .m-desc__more { color: #e4cd8c !important; }
+  .card-wrapper .card__inner { transition: box-shadow .4s ease; }
+  .card-wrapper:hover .card__inner { box-shadow: inset 0 0 0 1px var(--x-gold); }
+  .footer { --color-background: 18,48,42; --gradient-background: #12302a; background: #12302a !important; border-top: 3px solid var(--x-gold) !important; }
+  cart-drawer .drawer__header { border-bottom: 2px solid var(--x-gold); }
+  /* Homepage: gouden scheidingslijn tussen secties, groene accenten */
+  .m-section + .m-section { box-shadow: inset 0 1px 0 rgba(201, 162, 75, .35); }
+  .m-section .m-h2 em, .m-display em { color: #1c4238; }
+  .m-section .m-eyebrow { color: #9c7d48; }
+  .m-section--ink { background: #12302a !important; }
+  .m-section .m-btn:not(.m-x .m-btn) { background: #12302a; border-color: #12302a; color: #f7f2ea; }
+  .m-section .m-btn:not(.m-x .m-btn):hover { background: transparent; color: #12302a; }
+  .m-section--ink .m-btn { background: #e4cd8c !important; border-color: #e4cd8c !important; color: #12302a !important; }
+  .m-marquee { background: #12302a; }
+  .m-card-note--tip { color: #1c4238 !important; font-weight: 500; }
 </style>
 <script>
   (function () {

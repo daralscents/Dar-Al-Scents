@@ -72,6 +72,10 @@
     {%- assign bf_new = main.price | times: 90 | divided_by: 100 -%}
     <p class="m-card-note m-card-note--bf das-bf-live-only">Black Friday −10%: {{ bf_new | money }} {% render 'maison-bf-t', k: 'at_checkout' %}</p>
   {%- endif -%}
+  {%- if main.available and sample != nil -%}
+    {%- capture bf_gift -%}{% render 'maison-bf-gift', product: product %}{%- endcapture -%}
+    {%- if bf_gift contains 'ja' -%}<p class="m-card-note m-card-note--gift das-bf-live-only">{% render 'maison-bf-t', k: 'card_gift' %}</p>{%- endif -%}
+  {%- endif -%}
 {%- else -%}
   <div class="m-price">
     <span class="m-price__now">{{ sample.price | money }}</span>

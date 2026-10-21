@@ -101,12 +101,17 @@
     "maison-bf-head": {
       "type": "maison-bf-head",
       "settings": {}
+    },
+    "maison-bf-strip": {
+      "type": "maison-bf-strip",
+      "settings": {}
     }
   },
   "order": [
     "maison-head",
     "maison-bf-head",
     "announcement-bar",
-    "header"
+    "header",
+    "maison-bf-strip"
   ]
 }
