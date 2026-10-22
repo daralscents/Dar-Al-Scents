@@ -1,0 +1,117 @@
+{
+  "sections": {
+    "banner": {
+      "type": "main-collection-banner",
+      "settings": {
+        "show_collection_description": true,
+        "show_collection_image": false,
+        "color_scheme": "scheme-1e80eb72-cd16-4467-9206-575e6504b5e0"
+      }
+    },
+    "product-grid": {
+      "type": "main-collection-product-grid",
+      "settings": {
+        "products_per_page": 24,
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "color_scheme": "scheme-1e80eb72-cd16-4467-9206-575e6504b5e0",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": true,
+        "show_rating": false,
+        "quick_add": "standard",
+        "enable_filtering": true,
+        "filter_type": "horizontal",
+        "enable_sorting": true,
+        "padding_top": 20,
+        "padding_bottom": 56
+      }
+    },
+    "collection_list_YQgxYj": {
+      "type": "collection-list",
+      "blocks": {
+        "featured_collection_4wwdFd": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "heren-parfum-1"
+          }
+        },
+        "featured_collection_dtygPE": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "dames-parfum"
+          }
+        }
+      },
+      "block_order": [
+        "featured_collection_4wwdFd",
+        "featured_collection_dtygPE"
+      ],
+      "name": "t:sections.collection-list.presets.name",
+      "settings": {
+        "title": "Bekijk ook",
+        "heading_size": "h2",
+        "image_ratio": "square",
+        "columns_desktop": 3,
+        "color_scheme": "scheme-1e80eb72-cd16-4467-9206-575e6504b5e0",
+        "show_view_all": false,
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 24,
+        "padding_bottom": 48
+      }
+    },
+    "newsletter_ekx6pw": {
+      "type": "newsletter",
+      "blocks": {
+        "heading_MdtAbJ": {
+          "type": "heading",
+          "settings": {
+            "heading": "Abonneer op onze e-mails!",
+            "heading_size": "h1"
+          }
+        },
+        "paragraph_r9igqL": {
+          "type": "paragraph",
+          "settings": {
+            "text": "<p>Kom als eerste te weten als er nieuwe collecties en exclusieve aanbiedingen zijn.</p>"
+          }
+        },
+        "email_form_dfNH3X": {
+          "type": "email_form",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "heading_MdtAbJ",
+        "paragraph_r9igqL",
+        "email_form_dfNH3X"
+      ],
+      "name": "t:sections.newsletter.presets.name",
+      "settings": {
+        "color_scheme": "scheme-1e80eb72-cd16-4467-9206-575e6504b5e0",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "bf_guide": {
+      "type": "custom-liquid",
+      "name": "Black Friday – deals",
+      "settings": {
+        "custom_liquid": "{% render 'maison-bf-guide', skip: collection.handle %}",
+        "color_scheme": "scheme-1e80eb72-cd16-4467-9206-575e6504b5e0",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    }
+  },
+  "order": [
+    "banner",
+    "product-grid",
+    "bf_guide",
+    "collection_list_YQgxYj",
+    "newsletter_ekx6pw"
+  ]
+}

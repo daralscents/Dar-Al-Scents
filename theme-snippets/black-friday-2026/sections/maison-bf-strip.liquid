@@ -1,8 +1,8 @@
 {%- comment -%}
-  Black Friday-strook onder de menubalk (alle pagina's behalve homepage): aftelklok + link naar de deals.
+  Black Friday-strook onder de menubalk (alle pagina's behalve homepage en collectiepagina's): aftelklok + link naar de deals.
   Fases via maison-bf-head. Verdwijnt na 30 nov.
 {%- endcomment -%}
-{%- unless template.name == 'index' -%}
+{%- unless template.name == 'index' or template.name == 'collection' -%}
 <a class="m-bfs das-bf-hide-post" href="{{ routes.collections_url }}/black-friday" data-bf-countdown>
   <span class="m-bfs__tag">Black Friday</span>
   <span class="m-bfs__txt"><span class="das-bf-pre-only">{% render 'maison-bf-t', k: 'dates' %} · {% render 'maison-bf-t', k: 'starts_in' %}</span><span class="das-bf-live-only">{% render 'maison-bf-t', k: 'ends_in' %}</span></span>

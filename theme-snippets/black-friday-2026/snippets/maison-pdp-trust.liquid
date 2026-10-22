@@ -1,6 +1,6 @@
 <div class="m-pdp-trust">
   {%- comment -%}
-    Productpagina (21 okt 2026, netter): Black Friday-kaart (vóór en tijdens 27–30 nov, verdwijnt daarna),
+    Productpagina (22 okt 2026, rustig): zwart Black Friday-blok met label + één zin over de deal voor dit product (verdwijnt na 30 nov),
     samplepakket als kaart, 3 pictogrammen, verzendregel, WhatsApp. Opmaak in maison-pdp-style.
   {%- endcomment -%}
   {%- liquid
@@ -28,36 +28,21 @@
       render 'maison-bf-gift', product: product
     endcapture
   -%}
-  <div class="m-pdp-season m-pdp-season--bf das-bf-hide-post">
-    <div class="m-pdp-season__head">
-      <span class="m-pdp-season__tag">Black Friday</span>
-      <span class="m-pdp-season__cd" data-bf-countdown><span class="das-bf-pre-only">{% render 'maison-bf-t', k: 'starts_in' %}</span><span class="das-bf-live-only">{% render 'maison-bf-t', k: 'ends_in' %}</span> <b data-bf-d>0</b> {% render 'maison-bf-t', k: 'd' %} <b data-bf-h>00</b>:<b data-bf-m>00</b>:<b data-bf-s>00</b></span>
-    </div>
-    <ul class="m-pdp-season__list">
-      {%- if bfp_in -%}
-        <li><span class="m-pdp-season__t">{% render 'maison-bf-t', k: 'deal3_t' %}</span></li>
-      {%- endif -%}
-      {%- if das_bottle and bfp_gift contains 'ja' -%}
-        <li><span class="m-pdp-season__t">{% render 'maison-bf-t', k: 'deal2_t' %}</span><span class="m-pdp-season__s">{% render 'maison-bf-t', k: 'deal2_s' %}</span></li>
-      {%- endif -%}
-      <li><span class="m-pdp-season__t">{% render 'maison-bf-t', k: 'deal1_t' %}</span><span class="m-pdp-season__s">{% render 'maison-bf-t', k: 'deal1_s' %}</span></li>
-    </ul>
-    <div class="m-pdp-season__foot">
-      <span class="das-bf-pre-only">{% render 'maison-bf-t', k: 'dates' %} · {% render 'maison-bf-t', k: 'auto' %}</span>
-      <span class="das-bf-live-only">{% render 'maison-bf-t', k: 'auto' %}</span>
-      <a class="m-pdp-season__go" href="{{ routes.collections_url }}/black-friday">{% render 'maison-bf-t', k: 'btn1' %} &rarr;</a>
-    </div>
+  <div class="m-pdp-bf das-bf-hide-post">
+    <span class="m-pdp-bf__eyebrow">Black Friday · {% render 'maison-bf-t', k: 'dates' %}</span>
+    <p class="m-pdp-bf__text">
+      {%- if bfp_in and das_bottle and bfp_gift contains 'ja' -%}{% render 'maison-bf-t', k: 'pdp_combo' %}
+      {%- elsif bfp_in -%}{% render 'maison-bf-t', k: 'pdp_bottle10' %}
+      {%- elsif das_bottle and bfp_gift contains 'ja' -%}{% render 'maison-bf-t', k: 'deal2_t' %}
+      {%- else -%}{% render 'maison-bf-t', k: 'deal1_t' %}{%- endif -%}
+    </p>
   </div>
   <style>
-    .m-pdp-season--bf { background: #0b0a09; color: #ece4d4; }
-    .m-pdp-season--bf .m-pdp-season__tag { background: #c9a24b; color: #0b0a09; }
-    .m-pdp-season--bf .m-pdp-season__cd { color: #e4cd8c; }
-    .m-pdp-season--bf .m-pdp-season__cd b { color: #f7f2ea; }
-    .m-pdp-season--bf .m-pdp-season__t { color: #f7f2ea; }
-    .m-pdp-season--bf .m-pdp-season__s { color: #a9a08f; }
-    .m-pdp-season--bf .m-pdp-season__foot { border-top: 1px solid rgba(236, 228, 212, .16); color: #a9a08f; }
-    .m-pdp-season--bf .m-pdp-season__go { color: #e4cd8c; }
-    .m-pdp-season--bf .m-pdp-season__go:hover { color: #f7f2ea; }
+    .m-pdp-bf { position: relative; padding: 1.8rem 2rem 1.9rem; background: #0b0a09; text-align: center; }
+    .m-pdp-bf::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px; background: linear-gradient(90deg, #8a6a2c, #e4cd8c 50%, #8a6a2c); }
+    .m-pdp-bf__eyebrow { display: block; margin-bottom: .6rem; font: 500 1rem/1 var(--m-sans, inherit); letter-spacing: .26em; text-transform: uppercase; color: #c9a24b; }
+    .m-pdp-bf__text { margin: 0; font: 400 1.8rem/1.35 var(--m-serif, inherit); color: #f7f2ea; }
+    @media (max-width: 749px) { .m-pdp-bf { padding: 1.5rem 1.4rem 1.6rem; } .m-pdp-bf__text { font-size: 1.6rem; } }
   </style>
   {%- if das_has_sample -%}
     <a class="m-pdp-sample" href="{{ routes.collections_url }}/samplepakket">{% render 'maison-icon', icon: 'gift' %}<span>{% render 'maison-t', k: 'trust_sample' %}</span><span class="m-pdp-sample__go" aria-hidden="true">&rarr;</span></a>
