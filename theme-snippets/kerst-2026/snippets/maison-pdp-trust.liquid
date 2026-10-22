@@ -1,23 +1,65 @@
 <div class="m-pdp-trust">
-  {%- comment -%} Kerst 2026: besteldeadline (alleen zichtbaar tot 26 dec, zie maison-x-head). {%- endcomment -%}
-  {% render 'maison-x-note', style: 'pdp' %}
-  <div class="m-pdp-trust__row">{% render 'maison-icon', icon: 'truck' %}<span>{% render 'maison-t', k: 'trust_ship' %}</span></div>
-  <div class="m-pdp-trust__row">{% render 'maison-icon', icon: 'gift' %}<span>{% render 'maison-t', k: 'trust_free' %}</span></div>
+  {%- comment -%}
+    Productpagina (21 okt 2026, netter): kerstkaart met besteldeadline + aftelklok (verdwijnt na kerst),
+    samplepakket als kaart, 3 pictogrammen, verzendregel, WhatsApp. Opmaak in maison-pdp-style.
+  {%- endcomment -%}
   {%- liquid
     assign das_has_sample = false
+    assign das_bottle = false
     for v in product.variants
       assign vt = v.title | downcase
-      if v.available
-        if vt contains 'sample' or vt == '3ml' or vt == '3 ml'
+      if vt contains 'sample' or vt == '3ml' or vt == '3 ml'
+        if v.available
           assign das_has_sample = true
         endif
+      else
+        assign das_bottle = true
       endif
     endfor
   -%}
+  {%- liquid
+    assign xp_tip = false
+    for col in product.collections
+      if col.handle == 'giftset' or col.handle == 'cadeaus-onder-30'
+        assign xp_tip = true
+      endif
+    endfor
+  -%}
+  {%- capture xp_dl -%}{% render 'maison-x-t', k: 'deadline' %}{%- endcapture -%}
+  {%- capture xp_on -%}{% render 'maison-x-t', k: 'ontime' %}{%- endcapture -%}
+  {%- capture xp_late -%}{% render 'maison-x-t', k: 'late' %}{%- endcapture -%}
+  <div class="m-pdp-season m-pdp-season--x das-x-hide-post">
+    <div class="m-pdp-season__head">
+      <span class="m-pdp-season__tag">{% if xp_tip %}{% render 'maison-x-t', k: 'card_tip' %}{% else %}{% render 'maison-x-t', k: 'eyebrow' %}{% endif %}</span>
+      <span class="m-pdp-season__cd das-x-ontime-only" data-x-countdown><b data-x-d>0</b> {% render 'maison-x-t', k: 'd' %} <b data-x-h>00</b> {% render 'maison-x-t', k: 'h' %} <b data-x-m>00</b> {% render 'maison-x-t', k: 'm' %}</span>
+    </div>
+    <ul class="m-pdp-season__list">
+      <li class="das-x-ontime-only"><span class="m-pdp-season__t">{{ xp_on | replace: '[d]', xp_dl }}</span></li>
+      <li class="das-x-late-only"><span class="m-pdp-season__t">{{ xp_late | replace: '[d]', xp_dl }}</span></li>
+    </ul>
+    <div class="m-pdp-season__foot">
+      <a class="m-pdp-season__go" href="{{ routes.collections_url }}/giftset">{% render 'maison-x-t', k: 'guide' %} &rarr;</a>
+    </div>
+  </div>
+  <style>
+    .m-pdp-season--x { background: #12302a; color: #e8efe9; }
+    .m-pdp-season--x .m-pdp-season__tag { border: 1px solid #c9a24b; color: #e4cd8c; }
+    .m-pdp-season--x .m-pdp-season__cd { color: #e4cd8c; }
+    .m-pdp-season--x .m-pdp-season__cd b { color: #f7f2ea; }
+    .m-pdp-season--x .m-pdp-season__t { color: #f7f2ea; }
+    .m-pdp-season--x .m-pdp-season__foot { border-top: 1px solid rgba(232, 239, 233, .16); color: #b9c7bf; }
+    .m-pdp-season--x .m-pdp-season__go { color: #e4cd8c; }
+    .m-pdp-season--x .m-pdp-season__go:hover { color: #f7f2ea; }
+  </style>
   {%- if das_has_sample -%}
-    <div class="m-pdp-trust__row">{% render 'maison-icon', icon: 'gift' %}<span><a href="{{ routes.collections_url }}/samplepakket" style="color: inherit; text-underline-offset: .3rem;">{% render 'maison-t', k: 'trust_sample' %}</a></span></div>
+    <a class="m-pdp-sample" href="{{ routes.collections_url }}/samplepakket">{% render 'maison-icon', icon: 'gift' %}<span>{% render 'maison-t', k: 'trust_sample' %}</span><span class="m-pdp-sample__go" aria-hidden="true">&rarr;</span></a>
   {%- endif -%}
-  <div class="m-pdp-trust__row">{% render 'maison-icon', icon: 'return' %}<span>{% render 'maison-t', k: 'trust_return' %}</span></div>
-  <div class="m-pdp-trust__row">{% render 'maison-icon', icon: 'check' %}<span>{% render 'maison-t', k: 'trust_original' %}</span></div>
+  <ul class="m-pdp-usp">
+    <li>{% render 'maison-icon', icon: 'truck' %}<span>{% render 'maison-t', k: 'trust_ship' %}</span></li>
+    <li>{% render 'maison-icon', icon: 'return' %}<span>{% render 'maison-t', k: 'trust_return' %}</span></li>
+    <li>{% render 'maison-icon', icon: 'check' %}<span>{% render 'maison-t', k: 'trust_original' %}</span></li>
+  </ul>
+  <p class="m-pdp-ship">{% render 'maison-t', k: 'trust_free' %}</p>
   {% render 'maison-whatsapp', context: 'pdp' %}
 </div>
+{% render 'maison-pdp-style' %}

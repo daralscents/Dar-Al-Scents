@@ -1,5 +1,22 @@
 <div class="m-pdp-trust">
-  {%- comment -%} Black Friday 2026: regels alleen zichtbaar tijdens 27–30 nov (zie maison-bf-head). {%- endcomment -%}
+  {%- comment -%}
+    Productpagina (21 okt 2026, netter): Black Friday-kaart (vóór en tijdens 27–30 nov, verdwijnt daarna),
+    samplepakket als kaart, 3 pictogrammen, verzendregel, WhatsApp. Opmaak in maison-pdp-style.
+  {%- endcomment -%}
+  {%- liquid
+    assign das_has_sample = false
+    assign das_bottle = false
+    for v in product.variants
+      assign vt = v.title | downcase
+      if vt contains 'sample' or vt == '3ml' or vt == '3 ml'
+        if v.available
+          assign das_has_sample = true
+        endif
+      else
+        assign das_bottle = true
+      endif
+    endfor
+  -%}
   {%- liquid
     assign bfp_in = false
     for col in product.collections
@@ -10,37 +27,47 @@
     capture bfp_gift
       render 'maison-bf-gift', product: product
     endcapture
-    assign bfp_bottle = false
-    for v in product.variants
-      assign vt = v.title | downcase
-      unless vt contains 'sample' or vt == '3ml' or vt == '3 ml'
-        assign bfp_bottle = true
-      endunless
-    endfor
   -%}
-  {%- if bfp_in -%}
-    <div class="m-pdp-trust__row m-pdp-trust__row--bf das-bf-live-only">{% render 'maison-icon', icon: 'gift' %}<span>{% render 'maison-bf-t', k: 'pdp_10' %}</span></div>
-  {%- endif -%}
-  {%- if bfp_bottle and bfp_gift contains 'ja' -%}
-    <div class="m-pdp-trust__row m-pdp-trust__row--bf das-bf-live-only">{% render 'maison-icon', icon: 'gift' %}<span><a href="{{ routes.collections_url }}/samplepakket" style="color: inherit; text-underline-offset: .3rem;">{% render 'maison-bf-t', k: 'pdp_gift' %}</a></span></div>
-  {%- endif -%}
-  <div class="m-pdp-trust__row">{% render 'maison-icon', icon: 'truck' %}<span>{% render 'maison-t', k: 'trust_ship' %}</span></div>
-  <div class="m-pdp-trust__row">{% render 'maison-icon', icon: 'gift' %}<span>{% render 'maison-t', k: 'trust_free' %}</span></div>
-  {%- liquid
-    assign das_has_sample = false
-    for v in product.variants
-      assign vt = v.title | downcase
-      if v.available
-        if vt contains 'sample' or vt == '3ml' or vt == '3 ml'
-          assign das_has_sample = true
-        endif
-      endif
-    endfor
-  -%}
+  <div class="m-pdp-season m-pdp-season--bf das-bf-hide-post">
+    <div class="m-pdp-season__head">
+      <span class="m-pdp-season__tag">Black Friday</span>
+      <span class="m-pdp-season__cd" data-bf-countdown><span class="das-bf-pre-only">{% render 'maison-bf-t', k: 'starts_in' %}</span><span class="das-bf-live-only">{% render 'maison-bf-t', k: 'ends_in' %}</span> <b data-bf-d>0</b> {% render 'maison-bf-t', k: 'd' %} <b data-bf-h>00</b>:<b data-bf-m>00</b>:<b data-bf-s>00</b></span>
+    </div>
+    <ul class="m-pdp-season__list">
+      {%- if bfp_in -%}
+        <li><span class="m-pdp-season__t">{% render 'maison-bf-t', k: 'deal3_t' %}</span></li>
+      {%- endif -%}
+      {%- if das_bottle and bfp_gift contains 'ja' -%}
+        <li><span class="m-pdp-season__t">{% render 'maison-bf-t', k: 'deal2_t' %}</span><span class="m-pdp-season__s">{% render 'maison-bf-t', k: 'deal2_s' %}</span></li>
+      {%- endif -%}
+      <li><span class="m-pdp-season__t">{% render 'maison-bf-t', k: 'deal1_t' %}</span><span class="m-pdp-season__s">{% render 'maison-bf-t', k: 'deal1_s' %}</span></li>
+    </ul>
+    <div class="m-pdp-season__foot">
+      <span class="das-bf-pre-only">{% render 'maison-bf-t', k: 'dates' %} · {% render 'maison-bf-t', k: 'auto' %}</span>
+      <span class="das-bf-live-only">{% render 'maison-bf-t', k: 'auto' %}</span>
+      <a class="m-pdp-season__go" href="{{ routes.collections_url }}/black-friday">{% render 'maison-bf-t', k: 'btn1' %} &rarr;</a>
+    </div>
+  </div>
+  <style>
+    .m-pdp-season--bf { background: #0b0a09; color: #ece4d4; }
+    .m-pdp-season--bf .m-pdp-season__tag { background: #c9a24b; color: #0b0a09; }
+    .m-pdp-season--bf .m-pdp-season__cd { color: #e4cd8c; }
+    .m-pdp-season--bf .m-pdp-season__cd b { color: #f7f2ea; }
+    .m-pdp-season--bf .m-pdp-season__t { color: #f7f2ea; }
+    .m-pdp-season--bf .m-pdp-season__s { color: #a9a08f; }
+    .m-pdp-season--bf .m-pdp-season__foot { border-top: 1px solid rgba(236, 228, 212, .16); color: #a9a08f; }
+    .m-pdp-season--bf .m-pdp-season__go { color: #e4cd8c; }
+    .m-pdp-season--bf .m-pdp-season__go:hover { color: #f7f2ea; }
+  </style>
   {%- if das_has_sample -%}
-    <div class="m-pdp-trust__row">{% render 'maison-icon', icon: 'gift' %}<span><a href="{{ routes.collections_url }}/samplepakket" style="color: inherit; text-underline-offset: .3rem;">{% render 'maison-t', k: 'trust_sample' %}</a></span></div>
+    <a class="m-pdp-sample" href="{{ routes.collections_url }}/samplepakket">{% render 'maison-icon', icon: 'gift' %}<span>{% render 'maison-t', k: 'trust_sample' %}</span><span class="m-pdp-sample__go" aria-hidden="true">&rarr;</span></a>
   {%- endif -%}
-  <div class="m-pdp-trust__row">{% render 'maison-icon', icon: 'return' %}<span>{% render 'maison-t', k: 'trust_return' %}</span></div>
-  <div class="m-pdp-trust__row">{% render 'maison-icon', icon: 'check' %}<span>{% render 'maison-t', k: 'trust_original' %}</span></div>
+  <ul class="m-pdp-usp">
+    <li>{% render 'maison-icon', icon: 'truck' %}<span>{% render 'maison-t', k: 'trust_ship' %}</span></li>
+    <li>{% render 'maison-icon', icon: 'return' %}<span>{% render 'maison-t', k: 'trust_return' %}</span></li>
+    <li>{% render 'maison-icon', icon: 'check' %}<span>{% render 'maison-t', k: 'trust_original' %}</span></li>
+  </ul>
+  <p class="m-pdp-ship">{% render 'maison-t', k: 'trust_free' %}</p>
   {% render 'maison-whatsapp', context: 'pdp' %}
 </div>
+{% render 'maison-pdp-style' %}

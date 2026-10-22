@@ -1,0 +1,99 @@
+{%- comment -%}
+  Maison – productpagina netter (21 okt 2026). Wordt geladen via maison-pdp-trust (alleen op productpagina's).
+  Rustiger opbouw: prijs, maatkeuze, aantal en knop op één lijn; vertrouwensblok als kaart + 3 pictogrammen;
+  gerelateerde producten in dezelfde tegelstijl als de catalogus.
+{%- endcomment -%}
+<style>
+  .product__info-container { --pdp-line: rgba(16, 15, 13, .14); --pdp-accent: var(--m-gold, #a8862a); }
+  .product__info-container .product__text.caption-with-letter-spacing { margin: 0 0 .6rem; }
+  .product__info-container .product__title { margin-bottom: 1rem; }
+  .product__info-container .price { font-family: var(--m-sans, inherit); }
+  .product__info-container .price .price-item { font-size: 2.2rem; font-weight: 500; letter-spacing: .01em; color: var(--m-ink, #100f0d); }
+  .product__info-container .price--on-sale .price-item--regular { font-size: 1.5rem; font-weight: 400; color: var(--m-muted, #6f675b); }
+  .product__info-container .price .badge { border-radius: 0; padding: .45rem 1rem; font: 500 1rem var(--m-sans, inherit); letter-spacing: .16em; text-transform: uppercase; }
+  .product__info-container .product__tax { margin-top: .2rem; }
+
+  /* Maatkeuze (100ml / sample) */
+  .product .product-form__input--pill { margin: 2.2rem 0 0; padding: 0; }
+  .product .product-form__input--pill .form__label { margin-bottom: .8rem; }
+  .product .product-form__input--pill input[type=radio] + label { min-width: 10rem; margin: 0 .8rem .8rem 0; padding: 1.3rem 2rem; border: 1px solid rgba(16, 15, 13, .22); border-radius: 0; background: transparent; color: var(--m-ink, #100f0d); font: 500 1.2rem/1 var(--m-sans, inherit); letter-spacing: .14em; text-transform: uppercase; text-align: center; transition: border-color .25s ease, background-color .25s ease, color .25s ease; }
+  .product .product-form__input--pill input[type=radio] + label:hover { border-color: var(--pdp-accent); }
+  .product .product-form__input--pill input[type=radio]:checked + label { background: var(--m-ink, #100f0d); border-color: var(--m-ink, #100f0d); color: var(--m-ivory, #f7f2ea); }
+  .product .product-form__input--pill input[type=radio].disabled + label { color: rgba(16, 15, 13, .4); border-style: dashed; }
+  .product .product-form__input--pill input[type=radio].disabled:checked + label { background: rgba(16, 15, 13, .06); color: rgba(16, 15, 13, .55); }
+
+  /* Aantal + knop */
+  .product .product-form__quantity { margin-top: 1.4rem; }
+  .product .product-form__quantity .form__label { display: none; }
+  .product .quantity { width: 13rem; min-height: 5.6rem; }
+  .product .quantity::before { box-shadow: none !important; }
+  .product .quantity::after { border-radius: 0 !important; box-shadow: 0 0 0 1px rgba(16, 15, 13, .22) !important; }
+  .product .product-form__buttons { max-width: none; }
+  .product .product-form__submit.button { min-height: 5.8rem; border-radius: 0; font: 500 1.2rem/1 var(--m-sans, inherit); letter-spacing: .26em; text-transform: uppercase; }
+  .product .product-form__submit.button::before, .product .product-form__submit.button::after { box-shadow: none !important; border-radius: 0 !important; }
+  .product .product-form__error-message-wrapper { font-size: 1.3rem; }
+
+  /* Vertrouwensblok */
+  .m-pdp-trust { gap: 1.4rem; margin: 1.2rem 0 1.6rem; padding: 2rem 0 2.2rem; border-block: 1px solid var(--pdp-line, rgba(16, 15, 13, .14)); }
+  .m-pdp-sample { display: flex; align-items: center; gap: 1.2rem; padding: 1.4rem 1.6rem; background: var(--m-sand, #eee6d8); color: var(--m-ink, #100f0d); text-decoration: none; font: 500 1.35rem/1.35 var(--m-sans, inherit); letter-spacing: .02em; transition: background-color .25s ease; }
+  .m-pdp-sample:hover { background: #e6dcc9; }
+  .m-pdp-sample svg { flex: none; width: 2.2rem; height: 2.2rem; color: var(--pdp-accent); }
+  .m-pdp-sample span { flex: 1; }
+  .m-pdp-sample__go { flex: none !important; font-size: 1.6rem; color: var(--pdp-accent); }
+  .m-pdp-usp { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.2rem; margin: .4rem 0 0; padding: 0; list-style: none; }
+  .m-pdp-usp li { display: flex; flex-direction: column; align-items: center; gap: .8rem; padding: .4rem .6rem; text-align: center; font: 400 1.2rem/1.4 var(--m-sans, inherit); letter-spacing: .02em; color: var(--m-text, #2b2722); }
+  .m-pdp-usp li + li { border-left: 1px solid var(--pdp-line, rgba(16, 15, 13, .14)); }
+  .m-pdp-usp svg { width: 2.4rem; height: 2.4rem; color: var(--pdp-accent); }
+  .m-pdp-ship { margin: 0; text-align: center; font: 400 1.2rem/1.5 var(--m-sans, inherit); letter-spacing: .02em; color: var(--m-muted, #6f675b); }
+  .m-pdp-trust .m-wa-row { justify-content: center; padding-top: 1.2rem; border-top: 1px solid var(--pdp-line, rgba(16, 15, 13, .14)); font-size: 1.25rem; }
+  .m-pdp-trust .m-wa-row__link { text-decoration: none; }
+  .m-pdp-trust .m-wa-row__link span { border-bottom: 1px solid var(--pdp-accent); padding-bottom: .1rem; }
+
+  /* Seizoenskaart (Black Friday / Kerst) */
+  .m-pdp-season { position: relative; padding: 1.8rem 1.8rem 1.6rem; font-family: var(--m-sans, inherit); }
+  .m-pdp-season::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px; background: linear-gradient(90deg, #8a6a2c, #e4cd8c 50%, #8a6a2c); }
+  .m-pdp-season__head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .8rem 1.2rem; margin-bottom: 1.2rem; }
+  .m-pdp-season__tag { padding: .45rem .9rem; font-size: 1.05rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; }
+  .m-pdp-season__cd { font-size: 1.2rem; letter-spacing: .06em; font-variant-numeric: tabular-nums; }
+  .m-pdp-season__cd b { font-weight: 600; }
+  .m-pdp-season__list { display: grid; gap: 1rem; margin: 0; padding: 0; list-style: none; }
+  .m-pdp-season__list li { position: relative; padding-left: 1.8rem; }
+  .m-pdp-season__list li::before { content: ""; position: absolute; left: 0; top: .9rem; width: .8rem; height: 1px; background: #c9a24b; }
+  .m-pdp-season__t { display: block; font-size: 1.4rem; font-weight: 500; line-height: 1.35; }
+  .m-pdp-season__s { display: block; margin-top: .2rem; font-size: 1.2rem; line-height: 1.45; }
+  .m-pdp-season__foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .6rem 1.2rem; margin-top: 1.4rem; padding-top: 1.2rem; font-size: 1.15rem; line-height: 1.4; }
+  .m-pdp-season__go { font-size: 1.05rem; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; text-decoration: none; border-bottom: 1px solid currentColor; padding-bottom: .1rem; white-space: nowrap; }
+
+  /* Beschrijving, tabbladen, delen */
+  .product .product__description { margin-top: 2rem; }
+  .product .product__description p { margin-block: 0 1.2rem; }
+  .product .product__accordion .summary__title { padding-block: 1.6rem; }
+  .product .product__accordion .accordion__content { padding: 0 0 1.6rem 3.4rem; }
+  .product .share-button__button { font: 500 1.05rem var(--m-sans, inherit); letter-spacing: .2em; text-transform: uppercase; color: var(--m-muted, #6f675b); }
+  .product .share-button__button svg { color: var(--pdp-accent); }
+
+  /* Fotogalerij */
+  .product .thumbnail-list .thumbnail { border-radius: 0; background: var(--m-sand, #eee6d8); }
+  .product .thumbnail-list .thumbnail img { object-fit: contain; mix-blend-mode: multiply; }
+  .product .thumbnail-list .thumbnail[aria-current] { box-shadow: 0 0 0 1px var(--pdp-accent, #a8862a); border-color: var(--pdp-accent, #a8862a); }
+
+  /* "Misschien vind je dit ook mooi": zelfde tegels als de catalogus */
+  .related-products .card__inner, .related-products .card__media .media { background: var(--m-sand, #eee6d8); }
+  .related-products .card__media .media img { object-fit: contain !important; padding: 9%; mix-blend-mode: multiply; }
+  .related-products .card__heading { font: 400 1.8rem/1.25 var(--m-serif, inherit); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; min-height: 2.5em; }
+  .related-products .card__heading a { text-decoration: none; }
+  .related-products .caption-with-letter-spacing { font: 500 1rem var(--m-sans, inherit); letter-spacing: .24em; text-transform: uppercase; color: var(--m-gold, #a8862a); }
+  .related-products .related-products__heading { font-family: var(--m-serif, inherit); font-weight: 400; text-align: center; margin-bottom: 3.2rem; }
+  .related-products .card__badge .badge { border-radius: 0; font: 500 .95rem var(--m-sans, inherit); letter-spacing: .18em; text-transform: uppercase; }
+
+  @media (max-width: 749px) {
+    .product__info-container .price .price-item { font-size: 2rem; }
+    .product .product-form__input--pill input[type=radio] + label { min-width: 0; padding: 1.2rem 1.6rem; }
+    .product .quantity { width: 11.5rem; }
+    .m-pdp-usp li { padding-inline: .2rem; font-size: 1.1rem; }
+    .m-pdp-season { padding: 1.6rem 1.4rem 1.4rem; }
+    .product .product__accordion .accordion__content { padding-left: 0; }
+    .related-products .card__heading { font-size: 1.55rem; }
+    .related-products .card__media .media img { padding: 7%; }
+  }
+</style>
