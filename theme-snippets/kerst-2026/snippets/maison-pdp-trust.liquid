@@ -1,6 +1,6 @@
 <div class="m-pdp-trust">
   {%- comment -%}
-    Productpagina (21 okt 2026, netter): kerstkaart met besteldeadline + aftelklok (verdwijnt na kerst),
+    Productpagina (22 okt 2026, rustig): groen kerstblok met één zin over de besteldeadline (verdwijnt na kerst),
     samplepakket als kaart, 3 pictogrammen, verzendregel, WhatsApp. Opmaak in maison-pdp-style.
   {%- endcomment -%}
   {%- liquid
@@ -28,28 +28,17 @@
   {%- capture xp_dl -%}{% render 'maison-x-t', k: 'deadline' %}{%- endcapture -%}
   {%- capture xp_on -%}{% render 'maison-x-t', k: 'ontime' %}{%- endcapture -%}
   {%- capture xp_late -%}{% render 'maison-x-t', k: 'late' %}{%- endcapture -%}
-  <div class="m-pdp-season m-pdp-season--x das-x-hide-post">
-    <div class="m-pdp-season__head">
-      <span class="m-pdp-season__tag">{% if xp_tip %}{% render 'maison-x-t', k: 'card_tip' %}{% else %}{% render 'maison-x-t', k: 'eyebrow' %}{% endif %}</span>
-      <span class="m-pdp-season__cd das-x-ontime-only" data-x-countdown><b data-x-d>0</b> {% render 'maison-x-t', k: 'd' %} <b data-x-h>00</b> {% render 'maison-x-t', k: 'h' %} <b data-x-m>00</b> {% render 'maison-x-t', k: 'm' %}</span>
-    </div>
-    <ul class="m-pdp-season__list">
-      <li class="das-x-ontime-only"><span class="m-pdp-season__t">{{ xp_on | replace: '[d]', xp_dl }}</span></li>
-      <li class="das-x-late-only"><span class="m-pdp-season__t">{{ xp_late | replace: '[d]', xp_dl }}</span></li>
-    </ul>
-    <div class="m-pdp-season__foot">
-      <a class="m-pdp-season__go" href="{{ routes.collections_url }}/giftset">{% render 'maison-x-t', k: 'guide' %} &rarr;</a>
-    </div>
+  <div class="m-pdp-xmas das-x-hide-post">
+    <span class="m-pdp-xmas__eyebrow">{% if xp_tip %}{% render 'maison-x-t', k: 'card_tip' %}{% else %}{% render 'maison-x-t', k: 'eyebrow' %}{% endif %}</span>
+    <p class="m-pdp-xmas__text das-x-ontime-only">{{ xp_on | replace: '[d]', xp_dl }}</p>
+    <p class="m-pdp-xmas__text das-x-late-only">{{ xp_late | replace: '[d]', xp_dl }}</p>
   </div>
   <style>
-    .m-pdp-season--x { background: #12302a; color: #e8efe9; }
-    .m-pdp-season--x .m-pdp-season__tag { border: 1px solid #c9a24b; color: #e4cd8c; }
-    .m-pdp-season--x .m-pdp-season__cd { color: #e4cd8c; }
-    .m-pdp-season--x .m-pdp-season__cd b { color: #f7f2ea; }
-    .m-pdp-season--x .m-pdp-season__t { color: #f7f2ea; }
-    .m-pdp-season--x .m-pdp-season__foot { border-top: 1px solid rgba(232, 239, 233, .16); color: #b9c7bf; }
-    .m-pdp-season--x .m-pdp-season__go { color: #e4cd8c; }
-    .m-pdp-season--x .m-pdp-season__go:hover { color: #f7f2ea; }
+    .m-pdp-xmas { position: relative; padding: 1.8rem 2rem 1.9rem; background: #12302a; text-align: center; }
+    .m-pdp-xmas::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px; background: linear-gradient(90deg, #8a6a2c, #e4cd8c 50%, #8a6a2c); }
+    .m-pdp-xmas__eyebrow { display: block; margin-bottom: .6rem; font: 500 1rem/1 var(--m-sans, inherit); letter-spacing: .26em; text-transform: uppercase; color: #c9a24b; }
+    .m-pdp-xmas__text { margin: 0; font: 400 1.8rem/1.35 var(--m-serif, inherit); color: #f7f2ea; }
+    @media (max-width: 749px) { .m-pdp-xmas { padding: 1.5rem 1.4rem 1.6rem; } .m-pdp-xmas__text { font-size: 1.6rem; } }
   </style>
   {%- if das_has_sample -%}
     <a class="m-pdp-sample" href="{{ routes.collections_url }}/samplepakket">{% render 'maison-icon', icon: 'gift' %}<span>{% render 'maison-t', k: 'trust_sample' %}</span><span class="m-pdp-sample__go" aria-hidden="true">&rarr;</span></a>

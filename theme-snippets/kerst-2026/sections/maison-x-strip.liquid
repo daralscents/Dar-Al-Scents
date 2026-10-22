@@ -1,8 +1,8 @@
 {%- comment -%}
-  Kerststrook onder de menubalk (alle pagina's behalve homepage): besteldeadline + aftelklok, link naar giftsets.
+  Kerststrook onder de menubalk (alle pagina's behalve homepage en collectiepagina's): besteldeadline + aftelklok, link naar giftsets.
   Fases via maison-x-head. Verdwijnt na 26 dec.
 {%- endcomment -%}
-{%- unless template.name == 'index' -%}
+{%- unless template.name == 'index' or template.name == 'collection' -%}
 {%- capture xs_dl -%}{% render 'maison-x-t', k: 'deadline' %}{%- endcapture -%}
 {%- capture xs_on -%}{% render 'maison-x-t', k: 'ontime' %}{%- endcapture -%}
 {%- capture xs_late -%}{% render 'maison-x-t', k: 'late' %}{%- endcapture -%}

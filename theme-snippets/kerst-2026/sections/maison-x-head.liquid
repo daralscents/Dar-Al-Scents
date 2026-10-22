@@ -39,6 +39,25 @@
   .m-section .m-btn:not(.m-x .m-btn):hover { background: transparent; color: #12302a; }
   .m-section--ink .m-btn { background: #e4cd8c !important; border-color: #e4cd8c !important; color: #12302a !important; }
   .m-marquee { background: #12302a; }
+  /* Collectiebanner rustig (22 okt): gecentreerd, beschrijving max. 2 regels + Lees meer, één stille regel vertrouwen */
+  .collection-hero__inner { justify-content: center; }
+  .collection-hero__text-wrapper { max-width: 68rem; margin-inline: auto; padding-block: 1.2rem .8rem; text-align: center; }
+  .collection-hero__title { margin: 0 0 1.4rem; font-weight: 400; letter-spacing: -.01em; }
+  .collection-hero .m-desc { max-width: 60rem; margin-inline: auto; font-size: 1.45rem; line-height: 1.65; }
+  .collection-hero .m-desc:not(.is-open) { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .collection-hero .m-desc > * { margin-block: 0 .6rem; }
+  .collection-hero .m-desc__more:not([hidden]) { display: inline-block; margin: .8rem auto 0; font-size: .95rem; }
+  .collection-hero .m-trust { justify-content: center; flex-wrap: wrap !important; overflow: visible !important; gap: .4rem 0 !important; margin-top: 2rem; padding: 1.4rem 0 0 !important; border-top: 1px solid rgba(201, 162, 75, .28); font-size: .95rem !important; letter-spacing: .18em; }
+  .collection-hero .m-trust li { padding: 0 1.6rem; white-space: nowrap; }
+  .collection-hero .m-trust li::before { display: none; }
+  .collection-hero .m-trust li + li { border-left: 1px solid rgba(201, 162, 75, .35); }
+  .collection-hero .m-trust li:has(.m-trust__link) { display: none; }
+  @media (max-width: 749px) {
+    .collection-hero__text-wrapper { padding-block: .4rem 0; }
+    .collection-hero .m-desc { font-size: 1.35rem; }
+    .collection-hero .m-trust li { padding: .2rem 1rem; font-size: .85rem; }
+    .collection-hero .m-trust li:nth-child(3) { border-left: 0; }
+  }
   .m-card-note--tip { color: #1c4238 !important; font-weight: 500; }
 </style>
 <script>
