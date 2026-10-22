@@ -1,0 +1,71 @@
+{%- comment -%}
+  Kerst 2026 – cadeaugids-band (22 okt 2026) onder de producten op collectie- en productpagina's.
+  Gebruik: {% render 'maison-x-guide', skip: collection.handle %}  (skip = tegel die niet getoond wordt)
+  Rustige opbouw: links kop + besteldeadline, rechts gelijke tegels. Verdwijnt na kerst (das-x-hide-post).
+{%- endcomment -%}
+{%- liquid
+  assign xg_tiles = 'dames-parfum|g_her,heren-parfum-1|g_him,cadeaus-onder-30|g_30,giftset|g_sets,samplepakket|g_samples' | split: ','
+-%}
+{%- capture xg_dl -%}{% render 'maison-x-t', k: 'deadline' %}{%- endcapture -%}
+{%- capture xg_on -%}{% render 'maison-x-t', k: 'ontime' %}{%- endcapture -%}
+{%- capture xg_late -%}{% render 'maison-x-t', k: 'late' %}{%- endcapture -%}
+<div class="m-xg das-x-hide-post">
+  <div class="page-width m-xg__grid">
+    <div class="m-xg__head">
+      <p class="m-xg__eyebrow">{% render 'maison-x-t', k: 'guide' %}</p>
+      <h2 class="m-xg__title">{% render 'maison-x-t', k: 'title' %}</h2>
+      <p class="m-xg__dl das-x-ontime-only" data-x-countdown>{{ xg_on | replace: '[d]', xg_dl }}<span class="m-xg__cd"><b data-x-d>0</b> {% render 'maison-x-t', k: 'd' %} · <b data-x-h>00</b> {% render 'maison-x-t', k: 'h' %}</span></p>
+      <p class="m-xg__dl das-x-late-only">{{ xg_late | replace: '[d]', xg_dl }}</p>
+    </div>
+    <div class="m-xg__tiles">
+      {%- for t in xg_tiles -%}
+        {%- assign parts = t | split: '|' -%}
+        {%- if parts[0] == skip -%}{%- continue -%}{%- endif -%}
+        {%- assign col = collections[parts[0]] -%}
+        {%- if col == blank -%}{%- continue -%}{%- endif -%}
+        {%- assign img = nil -%}
+        {%- for p in col.products limit: 12 -%}
+          {%- if p.available and p.featured_media != blank -%}{%- assign img = p.featured_media -%}{%- break -%}{%- endif -%}
+        {%- endfor -%}
+        {%- if img == nil and col.image != blank -%}{%- assign img = col.image -%}{%- endif -%}
+        {%- capture xg_label -%}{% render 'maison-x-t', k: parts[1] %}{%- endcapture -%}
+        <a class="m-xg__tile" href="{{ col.url }}">
+          <span class="m-xg__media">
+            {%- if img -%}{{ img | image_url: width: 500 | image_tag: loading: 'lazy', sizes: '(min-width: 990px) 14vw, 40vw', widths: '240, 360, 500', class: 'm-xg__img', alt: xg_label }}{%- endif -%}
+          </span>
+          <span class="m-xg__name"><span>{{ xg_label }}</span><span class="m-xg__arrow" aria-hidden="true">&rarr;</span></span>
+        </a>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+<style>
+  .m-xg { position: relative; background: #12302a; color: #ece4d4; }
+  .m-xg::before, .m-xg::after { content: ""; position: absolute; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, #8a6a2c, #e4cd8c 50%, #8a6a2c); }
+  .m-xg::before { top: 0; } .m-xg::after { bottom: 0; }
+  .m-xg__grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2.6fr); gap: clamp(2.4rem, 4vw, 6rem); align-items: center; padding-block: clamp(4rem, 5vw, 6.4rem); }
+  .m-xg__eyebrow { display: flex; align-items: center; gap: 1rem; margin: 0 0 1.4rem; font: 500 1.05rem/1 var(--m-sans, inherit); letter-spacing: .28em; text-transform: uppercase; color: #c9a24b; }
+  .m-xg__eyebrow::before { content: ""; width: 2.8rem; height: 1px; background: #c9a24b; }
+  .m-xg__title { margin: 0; font: 400 clamp(2.8rem, 2.8vw, 4rem)/1.1 var(--m-serif, inherit); color: #f7f2ea; }
+  .m-xg__title em { font-style: italic; color: #e4cd8c; }
+  .m-xg__dl { margin: 1.8rem 0 0; font: 400 1.35rem/1.55 var(--m-sans, inherit); color: #c5cbbf; }
+  .m-xg__cd { display: block; margin-top: .6rem; font-size: 1.15rem; letter-spacing: .14em; text-transform: uppercase; color: #e4cd8c; font-variant-numeric: tabular-nums; }
+  .m-xg__cd b { font-weight: 600; color: #f7f2ea; }
+  .m-xg__tiles { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: clamp(1rem, 1.2vw, 1.6rem); }
+  .m-xg__tile { display: block; color: inherit; text-decoration: none; }
+  .m-xg__media { position: relative; display: block; aspect-ratio: 1 / 1; overflow: hidden; background: radial-gradient(120% 90% at 50% 25%, #f7f1e6 0%, #e9dfcc 60%, #cbbd9f 100%); }
+  .m-xg__media::after { content: ""; position: absolute; inset: .7rem; border: 1px solid rgba(156, 125, 72, .35); pointer-events: none; transition: border-color .4s ease; }
+  .m-xg__tile:hover .m-xg__media::after { border-color: rgba(156, 125, 72, .9); }
+  .m-xg__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; padding: 14%; mix-blend-mode: multiply; transition: transform 1s ease; }
+  .m-xg__tile:hover .m-xg__img { transform: scale(1.05); }
+  .m-xg__name { display: flex; justify-content: space-between; align-items: baseline; gap: .6rem; padding-top: 1rem; font: 500 1.6rem/1.2 var(--m-serif, inherit); color: #f7f2ea; }
+  .m-xg__arrow { color: #c9a24b; font-family: var(--m-sans, inherit); }
+  @media (max-width: 989px) { .m-xg__grid { grid-template-columns: 1fr; gap: 2.8rem; } }
+  @media (max-width: 749px) {
+    .m-xg__grid { padding-block: 3.6rem 4rem; }
+    .m-xg__tiles { grid-auto-columns: 42%; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; margin-right: -1.5rem; padding-right: 1.5rem; }
+    .m-xg__tiles::-webkit-scrollbar { display: none; }
+    .m-xg__tile { scroll-snap-align: start; }
+    .m-xg__name { font-size: 1.45rem; }
+  }
+</style>

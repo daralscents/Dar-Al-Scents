@@ -58,6 +58,16 @@
     .collection-hero .m-trust li { padding: .2rem 1rem; font-size: .85rem; }
     .collection-hero .m-trust li:nth-child(3) { border-left: 0; }
   }
+  .m-xb__eyebrow { display: flex; align-items: center; justify-content: center; gap: 1.2rem; margin: 0 0 1.2rem; font: 500 1rem/1 var(--m-sans, inherit); letter-spacing: .3em; text-transform: uppercase; color: #c9a24b; }
+  .m-xb__eyebrow::before, .m-xb__eyebrow::after { content: ""; width: 2.8rem; height: 1px; background: #c9a24b; }
+  .m-xb__chips { display: flex; flex-wrap: wrap; justify-content: center; gap: .8rem; margin-top: 1.8rem; }
+  .m-xb__chip { padding: .8rem 1.4rem; border: 1px solid rgba(201, 162, 75, .5); color: #f7f2ea; text-decoration: none; font: 500 1rem/1 var(--m-sans, inherit); letter-spacing: .16em; text-transform: uppercase; transition: background-color .25s ease, color .25s ease; }
+  .m-xb__chip:hover { background: #e4cd8c; color: #12302a; }
+  @media (max-width: 749px) {
+    .m-xb__chips { flex-wrap: nowrap; justify-content: flex-start; overflow-x: auto; margin-inline: -1.5rem; padding-inline: 1.5rem; scrollbar-width: none; }
+    .m-xb__chips::-webkit-scrollbar { display: none; }
+    .m-xb__chip { flex: none; }
+  }
   .m-card-note--tip { color: #1c4238 !important; font-weight: 500; }
 </style>
 <script>
