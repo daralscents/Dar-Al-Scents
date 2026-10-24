@@ -1,5 +1,6 @@
 {%- comment -%}
   Maison – Verzekerde verzending (optioneel; v14 13 okt 2026 als Bezorggarantie €1,95, 24 okt 2026 hernoemd en €3,95).
+  Embleem (schildje) links in het blok; zelfde embleem als productfoto (zichtbaar in winkelmand en checkout).
   Vinkje staat standaard UIT (EU: extra betaalde opties niet vooraf aanvinken). Producthandle blijft 'bezorggarantie'.
   Vinkje in de winkelmand dat het product "bezorggarantie" (titel Verzekerde verzending, €3,95, geen verzending) toevoegt of verwijdert.
   Dekt extra NA bezorging (gemeld als bezorgd maar niet ontvangen / gestolen na bezorging): vervanging binnen 24 uur.
@@ -40,6 +41,7 @@
   <maison-bezorggarantie class="m-bg" data-variant="{{ bg_variant.id }}" data-line="{% if bg_line %}{{ bg_line.key }}{% endif %}" data-other="{{ bg_other }}">
     <label class="m-bg__label">
       <input type="checkbox" class="m-bg__check"{% if bg_line %} checked{% endif %}>
+      <span class="m-bg__badge"><svg viewBox="0 0 64 72" aria-hidden="true" focusable="false"><path d="M32 3 6 12v19c0 18 11.5 31 26 38 14.5-7 26-20 26-38V12L32 3Z" fill="#100f0d" stroke="#c9a24b" stroke-width="3"/><path d="M32 10.5 13 17v14c0 13.6 8.2 23.6 19 29.4C42.8 54.6 51 44.6 51 31V17l-19-6.5Z" fill="none" stroke="#c9a24b" stroke-opacity=".45" stroke-width="1.2"/><path d="m21.5 36 7.5 7.5 14-15" fill="none" stroke="#e4cd8c" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       <span class="m-bg__body">
         <span class="m-bg__title">{{ bg_title }} <span class="m-bg__price">+{{ bg_variant.price | money }}</span></span>
         <span class="m-bg__text">{{ bg_text }} <a href="{{ routes.root_url | append: '/pages/bezorggarantie' | replace: '//', '/' }}" class="m-bg__more">{{ bg_link }}</a></span>
@@ -49,6 +51,8 @@
   <style>
     .m-bg { display: block; margin: 0 0 1.2rem; padding: 1.2rem 1.4rem; border: 1px solid rgba(156, 125, 72, .45); background: #fbf8f1; }
     .m-bg__label { display: flex; gap: 1.2rem; align-items: flex-start; cursor: pointer; }
+    .m-bg__badge { flex: none; display: grid; place-items: center; width: 4.4rem; height: 4.4rem; border-radius: 50%; background: #f7f2ea; box-shadow: inset 0 0 0 1px #c9a24b, inset 0 0 0 4px #f7f2ea, inset 0 0 0 5px rgba(201, 162, 75, .45); }
+    .m-bg__badge svg { width: 2.2rem; height: auto; }
     .m-bg__check { flex: none; width: 1.8rem; height: 1.8rem; margin: .2rem 0 0; accent-color: #100f0d; cursor: pointer; }
     .m-bg__body { display: grid; gap: .4rem; }
     .m-bg__title { font: 500 1.35rem/1.3 var(--m-sans, inherit); color: #100f0d; }

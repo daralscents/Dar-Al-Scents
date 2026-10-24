@@ -6,14 +6,14 @@
 {%- liquid
   assign bg_tiles = 'black-friday|t_sel,samplepakket|t_samples,dames-parfum|g_her,heren-parfum-1|g_him,unisex|g_uni' | split: ','
 -%}
-<div class="m-bg m-bg--bf das-bf-hide-post">
-  <div class="page-width m-bg__grid">
-    <div class="m-bg__head">
-      <p class="m-bg__eyebrow">{% render 'maison-bf-t', k: 'guide' %}</p>
-      <h2 class="m-bg__title">{% render 'maison-bf-t', k: 'g_title' %}</h2>
-      <p class="m-bg__dl" data-bf-countdown><span class="das-bf-pre-only">{% render 'maison-bf-t', k: 'dates' %} · {% render 'maison-bf-t', k: 'auto' %}</span><span class="das-bf-live-only">{% render 'maison-bf-t', k: 'auto' %}</span><span class="m-bg__cd"><span class="das-bf-pre-only">{% render 'maison-bf-t', k: 'starts_in' %}</span><span class="das-bf-live-only">{% render 'maison-bf-t', k: 'ends_in' %}</span> <b data-bf-d>0</b> {% render 'maison-bf-t', k: 'd' %} · <b data-bf-h>00</b>:<b data-bf-m>00</b>:<b data-bf-s>00</b></span></p>
+<div class="m-bfg m-bfg--bf das-bf-hide-post">
+  <div class="page-width m-bfg__grid">
+    <div class="m-bfg__head">
+      <p class="m-bfg__eyebrow">{% render 'maison-bf-t', k: 'guide' %}</p>
+      <h2 class="m-bfg__title">{% render 'maison-bf-t', k: 'g_title' %}</h2>
+      <p class="m-bfg__dl" data-bf-countdown><span class="das-bf-pre-only">{% render 'maison-bf-t', k: 'dates' %} · {% render 'maison-bf-t', k: 'auto' %}</span><span class="das-bf-live-only">{% render 'maison-bf-t', k: 'auto' %}</span><span class="m-bfg__cd"><span class="das-bf-pre-only">{% render 'maison-bf-t', k: 'starts_in' %}</span><span class="das-bf-live-only">{% render 'maison-bf-t', k: 'ends_in' %}</span> <b data-bf-d>0</b> {% render 'maison-bf-t', k: 'd' %} · <b data-bf-h>00</b>:<b data-bf-m>00</b>:<b data-bf-s>00</b></span></p>
     </div>
-    <div class="m-bg__tiles">
+    <div class="m-bfg__tiles">
       {%- for t in bg_tiles -%}
         {%- assign parts = t | split: '|' -%}
         {%- if parts[0] == skip -%}{%- continue -%}{%- endif -%}
@@ -25,43 +25,43 @@
         {%- endfor -%}
         {%- if img == nil and col.image != blank -%}{%- assign img = col.image -%}{%- endif -%}
         {%- capture bg_label -%}{% render 'maison-bf-t', k: parts[1] %}{%- endcapture -%}
-        <a class="m-bg__tile" href="{{ col.url }}">
-          <span class="m-bg__media">
-            {%- if img -%}{{ img | image_url: width: 500 | image_tag: loading: 'lazy', sizes: '(min-width: 990px) 14vw, 40vw', widths: '240, 360, 500', class: 'm-bg__img', alt: bg_label }}{%- endif -%}
+        <a class="m-bfg__tile" href="{{ col.url }}">
+          <span class="m-bfg__media">
+            {%- if img -%}{{ img | image_url: width: 500 | image_tag: loading: 'lazy', sizes: '(min-width: 990px) 14vw, 40vw', widths: '240, 360, 500', class: 'm-bfg__img', alt: bg_label }}{%- endif -%}
           </span>
-          <span class="m-bg__name"><span>{{ bg_label }}</span><span class="m-bg__arrow" aria-hidden="true">&rarr;</span></span>
+          <span class="m-bfg__name"><span>{{ bg_label }}</span><span class="m-bfg__arrow" aria-hidden="true">&rarr;</span></span>
         </a>
       {%- endfor -%}
     </div>
   </div>
 </div>
 <style>
-  .m-bg { position: relative; background: #0b0a09; color: #ece4d4; }
-  .m-bg::before, .m-bg::after { content: ""; position: absolute; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, #8a6a2c, #e4cd8c 50%, #8a6a2c); }
-  .m-bg::before { top: 0; } .m-bg::after { bottom: 0; }
-  .m-bg__grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2.6fr); gap: clamp(2.4rem, 4vw, 6rem); align-items: center; padding-block: clamp(4rem, 5vw, 6.4rem); }
-  .m-bg__eyebrow { display: flex; align-items: center; gap: 1rem; margin: 0 0 1.4rem; font: 500 1.05rem/1 var(--m-sans, inherit); letter-spacing: .28em; text-transform: uppercase; color: #c9a24b; }
-  .m-bg__eyebrow::before { content: ""; width: 2.8rem; height: 1px; background: #c9a24b; }
-  .m-bg__title { margin: 0; font: 400 clamp(2.8rem, 2.8vw, 4rem)/1.1 var(--m-serif, inherit); color: #f7f2ea; }
-  .m-bg__title em { font-style: italic; color: #e4cd8c; }
-  .m-bg__dl { margin: 1.8rem 0 0; font: 400 1.35rem/1.55 var(--m-sans, inherit); color: #a9a08f; }
-  .m-bg__cd { display: block; margin-top: .6rem; font-size: 1.15rem; letter-spacing: .14em; text-transform: uppercase; color: #e4cd8c; font-variant-numeric: tabular-nums; }
-  .m-bg__cd b { font-weight: 600; color: #f7f2ea; }
-  .m-bg__tiles { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: clamp(1rem, 1.2vw, 1.6rem); }
-  .m-bg__tile { display: block; color: inherit; text-decoration: none; }
-  .m-bg__media { position: relative; display: block; aspect-ratio: 1 / 1; overflow: hidden; background: radial-gradient(120% 90% at 50% 25%, #f7f1e6 0%, #e9dfcc 60%, #cbbd9f 100%); }
-  .m-bg__media::after { content: ""; position: absolute; inset: .7rem; border: 1px solid rgba(156, 125, 72, .35); pointer-events: none; transition: border-color .4s ease; }
-  .m-bg__tile:hover .m-bg__media::after { border-color: rgba(156, 125, 72, .9); }
-  .m-bg__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; padding: 14%; mix-blend-mode: multiply; transition: transform 1s ease; }
-  .m-bg__tile:hover .m-bg__img { transform: scale(1.05); }
-  .m-bg__name { display: flex; justify-content: space-between; align-items: baseline; gap: .6rem; padding-top: 1rem; font: 500 1.6rem/1.2 var(--m-serif, inherit); color: #f7f2ea; }
-  .m-bg__arrow { color: #c9a24b; font-family: var(--m-sans, inherit); }
-  @media (max-width: 989px) { .m-bg__grid { grid-template-columns: 1fr; gap: 2.8rem; } }
+  .m-bfg { position: relative; background: #0b0a09; color: #ece4d4; }
+  .m-bfg::before, .m-bfg::after { content: ""; position: absolute; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, #8a6a2c, #e4cd8c 50%, #8a6a2c); }
+  .m-bfg::before { top: 0; } .m-bfg::after { bottom: 0; }
+  .m-bfg__grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2.6fr); gap: clamp(2.4rem, 4vw, 6rem); align-items: center; padding-block: clamp(4rem, 5vw, 6.4rem); }
+  .m-bfg__eyebrow { display: flex; align-items: center; gap: 1rem; margin: 0 0 1.4rem; font: 500 1.05rem/1 var(--m-sans, inherit); letter-spacing: .28em; text-transform: uppercase; color: #c9a24b; }
+  .m-bfg__eyebrow::before { content: ""; width: 2.8rem; height: 1px; background: #c9a24b; }
+  .m-bfg__title { margin: 0; font: 400 clamp(2.8rem, 2.8vw, 4rem)/1.1 var(--m-serif, inherit); color: #f7f2ea; }
+  .m-bfg__title em { font-style: italic; color: #e4cd8c; }
+  .m-bfg__dl { margin: 1.8rem 0 0; font: 400 1.35rem/1.55 var(--m-sans, inherit); color: #a9a08f; }
+  .m-bfg__cd { display: block; margin-top: .6rem; font-size: 1.15rem; letter-spacing: .14em; text-transform: uppercase; color: #e4cd8c; font-variant-numeric: tabular-nums; }
+  .m-bfg__cd b { font-weight: 600; color: #f7f2ea; }
+  .m-bfg__tiles { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: clamp(1rem, 1.2vw, 1.6rem); }
+  .m-bfg__tile { display: block; color: inherit; text-decoration: none; }
+  .m-bfg__media { position: relative; display: block; aspect-ratio: 1 / 1; overflow: hidden; background: radial-gradient(120% 90% at 50% 25%, #f7f1e6 0%, #e9dfcc 60%, #cbbd9f 100%); }
+  .m-bfg__media::after { content: ""; position: absolute; inset: .7rem; border: 1px solid rgba(156, 125, 72, .35); pointer-events: none; transition: border-color .4s ease; }
+  .m-bfg__tile:hover .m-bfg__media::after { border-color: rgba(156, 125, 72, .9); }
+  .m-bfg__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; padding: 14%; mix-blend-mode: multiply; transition: transform 1s ease; }
+  .m-bfg__tile:hover .m-bfg__img { transform: scale(1.05); }
+  .m-bfg__name { display: flex; justify-content: space-between; align-items: baseline; gap: .6rem; padding-top: 1rem; font: 500 1.6rem/1.2 var(--m-serif, inherit); color: #f7f2ea; }
+  .m-bfg__arrow { color: #c9a24b; font-family: var(--m-sans, inherit); }
+  @media (max-width: 989px) { .m-bfg__grid { grid-template-columns: 1fr; gap: 2.8rem; } }
   @media (max-width: 749px) {
-    .m-bg__grid { padding-block: 3.6rem 4rem; }
-    .m-bg__tiles { grid-auto-columns: 42%; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; margin-right: -1.5rem; padding-right: 1.5rem; }
-    .m-bg__tiles::-webkit-scrollbar { display: none; }
-    .m-bg__tile { scroll-snap-align: start; }
-    .m-bg__name { font-size: 1.45rem; }
+    .m-bfg__grid { padding-block: 3.6rem 4rem; }
+    .m-bfg__tiles { grid-auto-columns: 42%; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; margin-right: -1.5rem; padding-right: 1.5rem; }
+    .m-bfg__tiles::-webkit-scrollbar { display: none; }
+    .m-bfg__tile { scroll-snap-align: start; }
+    .m-bfg__name { font-size: 1.45rem; }
   }
 </style>
