@@ -208,3 +208,8 @@ Communiceer met de eigenaar in het **Nederlands**.
 - **Embleem (24 okt)**: schildje zwart/goud met vinkje + "VERZEKERD · DAR AL SCENTS" op ivoor (`theme-snippets/verzekerde-verzending/`, html/svg-bron + PNG 1000px). Als productfoto op "Verzekerde verzending" gezet → zichtbaar als regel-afbeelding in winkelmand én in het besteloverzicht van de checkout. Schildje ook inline in het vinkje-blok (`.m-bg__badge`) in v16/BF/Kerst.
 - **Checkout zelf**: winkel is Basic-plan → checkout-UI-extensies (vinkje/blok in de checkout) kunnen niet (alleen Shopify Plus + app). In de checkout staat de verzekering dus alleen als regel (met embleem) als de klant hem in de winkelmand heeft aangevinkt.
 - Fix: BF-dealband-klassen `.m-bg*` hernoemd naar `.m-bfg*` (botsten met `.m-bg` van het verzekeringsvinkje in de winkelmand).
+
+## Retouradres (26 okt 2026)
+- Eigenaar: "retouradres klopt niet". NL-retourbeleid (en algemene voorwaarden + wettelijke kennisgeving) noemen nog **2724SL** en info@daralscents.nl; juist = **Lammerweide 11, 2727 ET Zoetermeer** + daralscents@gmail.com. Winkeladres, locatie, privacybeleid en contactgegevens kloppen al. Thema (52 bestanden gecontroleerd) bevat geen adres.
+- `shopPolicyUpdate` opnieuw geweigerd (geen `write_legal_policies`) → eigenaar moet NL-tekst plakken uit `beleid-2026-10-14/terugbetalingsbeleid.html` (ook voorwaarden/wettelijke kennisgeving).
+- DE/FR/EN-vertaling van het retourbeleid wél gecorrigeerd via translationsRegister (postcode + e-mail). Vertalingen van algemene voorwaarden en wettelijke kennisgeving hebben nog 2724SL.
