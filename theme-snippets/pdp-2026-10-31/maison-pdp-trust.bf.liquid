@@ -1,0 +1,58 @@
+<div class="m-pdp-trust">
+  {% render 'maison-pdp-buybox' %}
+  {%- comment -%}
+    Productpagina (22 okt 2026, rustig): zwart Black Friday-blok met label + één zin over de deal voor dit product (verdwijnt na 30 nov),
+    samplepakket als kaart, 3 pictogrammen, verzendregel, WhatsApp. Opmaak in maison-pdp-style.
+  {%- endcomment -%}
+  {%- liquid
+    assign das_has_sample = false
+    assign das_bottle = false
+    for v in product.variants
+      assign vt = v.title | downcase
+      if vt contains 'sample' or vt == '3ml' or vt == '3 ml'
+        if v.available
+          assign das_has_sample = true
+        endif
+      else
+        assign das_bottle = true
+      endif
+    endfor
+  -%}
+  {%- liquid
+    assign bfp_in = false
+    for col in product.collections
+      if col.handle == 'black-friday'
+        assign bfp_in = true
+      endif
+    endfor
+    capture bfp_gift
+      render 'maison-bf-gift', product: product
+    endcapture
+  -%}
+  <div class="m-pdp-bf das-bf-hide-post">
+    <span class="m-pdp-bf__eyebrow">Black Friday · {% render 'maison-bf-t', k: 'dates' %}</span>
+    <p class="m-pdp-bf__text">
+      {%- if bfp_in and das_bottle and bfp_gift contains 'ja' -%}{% render 'maison-bf-t', k: 'pdp_combo' %}
+      {%- elsif bfp_in -%}{% render 'maison-bf-t', k: 'pdp_bottle10' %}
+      {%- elsif das_bottle and bfp_gift contains 'ja' -%}{% render 'maison-bf-t', k: 'deal2_t' %}
+      {%- else -%}{% render 'maison-bf-t', k: 'deal1_t' %}{%- endif -%}
+    </p>
+  </div>
+  <style>
+    .m-pdp-bf { position: relative; padding: 1.8rem 2rem 1.9rem; background: #0b0a09; text-align: center; }
+    .m-pdp-bf::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px; background: linear-gradient(90deg, #8a6a2c, #e4cd8c 50%, #8a6a2c); }
+    .m-pdp-bf__eyebrow { display: block; margin-bottom: .6rem; font: 500 1rem/1 var(--m-sans, inherit); letter-spacing: .26em; text-transform: uppercase; color: #c9a24b; }
+    .m-pdp-bf__text { margin: 0; font: 400 1.8rem/1.35 var(--m-serif, inherit); color: #f7f2ea; }
+    @media (max-width: 749px) { .m-pdp-bf { padding: 1.5rem 1.4rem 1.6rem; } .m-pdp-bf__text { font-size: 1.6rem; } }
+  </style>
+  {%- if das_has_sample -%}
+    <a class="m-pdp-sample" href="{{ routes.collections_url }}/samplepakket">{% render 'maison-icon', icon: 'gift' %}<span>{% render 'maison-t', k: 'trust_sample' %}</span><span class="m-pdp-sample__go" aria-hidden="true">&rarr;</span></a>
+  {%- endif -%}
+  <ul class="m-pdp-usp">
+    <li>{% render 'maison-icon', icon: 'truck' %}<span>{% render 'maison-t', k: 'trust_ship' %}</span></li>
+    <li>{% render 'maison-icon', icon: 'return' %}<span>{% render 'maison-t', k: 'trust_return' %}</span></li>
+    <li>{% render 'maison-icon', icon: 'check' %}<span>{% render 'maison-t', k: 'trust_original' %}</span></li>
+  </ul>
+  {% render 'maison-whatsapp', context: 'pdp' %}
+</div>
+{% render 'maison-pdp-style' %}
