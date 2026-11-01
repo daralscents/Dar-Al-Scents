@@ -12,6 +12,9 @@ Communiceer met de eigenaar in het **Nederlands**.
 - Shopify GraphQL-volgorde: `graphql_schema` → operatie bouwen → `validate_graphql_codeblocks` → `graphql_query` / `graphql_mutation`.
 - Themabestanden kunnen alleen op **niet-gepubliceerde** thema's worden geschreven: dupliceer het live thema, pas de kopie aan, de eigenaar publiceert zelf.
 - `templates/page.json` in thema v4 is door de eigenaar zelf aangepast: niet overschrijven.
+- **Nooit nieuwe thema's aanmaken (eigenaar, 1 nov 2026; max. 20 thema's in Shopify).** Geen themeDuplicate/themeCreate. Werk altijd in een bestaand niet-gepubliceerd thema:
+  - Gewone wijzigingen: het werkthema (nu **v17, 210893996381**). Wordt het werkthema gepubliceerd, dan wordt het vorige live thema het nieuwe werkthema: eerst gelijktrekken met live (checksums vergelijken, verschillen uploaden), dan hernoemen naar het volgende versienummer.
+  - Is toch een apart thema nodig (bijv. een extra seizoen), dan een **oud, ongebruikt thema overschrijven** (alle bestanden van het bronthema uploaden + hernoemen). Kandidaten (31 okt): "Bijgewerkte kopie van … v15" (210978734429), v13 (210781339997), v12 (210713051485), v8 (210649547101), v5 (210577785181), Premium Redesign v1/v2 (210358993245 / 210359091549), oude "Black Friday 2026" (210337268061) en "Kerst 2026" (210337235293), "reviews pagina fix" (210335629661), "Claude Main" (210332254557). Niet aanraken: live thema, werkthema, BF-thema 211058753885, Kerst-thema 211058950493, v4 (210472436061, page.json eigenaar), "allseason zelf gemaakt" en "ecomkapertheme" (van eigenaar).
 - Grote API-resultaten verwerken met jq/python op het weggeschreven bestand.
 
 ## Huidige stand
