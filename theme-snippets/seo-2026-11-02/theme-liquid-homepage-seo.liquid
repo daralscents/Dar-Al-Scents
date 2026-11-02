@@ -1,0 +1,26 @@
+{%- comment -%} Ingevoegd in layout/theme.liquid (v19, 210893996381) direct vóór <title>. {%- endcomment -%}
+    {%- liquid
+      if request.page_type == 'index'
+        assign das_l = request.locale.iso_code | slice: 0, 2
+        case das_l
+          when 'de'
+            assign das_home_t = 'Arabische Parfums online kaufen | Dar Al Scents'
+            assign das_home_d = 'Originale arabische Parfums von Lattafa, French Avenue, Rasasi und Armaf. Erst testen: 3 Proben für 25 €. Versand in 1–3 Werktagen.'
+          when 'fr'
+            assign das_home_t = 'Parfums arabes en ligne | Dar Al Scents'
+            assign das_home_d = 'Parfums arabes originaux de Lattafa, French Avenue, Rasasi et Armaf. Essayez d’abord : 3 échantillons pour 25 €. Expédié sous 1 à 3 jours.'
+          when 'en'
+            assign das_home_t = 'Arabic perfumes online | Dar Al Scents'
+            assign das_home_d = 'Authentic Arabic perfumes from Lattafa, French Avenue, Rasasi and Armaf. Try first: any 3 samples for €25. Ships within 1–3 business days.'
+          else
+            assign das_home_t = 'Arabische parfums online kopen | Dar Al Scents'
+            assign das_home_d = 'Originele Arabische parfums van Lattafa, French Avenue, Rasasi en Armaf. Probeer eerst: 3 samples voor €25. Gratis verzending vanaf €50 (NL).'
+        endcase
+        if page_title == shop.name
+          assign page_title = das_home_t
+        endif
+        if page_description == blank
+          assign page_description = das_home_d
+        endif
+      endif
+    -%}
