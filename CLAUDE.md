@@ -259,3 +259,8 @@ Communiceer met de eigenaar in het **Nederlands**.
 - Eigenaar kreeg mail "btw-drempels overschreden, boete". Gecontroleerd: omzet 2025–2026 ±€650 totaal, buiten NL alleen #1017 (BE, 6 nov, €33,90) → EU-OSS-drempel €10.000 bij lange na niet gehaald; geen OSS-registratie nodig. Mogelijk phishing of Shopify-"liability"-melding over België.
 - Echte fout: #1017 (BE) had **€0 btw** → Shopify int geen btw buiten NL. Eigenaar moet in admin (Instellingen → Belastingen en heffingen → Europese Unie) btw-inning aanzetten met optie onder de drempel/micro-onderneming (NL-btw 21% op alle EU-B2C). Geen API-mutatie voor belastingregistraties. €5,88 NL-btw over #1017 aangeven in Q4.
 - Gekoppelde Gmail-connector = marketplaces@oduree.nl (ander bedrijf, Oduree BV), niet de Dar Al Scents-mailbox.
+
+## Seizoensthema's bijgewerkt (16 nov 2026)
+- Live = v19 (210893996381, SEO homepage; door eigenaar gepubliceerd). Werkthema = 210797101405 ("v18").
+- **BF-thema (211058753885) en Kerst-thema (211058950493) gelijkgetrokken met v19**: `snippets/maison-pdp-buybox.liquid` (v18, met weer-op-voorraad-aanmelding), nieuw `snippets/maison-pdp-alt.liquid`, `{% render 'maison-pdp-alt' %}` direct na de buybox in hun eigen `maison-pdp-trust`, `layout/theme.liquid` = v19 (homepage-SEO). Checksums = live. Screenshot 9PM (uitverkocht) in beide thema's gecontroleerd.
+- Advies eigenaar: BF-thema publiceren **woensdag 26 nov 's avonds** (kortingen starten zelf 27 nov 00:00), **1 dec ochtend Kerst-thema** publiceren, na 24 dec terug naar gewoon thema. Niet dagen eerder live zetten (klanten stellen aankopen uit).
