@@ -264,3 +264,11 @@ Communiceer met de eigenaar in het **Nederlands**.
 - Live = v19 (210893996381, SEO homepage; door eigenaar gepubliceerd). Werkthema = 210797101405 ("v18").
 - **BF-thema (211058753885) en Kerst-thema (211058950493) gelijkgetrokken met v19**: `snippets/maison-pdp-buybox.liquid` (v18, met weer-op-voorraad-aanmelding), nieuw `snippets/maison-pdp-alt.liquid`, `{% render 'maison-pdp-alt' %}` direct na de buybox in hun eigen `maison-pdp-trust`, `layout/theme.liquid` = v19 (homepage-SEO). Checksums = live. Screenshot 9PM (uitverkocht) in beide thema's gecontroleerd.
 - Advies eigenaar: BF-thema publiceren **woensdag 26 nov 's avonds** (kortingen starten zelf 27 nov 00:00), **1 dec ochtend Kerst-thema** publiceren, na 24 dec terug naar gewoon thema. Niet dagen eerder live zetten (klanten stellen aankopen uit).
+
+## Intern bedrijfsdashboard (18 nov 2026) – map `dashboard/`
+- Eigen webapp (Node 22 + ingebouwde `node:sqlite`, Express 5, server-side HTML, geen build). Losstaand van Shopify: geen koppeling met Shopify/Syncee/Mollie/bank, invoer handmatig of via CSV-import. Zie `dashboard/README.md` (start, definities, back-up/herstel, aannames).
+- Start: `cd dashboard && npm install && cp .env.example .env && npm run create-user -- --email … --name … --role admin && npm start` (poort 3000, alleen localhost). Echte data in `dashboard/data/` (niet in git), begint leeg.
+- Demo: `npm run seed:demo` + `npm run demo` (aparte `demo-data/`, inlog demo@voorbeeld.nl / demo-wachtwoord, banner "Demo-omgeving").
+- Tests: `npm test` (23, node:test) en `npm run test:browser` (15 stappen Playwright, desktop + mobiel 390px). Back-up: `npm run backup`, herstel: `npm run restore -- <map>`.
+- Rekenregels: centen als integers, btw in basispunten, omzet bij uitlevering, COGS gewogen gemiddelde, inkoop niet als kosten (alleen via COGS), financiering buiten omzet. Mutaties/betalingen onveranderlijk (triggers); idempotentiesleutels + controle op identieke invoer binnen 10 min.
+- Eigen formulierparser (`src/formparser.js`): express.urlencoded(extended) maakte van `qty[<regel-id>]` een ingedikte array → regel-id's kwijt. Niet terugzetten.
