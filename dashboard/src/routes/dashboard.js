@@ -34,7 +34,8 @@ module.exports = (app, { db }) => {
     const series = R.timeseries(db, p.from, p.to);
     const perf = R.productPerformance(db, p.from, p.to);
     const topQty = [...perf].sort((a, b) => b.qty - a.qty).filter(r => r.qty > 0).slice(0, 5);
-    const topProfit = [...perf].sort((a, b) => b.gross - a.gross).filter(r => r.gross !== 0).slice(0, 5);
+    const topProfit = [...perf].filter(r => !r.cogsUnknown).sort((a, b) => b.gross - a.gross).filter(r => r.gross !== 0).slice(0, 5);
+    const unknownCost = perf.filter(r => r.cogsUnknown);
     const recent = R.recentTransactions(db, 10);
     const empty = !db.get('SELECT 1 FROM sales UNION ALL SELECT 1 FROM expenses UNION ALL SELECT 1 FROM purchase_orders UNION ALL SELECT 1 FROM stock_movements LIMIT 1');
     const body = html`
@@ -63,7 +64,8 @@ module.exports = (app, { db }) => {
       <section class="card"><h2>Bestverkochte producten</h2>
         ${table({ columns: [{ label: 'Product', render: r => html`${r.description}<br><small class="muted">${r.sku}</small>` }, { label: 'Aantal', num: true, render: r => num(r.qty) }, { label: 'Netto-omzet', num: true, render: r => money(r.net) }], rows: topQty, empty: 'Nog geen uitgeleverde verkopen in deze periode.' })}</section>
       <section class="card"><h2>Hoogste brutowinst</h2>
-        ${table({ columns: [{ label: 'Product', render: r => html`${r.description}<br><small class="muted">${r.sku}</small>` }, { label: 'Brutowinst', num: true, render: r => money(r.gross) }, { label: 'Marge', num: true, render: r => pct(r.marginBp) }], rows: topProfit, empty: 'Nog geen brutowinst in deze periode.' })}</section>
+        ${table({ columns: [{ label: 'Product', render: r => html`${r.description}<br><small class="muted">${r.sku}</small>` }, { label: 'Brutowinst', num: true, render: r => money(r.gross) }, { label: 'Marge', num: true, render: r => pct(r.marginBp) }], rows: topProfit, empty: 'Nog geen brutowinst in deze periode.' })}
+        ${unknownCost.length ? html`<p class="help warn-text">Let op: ${unknownCost.length} verkochte ${unknownCost.length === 1 ? 'product heeft' : 'producten hebben'} geen inkoopprijs (samen ${money(unknownCost.reduce((a, r) => a + r.net, 0))} netto-omzet). De brutowinst is daardoor te hoog. Zie <a href="/rapporten/producten">Productprestaties</a>.</p>` : ''}</section>
       <section class="card span-2"><h2>Recente transacties</h2>
         ${table({ columns: [
           { label: 'Datum', render: r => date(r.date) },

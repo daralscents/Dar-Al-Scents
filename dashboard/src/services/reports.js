@@ -158,14 +158,15 @@ function productPerformance(db, from, to) {
     const m = map.get(r.variant_id) || (() => { const v = db.get('SELECT v.sku, p.name AS pn, v.name AS vn FROM variants v JOIN products p ON p.id = v.product_id WHERE v.id = ?', [r.variant_id]); const o = { variant_id: r.variant_id, sku: v.sku, description: [v.pn, v.vn].filter(Boolean).join(' – '), qty: 0, net: 0, cogs: 0 }; map.set(r.variant_id, o); return o; })();
     m.qty -= r.qty; m.net -= r.net; m.cogs -= r.cogs;
   }
-  return [...map.values()].map(r => ({ ...r, gross: r.net - r.cogs, marginBp: marginBp(r.net - r.cogs, r.net) }));
+  // Kostprijs 0 bij een verkocht product = inkoopprijs onbekend: geen (schijnbare) 100%-marge tonen.
+  return [...map.values()].map(r => { const unknown = r.cogs === 0 && r.net > 0; return { ...r, gross: r.net - r.cogs, cogsUnknown: unknown, marginBp: unknown ? null : marginBp(r.net - r.cogs, r.net) }; });
 }
 
 function recentTransactions(db, limit = 10) {
   const rows = db.all(`SELECT * FROM (
-      SELECT 'sale' AS type, s.id, s.sale_date AS date, s.number AS ref, (SELECT COALESCE(SUM(gross_cents),0) FROM sale_lines WHERE sale_id = s.id) + s.shipping_gross_cents AS amount, s.created_at, 'in' AS dir, ch.name AS info
+      SELECT 'sale' AS type, s.id, s.sale_date AS date, s.number AS ref, (SELECT COALESCE(SUM(gross_cents),0) FROM sale_lines WHERE sale_id = s.id) + s.shipping_gross_cents AS amount, s.created_at, 'in' AS dir, CASE WHEN s.status = 'cancelled' THEN COALESCE(ch.name, '') || ' · geannuleerd' ELSE ch.name END AS info
         FROM sales s LEFT JOIN lookups ch ON ch.id = s.channel_id
-      UNION ALL SELECT 'expense', e.id, e.expense_date, e.description, e.total_cents, e.created_at, 'out', c.name FROM expenses e JOIN lookups c ON c.id = e.category_id
+      UNION ALL SELECT 'expense', e.id, e.expense_date, e.description, e.total_cents, e.created_at, 'out', CASE WHEN e.status = 'cancelled' THEN c.name || ' · geannuleerd' ELSE c.name END FROM expenses e JOIN lookups c ON c.id = e.category_id
       UNION ALL SELECT 'payment', p.id, p.pay_date, COALESCE(p.reference, p.kind), p.amount_cents, p.created_at, p.direction, p.kind FROM payments p WHERE p.voided = 0
       UNION ALL SELECT 'po', po.id, po.order_date, po.number, NULL, po.created_at, 'out', s.name FROM purchase_orders po JOIN suppliers s ON s.id = po.supplier_id
     ) ORDER BY created_at DESC, date DESC LIMIT ?`, [limit]);

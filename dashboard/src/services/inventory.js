@@ -142,7 +142,7 @@ function stockOverview(db, { asOf = null, includeArchived = false } = {}) {
     LEFT JOIN stock_movements m ON m.variant_id = v.id ${dateCond}
     WHERE (:inc = 1 OR (v.status = 'active' AND p.status = 'active'))
     GROUP BY v.id ORDER BY p.name, v.size_ml, v.name`, { asOf, inc: includeArchived ? 1 : 0 })
-    .map(r => ({ ...r, avg: r.qty > 0 ? divRound(r.value, r.qty) : null, low: r.qty <= r.min_stock }));
+    .map(r => ({ ...r, avg: r.qty > 0 ? divRound(r.value, r.qty) : null, low: r.min_stock > 0 && r.qty <= r.min_stock }));
 }
 
 module.exports = { TYPE_LABELS, MANUAL_TYPES, stockOf, outgoingValue, removeStock, addStock, recordOpening, recordManual, reverseMovement, stockOverview };

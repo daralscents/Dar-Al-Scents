@@ -57,7 +57,7 @@ function build(db, key, p) {
     const rows = R.productPerformance(db, p.from, p.to).sort((a, b) => b.net - a.net);
     const columns = [{ label: 'Product', render: r => html`${r.description}<br><small class="muted">${r.sku}</small>`, csv: r => r.description }, { label: 'SKU', key: 'sku', csv: r => r.sku },
       { label: 'Aantal (netto)', num: true, render: r => num(r.qty), csv: r => r.qty }, m('Netto-omzet', 'net', { sum: 'net' }), m('Kostprijs', 'cogs', { sum: 'cogs' }), m('Brutowinst', 'gross', { sum: 'gross' }),
-      { label: 'Marge', num: true, render: r => pct(r.marginBp), csv: r => csvPercent(r.marginBp) }];
+      { label: 'Marge', num: true, render: r => (r.cogsUnknown ? html`<span class="warn-text">kostprijs onbekend</span>` : pct(r.marginBp)), csv: r => (r.cogsUnknown ? 'kostprijs onbekend' : csvPercent(r.marginBp)) }];
     return { columns, rows, foot: footRow(columns, rows), note: 'uitgeleverde regels minus retouren in de periode; excl. verzendopbrengst' };
   }
   if (key === 'kanalen') {
