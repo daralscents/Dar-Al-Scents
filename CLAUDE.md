@@ -272,3 +272,15 @@ Communiceer met de eigenaar in het **Nederlands**.
 - Tests: `npm test` (23, node:test) en `npm run test:browser` (15 stappen Playwright, desktop + mobiel 390px). Back-up: `npm run backup`, herstel: `npm run restore -- <map>`.
 - Rekenregels: centen als integers, btw in basispunten, omzet bij uitlevering, COGS gewogen gemiddelde, inkoop niet als kosten (alleen via COGS), financiering buiten omzet. Mutaties/betalingen onveranderlijk (triggers); idempotentiesleutels + controle op identieke invoer binnen 10 min.
 - Eigen formulierparser (`src/formparser.js`): express.urlencoded(extended) maakte van `qty[<regel-id>]` een ingedikte array → regel-id's kwijt. Niet terugzetten.
+
+## Checkout-analyse + verzending gelijkgetrokken (25 nov 2026)
+- Live thema = **Black Friday-thema (211058753885)**, door eigenaar gepubliceerd 23 nov ±18:55. Niet bewerken (live). Kerst-thema en v19 wel.
+- Checkout-funnel (90 dgn): 52 sessies in checkout → 15 afgerond; **mobiel 28 → 3 (11%)**, desktop 24 → 12 (50%); België 10 → 1. 17 verlaten checkouts, o.a. 4× één sample (€19,45–20,90 incl. €4,95 verzending), BE/HR met €0 btw.
+- **Luxus Aroma-verzendprofiel had weer 6 varianten** (4 kerst-giftsets + Marwa) → €9,45 verzending bij combinatie. Teruggezet naar Algemeen profiel (akkoord eigenaar); Luxus-profiel 0. Gecontroleerd met draftOrderCalculate: NL/BE/DE €4,95.
+- **Overige EU: €12,95 → €6,95** (eigenaar), en automatische korting 2247121305949 heet nu "Gratis verzending DE, overige EU en CH vanaf €60" met alle EU-landen + CH. Buiten EU (€19,95, CH gratis vanaf €60) blijft zoals het is (keuze eigenaar), hoewel Luxus/OrientFragance niet buiten de EU leveren.
+- Regels nu: NL €4,95 gratis ≥€50 · BE/DE €4,95 gratis ≥€60 · overige EU €6,95 gratis ≥€60 · CH €19,95 gratis ≥€60 · overige landen €19,95.
+- Kerst-thema + v19: `main-collection-banner`, `maison-hero-showcase`, `cart-drawer` (EU-lijst `das_eu`/`hs_eu`, winkelmandregel "Verzending €6,95 · gratis vanaf €60") en `product.json` verzendtab ("Overige EU-landen: €6,95, gratis vanaf €60.") + DE/FR/EN-vertalingen geregistreerd. **Live BF-thema toont in de verzendtab nog "Overige EU-landen: €12,95"** tot Kerst-thema live gaat (1 dec).
+- Leverancier-verzendkosten (Syncee-profielen): Luxus Aroma €4,50 NL/BE/EU, €4,20 DE/AT (geen levering buiten EU); **OrientFragance (OIFRA, 15 producten) €14,50–21,50 NL, €14,88+ BE** → verlies ±€10 per OIFRA-bestelling bij €4,95; Dripswag (DRIP, 6) NL €7, EU €10, Amerika €20; FBS NL/BE €8,20. Prijzen niet aangepast (eigenaar beslist).
+- Beleid: nog steeds geen `write_legal_policies`. Nieuwe set in `beleid-2026-11-25/` (verzendbeleid met nieuwe tarieven + GLS). Live beleid noemt nog BE €6,95/€75, NL gratis €60, 2724SL, info@daralscents.nl. Na plakken DE/FR/EN-vertalingen bijwerken.
+- Na elke Syncee-import blijft het nodig: Luxus- (en andere app-)profielen op 0 varianten controleren.
+- Live checkout-doorloop in aparte sessie (omgeving "dar-al-scents" met toegang tot daralscents.nl); Shopify blokkeert geautomatiseerde checkout-bezoeken.
